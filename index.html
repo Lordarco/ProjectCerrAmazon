@@ -55,39 +55,56 @@
   </div>
 
   <main id="conteudo">
-    <!-- HERO: fotografia dominante + Janela sólida -->
     <section class="hero-v2" id="inicio">
-      <div class="hero-media" aria-label="Espaço reservado para fotografia ou vídeo autoral">
-        <div class="photo-slot" style="background-image: url('assets/images/foto.webp');"></div>
-          <div class="photo-slot-label">
-            <strong>FOTOGRAFIA / VÍDEO AUTORAL</strong>
-            <span>proporção preservada · sem transformação generativa</span>
-          </div>
-        </div>
+  <div class="hero-media" aria-label="Carrossel de mídias autorais">
+    
+    <!-- SLIDE 1: VÍDEO DO YOUTUBE -->
+    <div class="photo-slot slide active">
+      <iframe 
+        src="https://www.youtube.com/embed/ZlvfoyMciVw?autoplay=1&mute=1&loop=1&playlist=ZlvfoyMciVw&controls=0&showinfo=0&autohide=1&modestbranding=1&rel=0&enablejsapi=1" 
+        title="Vídeo de fundo"
+        allow="autoplay; encrypted-media" 
+        allowfullscreen>
+      </iframe>
+    </div>
 
-        <aside class="hero-window">
-          <p class="eyebrow seed">CERRADO ↔ AMAZÔNIA</p>
-          <h1>Território, memória e <em>circulação autorizada.</em></h1>
-          <p>CerrAmazon é uma plataforma de pesquisa-criação, documentação responsável e relações entre territórios.</p>
-          <a class="primary-link" href="#territorios">Entrar pelo território →</a>
-        </aside>
-      </div>
+    <div class="photo-slot slide" style="background-image: url('assets/images/foto2.webp');"></div>
+    <div class="photo-slot slide" style="background-image: url('assets/images/foto3.webp');"></div>
 
-      <!-- ORLA NAVEGÁVEL -->
-      <nav class="portal-orla" aria-label="Entradas principais">
-        <a href="#territorios"><span>01</span><strong>Territórios</strong><small>lugares e relações</small></a>
-        <a href="#narrativas"><span>02</span><strong>Narrativas</strong><small>ensaios e processos</small></a>
-        <a href="#acervo"><span>03</span><strong>Acervo</strong><small>itens autorizados</small></a>
-        <a href="#protocolos"><span>04</span><strong>Protocolos</strong><small>condições de circulação</small></a>
-        <a href="#rede"><span>05</span><strong>Rede</strong><small>pessoas e instituições</small></a>
-        <a href="#webdossie"><span>06</span><strong>Webdossiê</strong><small>processo editorial</small></a>
-      </nav>
+    <div class="photo-slot-label">
+      <strong>FOTOGRAFIA / VÍDEO AUTORAL</strong>
+      <span>proporção preservada · sem transformação generativa</span>
+    </div>
 
-      <div class="hero-footnote">
-        <span>IDENTIDADE EM RELAÇÃO</span>
-        <span>ver · registrar · contextualizar · circular · revisar</span>
-      </div>
-    </section>
+    <aside class="hero-window">
+      <p class="eyebrow seed">CERRADO ↔ AMAZÔNIA</p>
+      <h1>Território, memória e <em>circulação autorizada.</em></h1>
+      <p>CerrAmazon é uma plataforma de pesquisa-criação, documentação responsável e relações entre territórios.</p>
+      <a class="primary-link" href="#territorios">Entrar pelo território →</a>
+    </aside>
+
+    <div class="slider-dots">
+      <span class="dot active" data-index="0"></span>
+      <span class="dot" data-index="1"></span>
+      <span class="dot" data-index="2"></span>
+    </div>
+  </div>
+
+  <!-- ORLA NAVEGÁVEL -->
+  <nav class="portal-orla" aria-label="Entradas principais">
+    <a href="#territorios"><span>01</span><strong>Territórios</strong><small>lugares e relações</small></a>
+    <a href="#narrativas"><span>02</span><strong>Narrativas</strong><small>ensaios e processos</small></a>
+    <a href="#acervo"><span>03</span><strong>Acervo</strong><small>itens autorizados</small></a>
+    <a href="#protocolos"><span>04</span><strong>Protocolos</strong><small>condições de circulação</small></a>
+    <a href="#rede"><span>05</span><strong>Rede</strong><small>pessoas e instituições</small></a>
+    <a href="#webdossie"><span>06</span><strong>Webdossiê</strong><small>processo editorial</small></a>
+  </nav>
+
+  <div class="hero-footnote">
+    <span>IDENTIDADE EM RELAÇÃO</span>
+    <span>ver · registrar · contextualizar · circular · revisar</span>
+  </div>
+</section>
 
     <!-- PERCURSO -->
     <section class="section section-percurso" id="territorios">

@@ -137,15 +137,6 @@ body {
   flex-direction: column;
 }
 
-.hero-media {
-  position: relative;
-  width: 100%;
-  min-height: 60vh;
-  display: flex;
-  align-items: flex-end;
-  padding: 40px;
-}
-
 .photo-slot {
   position: absolute;
   top: 0;
@@ -165,42 +156,30 @@ body {
   background: linear-gradient(180deg, rgba(10,11,13,0.3) 0%, rgba(10,11,13,0.9) 100%);
 }
 
-.photo-slot-label {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 2;
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  text-align: right;
-  background: rgba(0,0,0,0.5);
-  padding: 8px 12px;
-}
 
 .photo-slot-label span {
   display: block;
   font-size: 0.65rem;
 }
 
-.hero-window {
-  position: relative;
-  z-index: 2;
-  background: var(--bg-card);
-  padding: 40px;
-  max-width: 550px;
-  border: 1px solid var(--border-color);
-}
 
 .hero-window h1 {
   font-family: var(--font-serif);
-  font-size: 2.2rem;
+  font-size: 1.4rem;
   font-weight: 400;
-  margin: 15px 0;
+  line-height: 1.25;
+  margin: 8px 0;
 }
 
 .hero-window p {
+  font-size: 0.85rem;
+  margin-bottom: 15px;
   color: var(--text-muted);
   margin-bottom: 20px;
+}
+
+.hero-window .primary-link {
+  font-size: 0.85rem;     
 }
 
 .primary-link {
@@ -567,4 +546,93 @@ body {
   .search-field input {
     width: 100%;
   }
+}
+
+/* CONTAINER DO HERO CENTRALIZADO */
+.hero-media {
+  position: relative;
+  width: 100%;
+  min-height: 70vh;
+  display: flex;
+  justify-content: flex-start; /* Move a caixa para a esquerda */
+  align-items: flex-start;     /* Move a caixa para o topo */
+  padding: 40px;
+  overflow: hidden;
+  background: #000;
+}
+
+/* SLIDES DO SLIDER (FOTOS/VÍDEOS) */
+.photo-slot.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  z-index: 1;
+}
+
+.photo-slot.slide.active {
+  opacity: 1;
+}
+
+.photo-slot.slide iframe {
+  width: 120vw;               
+  height: 67.5vw;             
+  min-height: 120vh;          
+  min-width: 213vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.2); 
+  pointer-events: none;
+  border: none;
+}
+
+/* CAIXA PRETA (HERO WINDOW) FICA ACIMA DAS MÍDIAS */
+.hero-window {
+  position: relative;
+  z-index: 10;
+  background: rgba(20, 22, 25, 0.75); /* Fundo escuro semitransparente (75% de opacidade) */
+  backdrop-filter: blur(8px);          /* Efeito de vidro desfocado suave atrás da caixa */
+  -webkit-backdrop-filter: blur(8px);  /* Suporte para Safari */
+  padding: 20px;
+  max-width: 380px;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Borda discreta semitransparente */
+}
+
+/* ETIQUETA E BOLINHAS SOBREPOSTAS */
+.photo-slot-label {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: 25px;
+  right: 40px;
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.dot.active {
+  background: #ffffff;
+  transform: scale(1.2);
 }
