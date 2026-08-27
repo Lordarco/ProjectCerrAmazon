@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CMS conceitual — CerrAmazon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin-page">
+  <header class="admin-header">
+    <div class="brand-on-fiber"><img src="assets/wordmark_w021_reference.png" alt="CerrAmazon"></div>
+    <strong>CMS · NOVO ITEM</strong>
+    <span>protótipo de campos</span>
+  </header>
+
+  <main class="admin-shell">
+    <aside class="admin-tabs">
+      <a class="active" href="#basico">01 Básico</a>
+      <a href="#midia">02 Mídia</a>
+      <a href="#territorio-admin">03 Território</a>
+      <a href="#pessoas">04 Pessoas</a>
+      <a href="#contexto-admin">05 Contexto</a>
+      <a href="#direitos">06 Protocolo e direitos</a>
+      <a href="#relacoes">07 Relações</a>
+      <a href="#publicacao">08 Publicação</a>
+      <a href="#historico">09 Histórico</a>
+    </aside>
+
+    <section class="admin-form">
+      <header>
+        <p class="eyebrow">ITEM-EM-CIRCULAÇÃO-SOB-PROTOCOLO</p>
+        <h1>Novo item</h1>
+        <p>O sistema não publica sem autoria, território, situação de consentimento e nível de acesso.</p>
+      </header>
+
+      <fieldset id="basico">
+        <legend>01 · Informações básicas</legend>
+        <label>Título<input type="text" value="Registro territorial 01"></label>
+        <div class="form-grid">
+          <label>Tipo<select><option>Fotografia</option><option>Vídeo</option><option>Áudio</option><option>Entrevista</option><option>Documento</option></select></label>
+          <label>Data<input type="date" value="2026-08-20"></label>
+        </div>
+      </fieldset>
+
+      <fieldset id="territorio-admin">
+        <legend>03 · Território</legend>
+        <div class="form-grid">
+          <label>Território<select><option>Cerrado</option><option>Amazônia</option></select></label>
+          <label>Lugar<input type="text" value="Moinho"></label>
+        </div>
+        <label>Precisão pública da localização<select><option>Precisa</option><option>Aproximada</option><option>Restrita</option></select></label>
+      </fieldset>
+
+      <fieldset id="direitos">
+        <legend>06 · Protocolo e direitos</legend>
+        <div class="form-grid">
+          <label>Consentimento<select><option>Confirmado</option><option>Pendente</option><option>Não autorizado</option></select></label>
+          <label>Acesso<select><option>Público autorizado</option><option>Contexto obrigatório</option><option>Restrito</option><option>Retirado</option></select></label>
+        </div>
+        <label>Uso derivado<select><option>Educacional e pesquisa</option><option>Sem derivação</option><option>Nova autorização necessária</option></select></label>
+        <label>Condições / notas<textarea rows="5">Contexto obrigatório. Não remover autoria. Revisão periódica prevista.</textarea></label>
+      </fieldset>
+
+      <div class="admin-actions">
+        <button class="secondary">Salvar rascunho</button>
+        <button class="primary">Validar para publicação</button>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
