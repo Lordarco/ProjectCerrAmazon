@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Territórios — CerrAmazon</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <!-- O Header entra aqui automaticamente -->
+  <div id="header-placeholder"></div>
+
+  <!-- MIOLO / CONTEÚDO ESPECÍFICO DA PÁGINA -->
+  <main id="conteudo" style="padding: 140px 20px 80px 20px; max-width: 1200px; margin: 0 auto;">
+    <section class="section">
+      <header class="section-heading">
+        <p class="eyebrow">PLATAFORMA</p>
+        <h2>Territórios</h2>
+        <p>Lugares, percursos e relações territoriais entre Cerrado e Amazônia.</p>
+      </header>
+    </section>
+  </main>
+
+  <!-- O Footer entra aqui automaticamente -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Script que busca o header e o footer da raiz usando ../ -->
+  <script>
+    Promise.all([
+      fetch('../header.html').then(res => res.text()),
+      fetch('../footer.html').then(res => res.text())
+    ]).then(([headerHtml, footerHtml]) => {
+      document.getElementById('header-placeholder').innerHTML = headerHtml;
+      document.getElementById('footer-placeholder').innerHTML = footerHtml;
+
+      const scriptOriginal = document.createElement('script');
+      scriptOriginal.src = '../js/app.js';
+      scriptOriginal.onload = () => { document.dispatchEvent(new Event('DOMContentLoaded')); };
+      document.body.appendChild(scriptOriginal);
+    });
+  </script>
+</body>
+</html>

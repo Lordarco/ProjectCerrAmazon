@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Webdossiê — CerrAmazon</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <main id="conteudo" style="padding: 140px 20px 80px 20px; max-width: 1200px; margin: 0 auto;">
+    <section class="section">
+      <header class="section-heading">
+        <p class="eyebrow">PLATAFORMA</p>
+        <h2>Webdossiê</h2>
+        <p>Uma publicação que cresce e se desenvolve com o campo.</p>
+      </header>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script>
+    Promise.all([
+      fetch('../header.html').then(resposta => resposta.text()),
+      fetch('../footer.html').then(resposta => resposta.text())
+    ]).then(([headerHtml, footerHtml]) => {
+      document.getElementById('header-placeholder').innerHTML = headerHtml;
+      document.getElementById('footer-placeholder').innerHTML = footerHtml;
+
+      const scriptOriginal = document.createElement('script');
+      scriptOriginal.src = '../js/app.js';
+      scriptOriginal.onload = () => { document.dispatchEvent(new Event('DOMContentLoaded')); };
+      document.body.appendChild(scriptOriginal);
+    });
+  </script>
+</body>
+</html>
