@@ -13,11 +13,11 @@
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-  <!-- O Header será injetado aqui automaticamente -->
+  <!-- O Header -->
   <div id="header-placeholder"></div>
 
   <main id="conteudo">
-    <!-- BANNER PRINCIPAL (HERO) -->
+    <!-- BANNER PRINCIPAL -->
     <section class="hero-v2" id="inicio">
       <div class="hero-media" aria-label="Carrossel de mídias autorais">
         <div class="photo-slot slide active">
@@ -53,10 +53,10 @@
     </section>
   </main>
 
-  <!-- O Footer será injetado aqui automaticamente -->
+  <!-- O Footer -->
   <div id="footer-placeholder"></div>
 
-  <!-- Script inteligente que puxa o Header e o Footer de uma vez só -->
+  <!-- Header -->
   <script>
     Promise.all([
       fetch('header.html').then(res => res.text()),

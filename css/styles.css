@@ -97,9 +97,8 @@ body {
   display: none;
 }
 
-/* 1. Centraliza os títulos menores (PLATAFORMA, PRODUÇÃO, etc) */
 .menu-columns {
-  text-align: center; /* Joga todo o texto das colunas para o meio */
+  text-align: center; /
 }
 
 .menu-columns p.eyebrow {
@@ -108,16 +107,15 @@ body {
   text-align: center;
 }
 
-/* 2. Centraliza os Links e arruma o espaço */
+
 .menu-panel a {
-  display: inline-block; /* Permite centralizar sem quebrar a estrutura original */
-  width: 100%; /* Garante que ocupe o espaço para alinhar ao meio */
+  display: inline-block; 
+  width: 100%;
   text-align: center;
   margin-bottom: 16px; 
   line-height: 1.2;
 }
 
-/* 3. Estiliza a descrição menorzinha embaixo do link */
 .menu-panel a small {
   display: block;
   text-align: center;
@@ -584,8 +582,8 @@ body {
   width: 100%;
   min-height: 70vh;
   display: flex;
-  justify-content: flex-start; /* Move a caixa para a esquerda */
-  align-items: flex-start;     /* Move a caixa para o topo */
+  justify-content: flex-start;
+  align-items: flex-start;    
   padding: 40px;
   overflow: hidden;
   background: #000;
@@ -626,13 +624,13 @@ body {
 .hero-window {
   position: relative;
   z-index: 10;
-  background: rgba(20, 22, 25, 0.75); /* Fundo escuro semitransparente (75% de opacidade) */
-  backdrop-filter: blur(8px);          /* Efeito de vidro desfocado suave atrás da caixa */
-  -webkit-backdrop-filter: blur(8px);  /* Suporte para Safari */
+  background: rgba(20, 22, 25, 0.75);
+  backdrop-filter: blur(8px);          
+  -webkit-backdrop-filter: blur(8px);  
   padding: 20px;
   max-width: 380px;
   width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.15); /* Borda discreta semitransparente */
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 /* ETIQUETA E BOLINHAS SOBREPOSTAS */
@@ -665,4 +663,41 @@ body {
 .dot.active {
   background: #ffffff;
   transform: scale(1.2);
+}
+
+/* =================================================================
+   AJUSTES DE RESPONSIVIDADE PARA DISPOSITIVOS MÓVEIS (CELULARES)
+   =================================================================== */
+
+@media screen and (max-width: 768px) {
+  .hero-window {
+    width: 90% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 20px !important;
+    box-sizing: border-box;
+  }
+
+  .hero-window h1 {
+    font-size: 1.6rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .hero-window p {
+    font-size: 0.95rem !important;
+  }
+
+  .about-statement h2 {
+    font-size: 1.5rem !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-window {
+    padding: 15px !important;
+  }
+  
+  .hero-window h1 {
+    font-size: 1.35rem !important;
+  }
 }
