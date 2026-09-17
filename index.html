@@ -56,17 +56,26 @@
   <!-- O Footer -->
   <div id="footer-placeholder"></div>
 
-  <!-- Header -->
+  <!-- Header e Footer -->
   <script>
+    const ROOT = ''; // index.html está na raiz do site
+
     Promise.all([
-      fetch('header.html').then(res => res.text()),
-      fetch('footer.html').then(res => res.text())
+      fetch(ROOT + 'header.html').then(res => res.text()),
+      fetch(ROOT + 'footer.html').then(res => res.text())
     ]).then(([headerHtml, footerHtml]) => {
       document.getElementById('header-placeholder').innerHTML = headerHtml;
       document.getElementById('footer-placeholder').innerHTML = footerHtml;
 
+      // Ajusta os links e a logo do header/footer para a profundidade certa
+      document.querySelectorAll('#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]')
+        .forEach(a => a.setAttribute('href', ROOT + a.getAttribute('href')));
+
+      document.querySelectorAll('#header-placeholder [data-root-src]')
+        .forEach(el => el.setAttribute('src', ROOT + el.getAttribute('src')));
+
       const scriptOriginal = document.createElement('script');
-      scriptOriginal.src = 'js/app.js';
+      scriptOriginal.src = ROOT + 'js/app.js';
       scriptOriginal.onload = () => { document.dispatchEvent(new Event('DOMContentLoaded')); };
       document.body.appendChild(scriptOriginal);
     });

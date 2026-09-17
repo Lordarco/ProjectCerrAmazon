@@ -1,6 +1,5 @@
 // ==========================================
 // 1. LÓGICA DO MENU (Com Delegação de Eventos)
-// Funciona 100% das vezes, mesmo com o header carregando depois
 // ==========================================
 document.addEventListener('click', (event) => {
   
@@ -21,7 +20,7 @@ document.addEventListener('click', (event) => {
         menuIcon.textContent = isExpanded ? '+' : '×';
       }
     }
-    return; // Encerra a função aqui
+    return;
   }
 
   // B. Verifica se a pessoa clicou em um link do menu (para fechar o painel)
