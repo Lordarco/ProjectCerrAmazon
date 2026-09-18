@@ -9,7 +9,7 @@
 <body>
   <div id="header-placeholder"></div>
 
-  <main id="conteudo" style="padding: 140px 20px 80px 20px; max-width: 1200px; margin: 0 auto;">
+  <main id="conteudo" style="padding: 20px 20px 20px 20px; max-width: 1200px; margin: 0 auto;">
     <section class="section">
       <header class="section-heading">
         <p class="eyebrow">INSTITUCIONAL</p>
@@ -22,15 +22,23 @@
   <div id="footer-placeholder"></div>
 
   <script>
+    const ROOT = '../';
+
     Promise.all([
-      fetch('/header.html').then(resposta => resposta.text()),
-      fetch('/footer.html').then(resposta => resposta.text())
+      fetch(ROOT + 'header.html').then(res => res.text()),
+      fetch(ROOT + 'footer.html').then(res => res.text())
     ]).then(([headerHtml, footerHtml]) => {
       document.getElementById('header-placeholder').innerHTML = headerHtml;
       document.getElementById('footer-placeholder').innerHTML = footerHtml;
 
+      document.querySelectorAll('#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]')
+        .forEach(a => a.setAttribute('href', ROOT + a.getAttribute('href')));
+
+      document.querySelectorAll('#header-placeholder [data-root-src]')
+        .forEach(el => el.setAttribute('src', ROOT + el.getAttribute('src')));
+
       const scriptOriginal = document.createElement('script');
-      scriptOriginal.src = '/js/app.js';
+      scriptOriginal.src = ROOT + 'js/app.js';
       scriptOriginal.onload = () => { document.dispatchEvent(new Event('DOMContentLoaded')); };
       document.body.appendChild(scriptOriginal);
     });

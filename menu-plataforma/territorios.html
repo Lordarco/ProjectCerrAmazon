@@ -5,13 +5,90 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Territórios — CerrAmazon</title>
   <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    .carrosseis-lado-a-lado {
+      display: flex;
+      gap: 24px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    .carrossel-secao {
+      flex: 1 1 0;
+      min-width: 280px;
+    }
+    .carrossel-secao h3 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+    .carrossel-secao p.legenda {
+      color: var(--text-muted, #999);
+      margin-bottom: 20px;
+    }
+    .carrossel {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #111;
+    }
+    .carrossel-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .carrossel-slide.ativo {
+      opacity: 1;
+    }
+    .carrossel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.1rem;
+      z-index: 2;
+    }
+    .carrossel-nav:hover {
+      background: rgba(0,0,0,0.8);
+    }
+    .carrossel-nav.anterior { left: 10px; }
+    .carrossel-nav.proximo { right: 10px; }
+    .carrossel-dots {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 2;
+    }
+    .carrossel-dots .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer;
+    }
+    .carrossel-dots .dot.ativo {
+      background: #fff;
+    }
+  </style>
 </head>
 <body>
   <!-- O Header entra aqui automaticamente -->
   <div id="header-placeholder"></div>
 
   <!-- MIOLO / CONTEÚDO ESPECÍFICO DA PÁGINA -->
-  <main id="conteudo" style="padding: 140px 20px 80px 20px; max-width: 1200px; margin: 0 auto;">
+  <main id="conteudo" style="padding: 20px 20px 20px 20px; max-width: 1200px; margin: 0 auto;">
     <section class="section">
       <header class="section-heading">
         <p class="eyebrow">PLATAFORMA</p>
@@ -19,6 +96,30 @@
         <p>Lugares, percursos e relações territoriais entre Cerrado e Amazônia.</p>
       </header>
     </section>
+
+    <div class="carrosseis-lado-a-lado">
+      <!-- CARROSSEL CERRADO -->
+      <section class="carrossel-secao">
+        <h3>Cerrado</h3>
+        <p class="legenda">Registros do território do Cerrado.</p>
+        <div class="carrossel" id="carrossel-cerrado">
+          <button class="carrossel-nav anterior" aria-label="Foto anterior">‹</button>
+          <button class="carrossel-nav proximo" aria-label="Próxima foto">›</button>
+          <div class="carrossel-dots"></div>
+        </div>
+      </section>
+
+      <!-- CARROSSEL AMAZÔNIA -->
+      <section class="carrossel-secao">
+        <h3>Amazônia</h3>
+        <p class="legenda">Registros do território da Amazônia.</p>
+        <div class="carrossel" id="carrossel-amazonia">
+          <button class="carrossel-nav anterior" aria-label="Foto anterior">‹</button>
+          <button class="carrossel-nav proximo" aria-label="Próxima foto">›</button>
+          <div class="carrossel-dots"></div>
+        </div>
+      </section>
+    </div>
   </main>
 
   <!-- O Footer entra aqui automaticamente -->
@@ -46,6 +147,90 @@
       scriptOriginal.onload = () => { document.dispatchEvent(new Event('DOMContentLoaded')); };
       document.body.appendChild(scriptOriginal);
     });
+  </script>
+
+  <!-- CARROSSÉIS: -->
+  <script>
+    const ROOT_IMG = '../assets/images/';
+
+    const fotosCerrado = [
+      '7 - Cerrado_paisagem.jpg',
+      '11 - água.jpg',
+      'besouro.jpg',
+      'Candaru.jpg',
+      'cerrado.jpg',
+      'Flor.jpg',
+      'flor1.png',
+      'flor2.jpg',
+      'flor3.jpg',
+      'flor4.jpg',
+      'flor5.jpg',
+      'flor6.jpg',
+      'flor7.jpg',
+      'flor8.jpg',
+      'flor9.jpg',
+      'flor10.jpg',
+      'libelula.jpg',
+      'libelula2.jpg'
+    ];
+
+    const fotosAmazonia = [
+      'foto1.jpg',
+      'foto2.jpg',
+      'foto3.jpg'
+    ];
+
+    function montarCarrossel(idContainer, pastaImagens, listaFotos) {
+      const container = document.getElementById(idContainer);
+      if (!container || listaFotos.length === 0) return;
+
+      const dotsWrapper = container.querySelector('.carrossel-dots');
+      let atual = 0;
+      let timer;
+
+      // Cria os slides
+      listaFotos.forEach((nomeArquivo, i) => {
+        const slide = document.createElement('div');
+        slide.className = 'carrossel-slide' + (i === 0 ? ' ativo' : '');
+        slide.style.backgroundImage = `url('${ROOT_IMG}${pastaImagens}/${encodeURIComponent(nomeArquivo)}')`;
+        container.insertBefore(slide, container.firstChild);
+
+        const dot = document.createElement('span');
+        dot.className = 'dot' + (i === 0 ? ' ativo' : '');
+        dot.addEventListener('click', () => irPara(i));
+        dotsWrapper.appendChild(dot);
+      });
+
+      const slides = container.querySelectorAll('.carrossel-slide');
+      const dots = dotsWrapper.querySelectorAll('.dot');
+
+      function irPara(indice) {
+        slides[atual].classList.remove('ativo');
+        dots[atual].classList.remove('ativo');
+        atual = (indice + listaFotos.length) % listaFotos.length;
+        slides[atual].classList.add('ativo');
+        dots[atual].classList.add('ativo');
+      }
+
+      function reiniciarTimer() {
+        clearInterval(timer);
+        timer = setInterval(() => irPara(atual + 1), 5000);
+      }
+
+      container.querySelector('.anterior').addEventListener('click', () => {
+        irPara(atual - 1);
+        reiniciarTimer();
+      });
+      container.querySelector('.proximo').addEventListener('click', () => {
+        irPara(atual + 1);
+        reiniciarTimer();
+      });
+
+      reiniciarTimer();
+    }
+
+    montarCarrossel('carrossel-cerrado', 'cerrado', fotosCerrado);
+    montarCarrossel('carrossel-amazonia', 'amazonia', fotosAmazonia);
   </script>
 </body>
 </html>
