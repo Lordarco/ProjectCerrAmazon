@@ -6,10 +6,16 @@
   <title>Territórios — CerrAmazon</title>
   <link rel="stylesheet" href="../css/styles.css">
   <style>
+    #conteudo .section {
+      padding-bottom: 20px;
+    }
+    #conteudo .section-heading {
+      margin-bottom: 0;
+    }
     .carrosseis-lado-a-lado {
       display: flex;
       gap: 24px;
-      margin-top: 30px;
+      margin-top: 24px;
       flex-wrap: wrap;
     }
     .carrossel-secao {
@@ -81,6 +87,16 @@
     .carrossel-dots .dot.ativo {
       background: #fff;
     }
+    .carrossel-loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted, #999);
+      font-size: 0.8rem;
+      z-index: 1;
+    }
   </style>
 </head>
 <body>
@@ -103,6 +119,7 @@
         <h3>Cerrado</h3>
         <p class="legenda">Registros do território do Cerrado.</p>
         <div class="carrossel" id="carrossel-cerrado">
+          <div class="carrossel-loading">carregando...</div>
           <button class="carrossel-nav anterior" aria-label="Foto anterior">‹</button>
           <button class="carrossel-nav proximo" aria-label="Próxima foto">›</button>
           <div class="carrossel-dots"></div>
@@ -114,6 +131,7 @@
         <h3>Amazônia</h3>
         <p class="legenda">Registros do território da Amazônia.</p>
         <div class="carrossel" id="carrossel-amazonia">
+          <div class="carrossel-loading">carregando...</div>
           <button class="carrossel-nav anterior" aria-label="Foto anterior">‹</button>
           <button class="carrossel-nav proximo" aria-label="Próxima foto">›</button>
           <div class="carrossel-dots"></div>
@@ -149,7 +167,7 @@
     });
   </script>
 
-  <!-- CARROSSÉIS: -->
+  <!-- CARROSSÉIS -->
   <script>
     const ROOT_IMG = '../assets/images/';
 
@@ -180,20 +198,24 @@
       'foto3.jpg'
     ];
 
+    const cacheCarregados = {};
+
     function montarCarrossel(idContainer, pastaImagens, listaFotos) {
       const container = document.getElementById(idContainer);
       if (!container || listaFotos.length === 0) return;
 
+      const loadingLabel = container.querySelector('.carrossel-loading');
       const dotsWrapper = container.querySelector('.carrossel-dots');
       let atual = 0;
       let timer;
 
-      // Cria os slides
+      cacheCarregados[idContainer] = new Set();
+
       listaFotos.forEach((nomeArquivo, i) => {
         const slide = document.createElement('div');
         slide.className = 'carrossel-slide' + (i === 0 ? ' ativo' : '');
-        slide.style.backgroundImage = `url('${ROOT_IMG}${pastaImagens}/${encodeURIComponent(nomeArquivo)}')`;
-        container.insertBefore(slide, container.firstChild);
+        slide.dataset.src = `${ROOT_IMG}${pastaImagens}/${encodeURIComponent(nomeArquivo)}`;
+        container.insertBefore(slide, loadingLabel.nextSibling);
 
         const dot = document.createElement('span');
         dot.className = 'dot' + (i === 0 ? ' ativo' : '');
@@ -204,12 +226,42 @@
       const slides = container.querySelectorAll('.carrossel-slide');
       const dots = dotsWrapper.querySelectorAll('.dot');
 
+      function carregarSlide(indice) {
+        if (cacheCarregados[idContainer].has(indice)) return;
+        const slide = slides[indice];
+        const url = slide.dataset.src;
+
+        const img = new Image();
+        img.onload = () => {
+          slide.style.backgroundImage = `url('${url}')`;
+          cacheCarregados[idContainer].add(indice);
+          if (indice === atual && loadingLabel) {
+            loadingLabel.style.display = 'none';
+          }
+        };
+        img.onerror = () => {
+          cacheCarregados[idContainer].add(indice);
+          if (indice === atual && loadingLabel) {
+            loadingLabel.textContent = 'imagem indisponível';
+          }
+        };
+        img.src = url;
+      }
+
       function irPara(indice) {
         slides[atual].classList.remove('ativo');
         dots[atual].classList.remove('ativo');
         atual = (indice + listaFotos.length) % listaFotos.length;
         slides[atual].classList.add('ativo');
         dots[atual].classList.add('ativo');
+
+        if (loadingLabel) {
+          loadingLabel.style.display = cacheCarregados[idContainer].has(atual) ? 'none' : 'flex';
+          loadingLabel.textContent = 'carregando...';
+        }
+
+        carregarSlide(atual);
+        carregarSlide((atual + 1) % listaFotos.length);
       }
 
       function reiniciarTimer() {
@@ -225,6 +277,9 @@
         irPara(atual + 1);
         reiniciarTimer();
       });
+
+      carregarSlide(0);
+      carregarSlide(1 % listaFotos.length);
 
       reiniciarTimer();
     }
