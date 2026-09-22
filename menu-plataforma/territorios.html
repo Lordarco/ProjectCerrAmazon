@@ -158,8 +158,14 @@
         .forEach(a => a.setAttribute('href', ROOT + a.getAttribute('href')));
 
       document.querySelectorAll('#header-placeholder [data-root-src]')
-        .forEach(el => el.setAttribute('src', ROOT + el.getAttribute('src')));
+        .forEach(el => {
+          const srcOriginal = el.getAttribute('src');
+          if (srcOriginal && !srcOriginal.startsWith('http')) {
+            el.setAttribute('src', ROOT + srcOriginal);
+          }
+        });
 
+      
       const scriptOriginal = document.createElement('script');
       scriptOriginal.src = ROOT + 'js/app.js';
       scriptOriginal.onload = () => { document.dispatchEvent(new Event('DOMContentLoaded')); };
@@ -172,30 +178,24 @@
     const ROOT_IMG = '../assets/images/';
 
     const fotosCerrado = [
-      '7 - Cerrado_paisagem.jpg',
-      '11 - água.jpg',
-      'besouro.jpg',
-      'Candaru.jpg',
-      'cerrado.jpg',
-      'Flor.jpg',
-      'flor1.png',
-      'flor2.jpg',
-      'flor3.jpg',
-      'flor4.jpg',
-      'flor5.jpg',
-      'flor6.jpg',
-      'flor7.jpg',
-      'flor8.jpg',
-      'flor9.jpg',
-      'flor10.jpg',
-      'libelula.jpg',
-      'libelula2.jpg'
+      'https://lh3.googleusercontent.com/d/1br_Afk7uwuJk3GKN-K1HypNplZgADSPR=w1000',
+      'https://lh3.googleusercontent.com/d/1afS13DgWJ6fzwZPwskt9nXg9NB0k3hYR=w1000',
+      'https://lh3.googleusercontent.com/d/1TxYpuV4UzNzkjxYXNVr8gHhF7oBYnuDJ=w1000',
+      'https://lh3.googleusercontent.com/d/1d1pKBw6ZLrSSP7-riCBG8OMJsb6uh7UX=w1000',
+      'https://lh3.googleusercontent.com/d/1a7wLc0YdUHeP2OMxIeYb7nKTkz24Pyeh=w1000',
+      'https://lh3.googleusercontent.com/d/1GpCEAqcwvmABAqz1UKtp5jVa7XsNCnoD=w1000',
+      'https://lh3.googleusercontent.com/d/15EN34cFUei6OadIRlWSvFgFwRJlYIqRZ=w1000',
+      'https://lh3.googleusercontent.com/d/1JOeWHWiJSJQuYnUeweVVYxYMeuMWUWe-=w1000'
     ];
 
     const fotosAmazonia = [
-      'foto1.jpg',
-      'foto2.jpg',
-      'foto3.jpg'
+      'https://lh3.googleusercontent.com/d/1AL20gq9zoLF4ib301MrjKkKRqETew8ST=w1000',
+      'https://lh3.googleusercontent.com/d/1g1KfD5rxy9RjjLPndXyGpXy0ISyGBGyt=w1000',
+      'https://lh3.googleusercontent.com/d/1FTeTa9nj6N0bievHcVXDTtD-t99HGRRV=w1000',
+      'https://lh3.googleusercontent.com/d/1u34f7leFXImImS5gwk5jSgyLpFlDB2_K=w1000',
+      'https://lh3.googleusercontent.com/d/1B0Z1CFl_kBTIy568tpk3F178J9qWllvr=w1000',
+      'https://lh3.googleusercontent.com/d/1PH6vqfHFsc9ZmgzfmdV5Ap1iQqW-99fd=w1000',
+      'https://lh3.googleusercontent.com/d/1kknKu8tPSG60HnEG5wXNGu34KApg9ozL=w1000'
     ];
 
     const cacheCarregados = {};
@@ -211,11 +211,16 @@
 
       cacheCarregados[idContainer] = new Set();
 
-      listaFotos.forEach((nomeArquivo, i) => {
+      listaFotos.forEach((item, i) => {
         const slide = document.createElement('div');
         slide.className = 'carrossel-slide' + (i === 0 ? ' ativo' : '');
-        slide.dataset.src = `${ROOT_IMG}${pastaImagens}/${encodeURIComponent(nomeArquivo)}`;
-        container.insertBefore(slide, loadingLabel.nextSibling);
+        
+        if (item.startsWith('http')) {
+          slide.dataset.src = item;
+        } else {
+          slide.dataset.src = `${ROOT_IMG}${pastaImagens}/${encodeURIComponent(item)}`;
+        }
+        container.insertBefore(slide, loadingLabel);
 
         const dot = document.createElement('span');
         dot.className = 'dot' + (i === 0 ? ' ativo' : '');

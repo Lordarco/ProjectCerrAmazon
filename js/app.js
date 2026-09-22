@@ -1,9 +1,8 @@
 // ==========================================
-// 1. LÓGICA DO MENU (Com Delegação de Eventos)
+// 1. LÓGICA DO MENU
 // ==========================================
 document.addEventListener('click', (event) => {
   
-  // A. Verifica se a pessoa clicou no botão de abrir/fechar o menu
   const menuToggle = event.target.closest('.menu-toggle');
   if (menuToggle) {
     const menuPanel = document.getElementById('menu-panel');
@@ -23,7 +22,6 @@ document.addEventListener('click', (event) => {
     return;
   }
 
-  // B. Verifica se a pessoa clicou em um link do menu (para fechar o painel)
   const menuLink = event.target.closest('.menu-panel a');
   if (menuLink) {
     const toggleBtn = document.querySelector('.menu-toggle');
@@ -41,7 +39,7 @@ document.addEventListener('click', (event) => {
 
 
 // ==========================================
-// 2. LÓGICA DO CARROSSEL (Sua lógica original intocada)
+// 2. LÓGICA DO CARROSSEL
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
   const slides = document.querySelectorAll('.hero-media .slide');
@@ -75,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function startTimer() {
     slideInterval = setInterval(() => {
       showSlide(currentSlide + 1);
-    }, 5000);
+    }, 100000);
   }
 
   function resetTimer() {

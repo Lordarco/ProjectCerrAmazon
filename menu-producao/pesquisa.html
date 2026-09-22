@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pesquisa — CerrAmazon</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    #conteudo .section {
+      padding-bottom: 20px;
+    }
+    #conteudo .section-heading {
+      margin-bottom: 0;
+    }
+    .carrossel-secao {
+      max-width: 800px;
+      margin: 24px auto 0 auto;
+    }
+    .carrossel-secao h3 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+    .carrossel-secao p.legenda {
+      color: var(--text-muted, #999);
+      margin-bottom: 20px;
+    }
+    .carrossel {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #111;
+    }
+    .carrossel-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .carrossel-slide.ativo {
+      opacity: 1;
+    }
+    .carrossel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.1rem;
+      z-index: 2;
+    }
+    .carrossel-nav:hover {
+      background: rgba(0,0,0,0.8);
+    }
+    .carrossel-nav.anterior { left: 10px; }
+    .carrossel-nav.proximo { right: 10px; }
+    .carrossel-dots {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 2;
+    }
+    .carrossel-dots .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer;
+    }
+    .carrossel-dots .dot.ativo {
+      background: #fff;
+    }
+    .carrossel-loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted, #999);
+      font-size: 0.8rem;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- O Header entra aqui automaticamente -->
+  <div id="header-placeholder"></div>
+
+  <!-- MIOLO / CONTEÚDO ESPECÍFICO DA PÁGINA -->
+  <main id="conteudo" style="padding: 20px 20px 20px 20px; max-width: 1200px; margin: 0 auto;">
+    <section class="section">
+      <header class="section-heading">
+        <p class="eyebrow">PRODUÇÃO</p>
+        <h2>Pesquisa</h2>
+        <p>Investigação em campo, levantamentos de dados e metodologias territoriais.</p>
+      </header>
+    </section>
+
+    <!--CARROSSEL -->
+    <section class="carrossel-secao">
+      <h3>Trabalho de Campo</h3>
+      <p class="legenda">Registros fotográficos das frentes de investigação.</p>
+      <div class="carrossel" id="carrossel-pesquisa">
+        <div class="carrossel-loading">carregando...</div>
+        <button class="carrossel-nav anterior" aria-label="Foto anterior">‹</button>
+        <button class="carrossel-nav proximo" aria-label="Próxima foto">›</button>
+        <div class="carrossel-dots"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- O Footer entra aqui automaticamente -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Header e Footer -->
+  <script>
+    const ROOT = '../';
+
+    Promise.all([
+      fetch(ROOT + 'header.html').then(resposta => resposta.text()),
+      fetch(ROOT + 'footer.html').then(resposta => resposta.text())
+    ]).then(([headerHtml, footerHtml]) => {
+      document.getElementById('header-placeholder').innerHTML = headerHtml;
+      document.getElementById('footer-placeholder').innerHTML = footerHtml;
+
+      document.querySelectorAll('#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]')
+        .forEach(a => a.setAttribute('href', ROOT + a.getAttribute('href')));
+
+      document.querySelectorAll('#header-placeholder [data-root-src]')
+        .forEach(el => {
+          const srcOriginal = el.getAttribute('src');
+          if (srcOriginal && !srcOriginal.startsWith('http')) {
+            el.setAttribute('src', ROOT + srcOriginal);
+          }
+        });
+
+      const scriptOriginal = document.createElement('script');
+      scriptOriginal.src = ROOT + 'js/app.js';
+      scriptOriginal.onload = () => { document.dispatchEvent(new Event('DOMContentLoaded')); };
+      document.body.appendChild(scriptOriginal);
+    });
+  </script>
+
+  <!-- SCRIPT DO CARROSSEL -->
+  <script>
+    const fotosPesquisa = [
+      'https://lh3.googleusercontent.com/d/1FOGIrwRIZb1aRNImCal9_VHBmKhUrFZa=w1000'
+    ];
+
+    const cacheCarregados = {};
+
+    function montarCarrosselUnico(idContainer, listaFotos) {
+      const container = document.getElementById(idContainer);
+      if (!container || listaFotos.length === 0) return;
+
+      const loadingLabel = container.querySelector('.carrossel-loading');
+      const dotsWrapper = container.querySelector('.carrossel-dots');
+      let atual = 0;
+      let timer;
+
+      cacheCarregados[idContainer] = new Set();
+
+      listaFotos.forEach((url, i) => {
+        const slide = document.createElement('div');
+        slide.className = 'carrossel-slide' + (i === 0 ? ' ativo' : '');
+        slide.dataset.src = url;
+
+        container.insertBefore(slide, loadingLabel);
+
+        const dot = document.createElement('span');
+        dot.className = 'dot' + (i === 0 ? ' ativo' : '');
+        dot.addEventListener('click', () => irPara(i));
+        dotsWrapper.appendChild(dot);
+      });
+
+      const slides = container.querySelectorAll('.carrossel-slide');
+      const dots = dotsWrapper.querySelectorAll('.dot');
+
+      function carregarSlide(indice) {
+        if (cacheCarregados[idContainer].has(indice)) return;
+        const slide = slides[indice];
+        const url = slide.dataset.src;
+
+        const img = new Image();
+        img.onload = () => {
+          slide.style.backgroundImage = `url('${url}')`;
+          cacheCarregados[idContainer].add(indice);
+          if (indice === atual && loadingLabel) {
+            loadingLabel.style.display = 'none';
+          }
+        };
+        img.onerror = () => {
+          cacheCarregados[idContainer].add(indice);
+          if (indice === atual && loadingLabel) {
+            loadingLabel.textContent = 'imagem indisponível';
+          }
+        };
+        img.src = url;
+      }
+
+      function irPara(indice) {
+        slides[atual].classList.remove('ativo');
+        dots[atual].classList.remove('ativo');
+        atual = (indice + listaFotos.length) % listaFotos.length;
+        slides[atual].classList.add('ativo');
+        dots[atual].classList.add('ativo');
+
+        if (loadingLabel) {
+          loadingLabel.style.display = cacheCarregados[idContainer].has(atual) ? 'none' : 'flex';
+          loadingLabel.textContent = 'carregando...';
+        }
+
+        carregarSlide(atual);
+        carregarSlide((atual + 1) % listaFotos.length);
+      }
+
+      function reiniciarTimer() {
+        clearInterval(timer);
+        timer = setInterval(() => irPara(atual + 1), 5000);
+      }
+
+      container.querySelector('.anterior').addEventListener('click', () => {
+        irPara(atual - 1);
+        reiniciarTimer();
+      });
+      container.querySelector('.proximo').addEventListener('click', () => {
+        irPara(atual + 1);
+        reiniciarTimer();
+      });
+
+      carregarSlide(0);
+      carregarSlide(1 % listaFotos.length);
+
+      reiniciarTimer();
+    }
+
+    montarCarrosselUnico('carrossel-pesquisa', fotosPesquisa);
+  </script>
+</body>
+</html>

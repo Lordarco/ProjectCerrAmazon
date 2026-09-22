@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Parceiros — CerrAmazon</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    #conteudo .section {
+      padding-bottom: 20px;
+    }
+    #conteudo .section-heading {
+      margin-bottom: 24px;
+    }
+    .lista-parceiros {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .parceiro-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: #111;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 16px 20px;
+      border-radius: 8px;
+    }
+    .parceiro-logo {
+      width: 80px;
+      height: 70px;
+      object-fit: contain;
+      flex-shrink: 0;
+      background-color: #1a1a1a;
+      padding: 6px;
+      border-radius: 6px;
+    }
+    .parceiro-info h3 {
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+      color: #fff;
+    }
+    .parceiro-info p {
+      color: var(--text-muted, #999);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- O Header entra aqui automaticamente -->
+  <div id="header-placeholder"></div>
+
+  <!-- MIOLO / CONTEÚDO ESPECÍFICO DA PÁGINA -->
+  <main id="conteudo" style="padding: 20px 20px 40px 20px; max-width: 1200px; margin: 0 auto;">
+    <section class="section">
+      <header class="section-heading">
+        <p class="eyebrow">INSTITUCIONAL</p>
+        <h2>Parceiros</h2>
+        <p>Instituições, redes de apoio e coletas que colaboram com a expansão da plataforma.</p>
+      </header>
+
+      <!-- LISTA EMPILHADA DE PARCEIROS -->
+      <div class="lista-parceiros">
+        
+        <!-- Parceiro 1 -->
+        <div class="parceiro-card">
+            <img src="https://lh3.googleusercontent.com/d/1-4JKOnNYJ-MJ99h-nKTEQo64FxDH5PTV=w1000" alt="Logo Parceiro" class="parceiro-logo" loading="lazy">
+            <div class="parceiro-info">
+                <h3>Universidade de Brasilia</h3>
+                <p>Apoio institucional e fomento à pesquisa territorial.</p>
+            </div>
+        </div>
+
+        <!-- Parceiro 2 -->
+        <div class="parceiro-card">
+          <img src="https://lh3.googleusercontent.com/d/1du1uoKcs9dLCeeH3S_hw-1QL6Li0BfP-=w1000" alt="Logo Parceiro" class="parceiro-logo" loading="lazy">
+          <div class="parceiro-info">
+            <h3>Decanato de Extensão UnB</h3>
+            <p>Parceria em infraestrutura de dados e documentação e fomentação de recursos para extensão na UnB.</p>
+          </div>
+        </div>
+
+        <!-- Parceiro 3 -->
+        <div class="parceiro-card">
+          <img src="https://lh3.googleusercontent.com/d/1TNRB25stNDNMOaqgA2-xRAB5YFQTQcYv=w1000" alt="Logo Parceiro" class="parceiro-logo" loading="lazy">
+          <div class="parceiro-info">
+            <h3>Rede de Polos e Extensão</h3>
+            <p>Parceria em infraestrutura de dados e documentação e fomentação de recursos para extensão na UnB.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- O Footer entra aqui automaticamente -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Header e Footer -->
+  <script>
+    const ROOT = '../';
+
+    Promise.all([
+      fetch(ROOT + 'header.html').then(resposta => resposta.text()),
+      fetch(ROOT + 'footer.html').then(resposta => resposta.text())
+    ]).then(([headerHtml, footerHtml]) => {
+      document.getElementById('header-placeholder').innerHTML = headerHtml;
+      document.getElementById('footer-placeholder').innerHTML = footerHtml;
+
+      document.querySelectorAll('#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]')
+        .forEach(a => a.setAttribute('href', ROOT + a.getAttribute('href')));
+
+      document.querySelectorAll('#header-placeholder [data-root-src]')
+        .forEach(el => {
+          const srcOriginal = el.getAttribute('src');
+          if (srcOriginal && !srcOriginal.startsWith('http')) {
+            el.setAttribute('src', ROOT + srcOriginal);
+          }
+        });
+
+      const scriptOriginal = document.createElement('script');
+      scriptOriginal.src = ROOT + 'js/app.js';
+      scriptOriginal.onload = () => { document.dispatchEvent(new Event('DOMContentLoaded')); };
+      document.body.appendChild(scriptOriginal);
+    });
+  </script>
+</body>
+</html>

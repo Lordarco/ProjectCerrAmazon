@@ -20,11 +20,24 @@
     <!-- BANNER PRINCIPAL -->
     <section class="hero-v2" id="inicio">
       <div class="hero-media" aria-label="Carrossel de mídias autorais">
+        
+        <!-- Slide 1: Vídeo do YouTube -->
         <div class="photo-slot slide active">
-          <iframe src="https://www.youtube.com/embed/ZlvfoyMciVw?autoplay=1&mute=1&loop=1&playlist=ZlvfoyMciVw&controls=0&showinfo=0&autohide=1&modestbranding=1&rel=0&enablejsapi=1" title="Vídeo de fundo" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/ZlvfoyMciVw?autoplay=1&mute=1&controls=0&loop=1&playlist=ZlvfoyMciVw" title="Vídeo de fundo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
-        <div class="photo-slot slide" style="background-image: url('assets/images/foto2.webp');"></div>
-        <div class="photo-slot slide" style="background-image: url('assets/images/foto3.webp');"></div>
+
+        <!-- Slide 2: Imagem do Google Drive -->
+
+        <div class="photo-slot slide">
+          <img src="https://lh3.googleusercontent.com/d/1WCsDiHUBstOogzQ8wGMk2_M97_qgKQN5=w1000" alt="CerrAmazon - Imagem" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: center; position: absolute; top: 0; left: 0;">
+        </div>
+        <!-- Slide 3: Imagem do Google Drive -->
+         <div class="photo-slot slide">
+          <img src="https://lh3.googleusercontent.com/d/1DNpXcsvNtYetn-yed0aGUjxtP1iLdllx=w1000" alt="CerrAmazon - Imagem" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: center; position: absolute; top: 0; left: 0;">
+        </div>
+
+        <!-- Slide 4: Outra Imagem do Google Drive(Se quiser colocar, porém deve aumentar o carrosel em app.js)  -->
+        
 
         <div class="photo-slot-label">
           <strong>FOTOGRAFIA / VÍDEO AUTORAL</strong>
@@ -58,7 +71,7 @@
 
   <!-- Header e Footer -->
   <script>
-    const ROOT = ''; // index.html está na raiz do site
+    const ROOT = '';
 
     Promise.all([
       fetch(ROOT + 'header.html').then(res => res.text()),
@@ -67,7 +80,6 @@
       document.getElementById('header-placeholder').innerHTML = headerHtml;
       document.getElementById('footer-placeholder').innerHTML = footerHtml;
 
-      // Ajusta os links e a logo do header/footer para a profundidade certa
       document.querySelectorAll('#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]')
         .forEach(a => a.setAttribute('href', ROOT + a.getAttribute('href')));
 
