@@ -91,6 +91,95 @@
       font-size: 0.8rem;
       z-index: 1;
     }
+
+    /* Estilos para a Seção de Livros e Publicações com Barra de Rolagem */
+    .secao-livros {
+      max-width: 800px;
+      margin: 40px auto 0 auto;
+    }
+    .secao-livros h3 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+    .secao-livros p.legenda {
+      color: var(--text-muted, #999);
+      margin-bottom: 20px;
+    }
+    .grade-livros {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 16px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.05);
+    }
+    /* Estilização da barra de rolagem para navegadores baseados em WebKit (Chrome, Safari, Edge) */
+    .grade-livros::-webkit-scrollbar {
+      height: 8px;
+    }
+    .grade-livros::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+    }
+    .grade-livros::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+    }
+    .grade-livros::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .livro-card {
+      background: #111;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.3s ease;
+      min-width: 260px;
+      max-width: 280px;
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+    }
+    .livro-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .livro-capa {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: 4px;
+      background: #222;
+      margin-bottom: 14px;
+    }
+    .livro-info h4 {
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .livro-info p {
+      color: var(--text-muted, #999);
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+    .livro-link {
+      display: inline-block;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      padding-bottom: 2px;
+      align-self: flex-start;
+      transition: border-color 0.2s;
+    }
+    .livro-link:hover {
+      border-color: #fff;
+    }
   </style>
 </head>
 <body>
@@ -98,7 +187,7 @@
   <div id="header-placeholder"></div>
 
   <!-- MIOLO / CONTEÚDO ESPECÍFICO DA PÁGINA -->
-  <main id="conteudo" style="padding: 20px 20px 20px 20px; max-width: 1200px; margin: 0 auto;">
+  <main id="conteudo" style="padding: 20px 20px 40px 20px; max-width: 1200px; margin: 0 auto;">
     <section class="section">
       <header class="section-heading">
         <p class="eyebrow">PRODUÇÃO</p>
@@ -107,7 +196,7 @@
       </header>
     </section>
 
-    <!--CARROSSEL -->
+    <!-- CARROSSEL -->
     <section class="carrossel-secao">
       <h3>Trabalho de Campo</h3>
       <p class="legenda">Registros fotográficos das frentes de investigação.</p>
@@ -116,6 +205,76 @@
         <button class="carrossel-nav anterior" aria-label="Foto anterior">‹</button>
         <button class="carrossel-nav proximo" aria-label="Próxima foto">›</button>
         <div class="carrossel-dots"></div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO DE LIVROS E PUBLICAÇÕES -->
+    <section class="secao-livros">
+      <h3>Livros e Publicações</h3>
+      <p class="legenda">Obras, catálogos e compilações de pesquisa desenvolvidas pelo projeto.</p>
+      
+      <div class="grade-livros">
+        
+        <!-- Item 1 -->
+        <div class="livro-card">
+          <div>
+            <img src="https://lh3.googleusercontent.com/d/16Mwi-obv3nERk6M3an4J7tRPwDjd8Ej1=w1000" alt="Pandemia 1 – Lives" class="livro-capa" loading="lazy">
+            <div class="livro-info">
+              <h4>Pandemia 1 – Lives</h4>
+              <p>Registros e debates transmitidos em ciclos de conversas e encontros virtuais, reunindo pesquisadores, lideranças e pensadores para discutir os impactos socioambientais imediatos da crise sanitária nos territórios amazônicos e do cerrado.</p>
+            </div>
+          </div>
+          <a href="https://docs.google.com/document/d/17o-UsiSAx9TyiQMrlp7ATM3AfRQJnjIwLNHlaR3nNwA/edit?usp=sharing" target="_blank" class="livro-link">Acessar publicação →</a>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="livro-card">
+          <div>
+            <img src="https://lh3.googleusercontent.com/d/1Tzc2lyaqZwTRNWF8TqtcLgkRInrucsjy=w1000" alt="Pandemia 3 – Artigos" class="livro-capa" loading="lazy">
+            <div class="livro-info">
+              <h4>Pandemia 3 – Artigos</h4>
+              <p>Compilação de textos analíticos e ensaios críticos aprofundados sobre o período, abordando as transformações políticas, econômicas e sanitárias sob a ótica da pesquisa acadêmica e independente.</p>
+            </div>
+          </div>
+          <a href="https://docs.google.com/document/d/1VPgWkgNXlDJXikrhQ6qKkqWy0wpvdzQjHJ7rnD64zYQ/edit?usp=sharing" target="_blank" class="livro-link">Acessar publicação →</a>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="livro-card">
+          <div>
+            <img src="https://lh3.googleusercontent.com/d/1Yhldjbq4-i43aiHsmJBGmwmSWRp-Ijb7=w1000" alt="Pandemia 4 – Poesias" class="livro-capa" loading="lazy">
+            <div class="livro-info">
+              <h4>Pandemia 4 – Poesias</h4>
+              <p>Expressões líricas, sensibilidade e registros poéticos da experiência coletiva de isolamento, resiliência e afeto, traduzindo em versos o cotidiano e os sentimentos vividos nos biomas.</p>
+            </div>
+          </div>
+          <a href="https://docs.google.com/document/d/1T4XrVarHV8V4PYQEIgZBZd73w9uzfuuwFFNO1jdqPPY/edit?usp=sharing" target="_blank" class="livro-link">Acessar publicação →</a>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="livro-card">
+          <div>
+            <img src="https://lh3.googleusercontent.com/d/16pYqwoOAJ5c8CoBpUJFPo2Lkh7wOP24P=w1000" alt="Arte e Inovação em Tempos de Pandemia" class="livro-capa" loading="lazy">
+            <div class="livro-info">
+              <h4>Arte e Inovação em Tempos de Pandemia</h4>
+              <p>Reflexões sobre a criação artística, frentes de resistência cultural e o surgimento de novas ferramentas de expressão digital e comunitária em meio às restrições do período.</p>
+            </div>
+          </div>
+          <a href="https://docs.google.com/document/d/1DKrHLC4FXbh2mVuLvmTbXsgWMGojbnsEQFraha2T__Y/edit?usp=sharing" target="_blank" class="livro-link">Acessar publicação →</a>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="livro-card">
+          <div>
+            <img src="https://lh3.googleusercontent.com/d/1UfKblviH5aAWrIWUsGdjHTn7sgrDmtjT=w1000" alt="Catálogo de Artes Visuais" class="livro-capa" loading="lazy">
+            <div class="livro-info">
+              <h4>Catálogo de Artes Visuais</h4>
+              <p>Mostra visual e curadoria de obras integradas ao acervo da pesquisa, documentando grafismos, fotografias e intervenções artísticas conectadas às pautas socioambientais.</p>
+            </div>
+          </div>
+          <a href="https://docs.google.com/document/d/1DKrHLC4FXbh2mVuLvmTbXsgWMGojbnsEQFraha2T__Y/edit?usp=sharing" target="_blank" class="livro-link">Acessar publicação →</a>
+        </div>
+
       </div>
     </section>
   </main>

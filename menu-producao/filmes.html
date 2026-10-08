@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Filmes — CerrAmazon</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    #conteudo .section {
+      padding-bottom: 20px;
+    }
+    #conteudo .section-heading {
+      margin-bottom: 24px;
+    }
+    .filmes-intro {
+      background: #111;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 24px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .filmes-intro-texto h3 {
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .filmes-intro-texto p {
+      color: var(--text-muted, #999);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+    .btn-canal {
+      display: inline-block;
+      background: #fff;
+      color: #000;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-canal:hover {
+      background: #e0e0e0;
+    }
+    .grade-filmes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .filme-card {
+      background: #111;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.3s ease;
+    }
+    .filme-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .filme-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #222;
+    }
+    .filme-info {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+    .filme-info h4 {
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .filme-info p {
+      color: var(--text-muted, #999);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
+    .filme-link {
+      display: inline-block;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      padding-bottom: 2px;
+      align-self: flex-start;
+      transition: border-color 0.2s;
+    }
+    .filme-link:hover {
+      border-color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!-- O Header entra aqui automaticamente -->
+  <div id="header-placeholder"></div>
+
+  <!-- MIOLO / CONTEÚDO ESPECÍFICO DA PÁGINA -->
+  <main id="conteudo" style="padding: 20px 20px 40px 20px; max-width: 1200px; margin: 0 auto;">
+    <section class="section">
+      <header class="section-heading">
+        <p class="eyebrow">PRODUÇÃO</p>
+        <h2>Filmes</h2>
+        <p>Registros audiovisuais, entrevistas e documentação imersiva dos territórios.</p>
+      </header>
+
+      <!-- DESTAQUE / ACESSO AO CANAL OFICIAL -->
+      <div class="filmes-intro">
+        <div class="filmes-intro-texto">
+          <h3>Canal Oficial CerrAmazon no YouTube</h3>
+          <p>Acompanhe nossa programação completa, playlists por eixo territorial e estreias.</p>
+        </div>
+        <a href="https://www.youtube.com/channel/UCd5HT6r6TlcqTOLCTvQytBQ" target="_blank" class="btn-canal">Acessar Canal no YouTube →</a>
+      </div>
+
+      <!-- GRADE DE FILMES / VÍDEOS INICIAIS -->
+      <div class="grade-filmes">
+
+        <!-- Filme 1 -->
+        <div class="filme-card">
+          <div>
+            <img src="" alt="Thumbnail do Vídeo 1" class="filme-thumb" loading="lazy">
+            <div class="filme-info">
+              <div>
+                <h4>Título do Vídeo de Apresentação / Trailer</h4>
+                <p>Breve descrição sobre o conteúdo do vídeo, abordando os eixos de pesquisa entre Cerrado e Amazônia.</p>
+              </div>
+            </div>
+          </div>
+          <div style="padding: 0 20px 20px 20px;">
+            <a href="https://www.youtube.com/channel/UCd5HT6r6TlcqTOLCTvQytBQ" target="_blank" class="filme-link">Assistir no YouTube →</a>
+          </div>
+        </div>
+
+        <!-- Filme 2 -->
+        <div class="filme-card">
+          <div>
+            <img src="" alt="Thumbnail do Vídeo 2" class="filme-thumb" loading="lazy">
+            <div class="filme-info">
+              <div>
+                <h4>Título do Vídeo Inicial 02</h4>
+                <p>Descrição curta detalhando a investigação em campo e o contexto territorial documentado.</p>
+              </div>
+            </div>
+          </div>
+          <div style="padding: 0 20px 20px 20px;">
+            <a href="https://www.youtube.com/channel/UCd5HT6r6TlcqTOLCTvQytBQ" target="_blank" class="filme-link">Assistir no YouTube →</a>
+          </div>
+        </div>
+
+        <!-- Filme 3 -->
+        <div class="filme-card">
+          <div>
+            <img src="" alt="Thumbnail do Vídeo 3" class="filme-thumb" loading="lazy">
+            <div class="filme-info">
+              <div>
+                <h4>Título do Vídeo Inicial 03</h4>
+                <p>Descrição curta detalhando a investigação em campo e o contexto territorial documentado.</p>
+              </div>
+            </div>
+          </div>
+          <div style="padding: 0 20px 20px 20px;">
+            <a href="https://www.youtube.com/channel/UCd5HT6r6TlcqTOLCTvQytBQ" target="_blank" class="filme-link">Assistir no YouTube →</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- O Footer entra aqui automaticamente -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Header e Footer -->
+  <script>
+    const ROOT = '../';
+
+    Promise.all([
+      fetch(ROOT + 'header.html').then(resposta => resposta.text()),
+      fetch(ROOT + 'footer.html').then(resposta => resposta.text())
+    ]).then(([headerHtml, footerHtml]) => {
+      document.getElementById('header-placeholder').innerHTML = headerHtml;
+      document.getElementById('footer-placeholder').innerHTML = footerHtml;
+
+      document.querySelectorAll('#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]')
+        .forEach(a => a.setAttribute('href', ROOT + a.getAttribute('href')));
+
+      document.querySelectorAll('#header-placeholder [data-root-src]')
+        .forEach(el => {
+          const srcOriginal = el.getAttribute('src');
+          if (srcOriginal && !srcOriginal.startsWith('http')) {
+            el.setAttribute('src', ROOT + srcOriginal);
+          }
+        });
+
+      const scriptOriginal = document.createElement('script');
+      scriptOriginal.src = ROOT + 'js/app.js';
+      scriptOriginal.onload = () => { document.dispatchEvent(new Event('DOMContentLoaded')); };
+      document.body.appendChild(scriptOriginal);
+    });
+  </script>
+</body>
+</html>
