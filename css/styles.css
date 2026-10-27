@@ -496,6 +496,12 @@ body {
   margin-top: 30px;
 }
 
+.footer-brand img {
+  height: 40px;      /* ajuste à vontade: 32px, 48px... */
+  width: auto;       /* mantém a proporção */
+  max-width: 100%;
+  display: block;
+}
 .dossier-steps li {
   padding: 20px;
   border: 1px solid var(--border-color);

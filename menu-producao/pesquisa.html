@@ -12,13 +12,22 @@
     #conteudo .section-heading {
       margin-bottom: 0;
     }
+    /* Container comum: alinha todas as subseções com o título "Pesquisa" */
+    .pesquisa-corpo {
+      max-width: 1080px;
+      margin: 0;
+      padding: 0 40px;
+    }
     .carrossel-secao {
       max-width: 800px;
-      margin: 24px auto 0 auto;
+      margin: 32px 0 0 0;
+      scroll-margin-top: 140px;
     }
     .carrossel-secao h3 {
-      font-size: 1.4rem;
-      margin-bottom: 8px;
+      font-family: var(--font-serif, Georgia, serif);
+      font-size: 1.7rem;
+      font-weight: 600;
+      margin-bottom: 6px;
     }
     .carrossel-secao p.legenda {
       color: var(--text-muted, #999);
@@ -94,12 +103,15 @@
 
     /* Estilos para a Seção de Livros e Publicações com Barra de Rolagem */
     .secao-livros {
-      max-width: 800px;
-      margin: 40px auto 0 auto;
+      max-width: none;
+      margin: 56px 0 0 0;
+      scroll-margin-top: 140px;
     }
     .secao-livros h3 {
-      font-size: 1.4rem;
-      margin-bottom: 8px;
+      font-family: var(--font-serif, Georgia, serif);
+      font-size: 1.7rem;
+      font-weight: 600;
+      margin-bottom: 6px;
     }
     .secao-livros p.legenda {
       color: var(--text-muted, #999);
@@ -114,7 +126,6 @@
       scrollbar-width: thin;
       scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.05);
     }
-    /* Estilização da barra de rolagem para navegadores baseados em WebKit (Chrome, Safari, Edge) */
     .grade-livros::-webkit-scrollbar {
       height: 8px;
     }
@@ -180,6 +191,309 @@
     .livro-link:hover {
       border-color: #fff;
     }
+
+    /* ==========================================================
+       METODOLOGIA E TRANSFERÊNCIA
+       ========================================================== */
+    .metodologia {
+      max-width: none;
+      margin: 64px 0 0 0;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      scroll-margin-top: 140px;
+    }
+    .metodologia > h3 {
+      font-family: var(--font-serif, Georgia, serif);
+      font-size: 1.7rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .metodologia .legenda {
+      color: var(--text-muted, #999);
+      margin-bottom: 20px;
+      max-width: 70ch;
+      line-height: 1.5;
+    }
+
+    /* Menu da página: abas com sublinhado, sem barra de rolagem */
+    .sub-nav {
+      display: flex;
+      gap: 28px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .sub-nav::-webkit-scrollbar { display: none; }
+    .sub-nav a {
+      flex: 0 0 auto;
+      color: var(--text-muted, #9ba3af);
+      text-decoration: none;
+      font-size: 0.95rem;
+      padding: 14px 0;
+      margin-bottom: -1px;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .sub-nav a:hover { color: #fff; }
+    .sub-nav a:focus-visible {
+      outline: 2px solid var(--text-muted, #9ba3af);
+      outline-offset: 4px;
+    }
+    .sub-nav a.ativo {
+      color: #fff;
+      border-bottom-color: var(--accent, #2e7d32);
+    }
+
+    /* Índice da Metodologia e Transferência: 6 partes em cartões */
+    .indice-metodologia {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 24px 0 8px 0;
+    }
+    .indice-metodologia a {
+      display: block;
+      padding: 16px 18px;
+      background: #111;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      color: #fff;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .indice-metodologia a:hover,
+    .indice-metodologia a:focus-visible,
+    .indice-metodologia a.ativo {
+      border-color: rgba(255, 255, 255, 0.35);
+      background: #16181b;
+      outline: none;
+    }
+    .indice-metodologia strong {
+      display: block;
+      font-family: var(--font-serif, Georgia, serif);
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .indice-metodologia span {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.82rem;
+      color: var(--text-muted, #9ba3af);
+    }
+
+    /* Aviso de privacidade */
+    .aviso-privacidade {
+      background: #111;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-left: 3px solid rgba(255, 255, 255, 0.5);
+      border-radius: 4px;
+      padding: 14px 18px;
+      margin: 8px 0 8px 0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--text-muted, #999);
+    }
+    .aviso-privacidade strong { color: #fff; }
+
+    /* Subseções */
+    .sub-secao {
+      margin-top: 56px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      scroll-margin-top: 140px;
+    }
+    .sub-secao > h4 {
+      font-family: var(--font-serif, Georgia, serif);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .sub-secao > p.legenda {
+      margin-bottom: 18px;
+    }
+
+    .grade-atividades {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 16px;
+    }
+
+    /* Cartão de atividade (padrão verificável) */
+    .atividade {
+      background: #111;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.3s ease;
+    }
+    .atividade:hover { border-color: rgba(255, 255, 255, 0.2); }
+    .atividade h5 {
+      font-size: 1.05rem;
+      color: #fff;
+      margin: 0;
+      line-height: 1.3;
+    }
+    .atividade .resumo {
+      color: var(--text-muted, #999);
+      font-size: 0.9rem;
+      line-height: 1.45;
+      margin: 0;
+    }
+    .atividade dl {
+      margin: 0;
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 6px 12px;
+      font-size: 0.85rem;
+    }
+    .atividade dt { color: var(--text-muted, #999); }
+    .atividade dd { margin: 0; color: #fff; overflow-wrap: anywhere; }
+    .atividade dd a { color: #fff; border-bottom: 1px solid rgba(255,255,255,0.4); text-decoration: none; }
+    .atividade dd a:hover { border-color: #fff; }
+    .pendente { color: var(--text-muted, #999); font-style: italic; }
+
+    /* Situação: em desenvolvimento / aplicada / validada */
+    .situacao {
+      align-self: flex-start;
+      font-size: 0.78rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+    }
+    .situacao::before {
+      content: "";
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      margin-right: 7px;
+      background: transparent;
+      border: 1px solid #fff;
+    }
+    .situacao[data-status="desenvolvimento"]::before { background: transparent; }
+    .situacao[data-status="aplicada"]::before { background: rgba(255,255,255,0.55); }
+    .situacao[data-status="validada"]::before { background: #fff; }
+    .situacao[data-status="pendente"] { color: var(--text-muted, #999); border-style: dashed; }
+
+    /* Mídia das aplicações em campo */
+    .midia-campo {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+    .midia-campo .espaco {
+      aspect-ratio: 4 / 3;
+      background: #222;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.7rem;
+      color: var(--text-muted, #999);
+      padding: 4px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Indicadores */
+    .grade-indicadores {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .indicador {
+      background: #111;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+    .indicador .valor {
+      display: block;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.1;
+    }
+    .indicador .rotulo {
+      display: block;
+      margin-top: 6px;
+      font-size: 0.9rem;
+      color: #fff;
+    }
+    .indicador .fonte {
+      display: block;
+      margin-top: 8px;
+      font-size: 0.78rem;
+      color: var(--text-muted, #999);
+      line-height: 1.4;
+    }
+
+    /* Tabela de documentação técnica */
+    .tabela-wrap {
+      overflow-x: auto;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      background: #111;
+    }
+    .tabela-docs {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 640px;
+      font-size: 0.88rem;
+    }
+    .tabela-docs th,
+    .tabela-docs td {
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      vertical-align: top;
+    }
+    .tabela-docs th {
+      font-weight: 500;
+      color: var(--text-muted, #999);
+      font-size: 0.8rem;
+    }
+    .tabela-docs tr:last-child td { border-bottom: none; }
+    .tabela-docs td { color: #fff; }
+    .tabela-docs a { color: #fff; border-bottom: 1px solid rgba(255,255,255,0.4); text-decoration: none; }
+    .tabela-docs a:hover { border-color: #fff; }
+
+    /* Menu principal da página: fica visível sob o header ao rolar */
+    .sub-nav-principal {
+      position: sticky;
+      top: 68px;
+      z-index: 300;
+      background: var(--bg-dark, #0a0b0d);
+      padding: 0;
+      margin: 8px 0 0 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Subtítulo da página */
+    #conteudo .section-heading > p:not(.eyebrow) {
+      font-family: var(--font-serif, Georgia, serif);
+      font-size: 1.3rem;
+      color: var(--text-muted, #9ba3af);
+    }
+
+    @media (max-width: 900px) {
+      .pesquisa-corpo { padding: 0 20px; }
+    }
+
+    @media (max-width: 900px) {
+      .indice-metodologia { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .indice-metodologia { grid-template-columns: 1fr; }
+      .atividade dl { grid-template-columns: 1fr; gap: 2px 0; }
+      .atividade dd { margin-bottom: 8px; }
+    }
   </style>
 </head>
 <body>
@@ -187,17 +501,26 @@
   <div id="header-placeholder"></div>
 
   <!-- MIOLO / CONTEÚDO ESPECÍFICO DA PÁGINA -->
-  <main id="conteudo" style="padding: 20px 20px 40px 20px; max-width: 1200px; margin: 0 auto;">
+  <main id="conteudo" style="padding: 70px 20px 40px 20px; max-width: 1200px; margin: 0 auto;">
     <section class="section">
       <header class="section-heading">
         <p class="eyebrow">PRODUÇÃO</p>
         <h2>Pesquisa</h2>
-        <p>Investigação em campo, levantamentos de dados e metodologias territoriais.</p>
+        <p>Metodologia científica</p>
       </header>
     </section>
 
+    <div class="pesquisa-corpo">
+
+    <!-- MENU PRINCIPAL DA PÁGINA: todas as subseções de Pesquisa -->
+    <nav class="sub-nav sub-nav-principal" aria-label="Seções de Pesquisa">
+      <a href="#trabalho-de-campo">Trabalho de campo</a>
+      <a href="#livros-publicacoes">Livros e publicações</a>
+      <a href="#metodologia-transferencia">Metodologia e transferência</a>
+    </nav>
+
     <!-- CARROSSEL -->
-    <section class="carrossel-secao">
+    <section class="carrossel-secao" id="trabalho-de-campo">
       <h3>Trabalho de Campo</h3>
       <p class="legenda">Registros fotográficos das frentes de investigação.</p>
       <div class="carrossel" id="carrossel-pesquisa">
@@ -209,7 +532,7 @@
     </section>
 
     <!-- SEÇÃO DE LIVROS E PUBLICAÇÕES -->
-    <section class="secao-livros">
+    <section class="secao-livros" id="livros-publicacoes">
       <h3>Livros e Publicações</h3>
       <p class="legenda">Obras, catálogos e compilações de pesquisa desenvolvidas pelo projeto.</p>
       
@@ -277,6 +600,253 @@
 
       </div>
     </section>
+
+    <!-- ==========================================================
+         METODOLOGIA E TRANSFERÊNCIA
+         ========================================================== -->
+    <section class="metodologia" id="metodologia-transferencia">
+      <h3>Metodologia e Transferência</h3>
+      <p class="legenda">Registro público e verificável da produção metodológica, da formação e da transferência de conhecimento do CerrAmazon. Cada atividade informa data, local, responsáveis, documentos comprobatórios e situação.</p>
+
+      <nav class="indice-metodologia" aria-label="Partes de Metodologia e Transferência">
+        <a href="#protocolos-metodologias"><strong>Protocolos e metodologias</strong><span>Manuais, roteiros e modelos</span></a>
+        <a href="#aplicacoes-em-campo"><strong>Aplicações em campo</strong><span>Quilombo do Moinho e São Gabriel da Cachoeira</span></a>
+        <a href="#formacao-capacitacao"><strong>Formação e capacitação</strong><span>Oficinas e treinamentos</span></a>
+        <a href="#transferencia-conhecimento"><strong>Transferência de conhecimento</strong><span>Instituições parceiras e evidências</span></a>
+        <a href="#resultados-impacto"><strong>Resultados e impacto</strong><span>Indicadores verificáveis</span></a>
+        <a href="#documentacao-tecnica"><strong>Documentação técnica</strong><span>Versões públicas para download</span></a>
+      </nav>
+
+      <p class="aviso-privacidade">
+        <strong>O que fica público.</strong> Esta página apresenta apenas versões públicas e materiais autorizados. Dados pessoais, consentimentos assinados e registros restritos não são publicados; ficam sob guarda do projeto e podem ser apresentados a instâncias avaliadoras mediante solicitação.
+      </p>
+
+      <!-- 1. PROTOCOLOS E METODOLOGIAS -->
+      <div class="sub-secao" id="protocolos-metodologias">
+        <h4>Protocolos e metodologias</h4>
+        <p class="legenda">Manuais, roteiros de entrevistas, procedimentos de documentação audiovisual e modelos de consentimento (apenas modelos em branco).</p>
+        <div class="grade-atividades">
+
+          <article class="atividade">
+            <span class="situacao" data-status="pendente">Situação a definir</span>
+            <h5>Manual de pesquisa de campo</h5>
+            <p class="resumo">[preencher: resumo de uma linha do que o manual orienta]</p>
+            <dl>
+              <dt>Data</dt><dd class="pendente">[preencher]</dd>
+              <dt>Local</dt><dd class="pendente">[preencher]</dd>
+              <dt>Responsáveis</dt><dd class="pendente">[preencher]</dd>
+              <dt>Comprovação</dt><dd class="pendente">[link do documento]</dd>
+            </dl>
+          </article>
+
+          <article class="atividade">
+            <span class="situacao" data-status="pendente">Situação a definir</span>
+            <h5>Roteiro de entrevistas</h5>
+            <p class="resumo">[preencher: público e finalidade do roteiro]</p>
+            <dl>
+              <dt>Data</dt><dd class="pendente">[preencher]</dd>
+              <dt>Local</dt><dd class="pendente">[preencher]</dd>
+              <dt>Responsáveis</dt><dd class="pendente">[preencher]</dd>
+              <dt>Comprovação</dt><dd class="pendente">[link do documento]</dd>
+            </dl>
+          </article>
+
+          <article class="atividade">
+            <span class="situacao" data-status="pendente">Situação a definir</span>
+            <h5>Procedimento de documentação audiovisual</h5>
+            <p class="resumo">[preencher: etapas de registro, curadoria e arquivamento]</p>
+            <dl>
+              <dt>Data</dt><dd class="pendente">[preencher]</dd>
+              <dt>Local</dt><dd class="pendente">[preencher]</dd>
+              <dt>Responsáveis</dt><dd class="pendente">[preencher]</dd>
+              <dt>Comprovação</dt><dd class="pendente">[link do documento]</dd>
+            </dl>
+          </article>
+
+          <article class="atividade">
+            <span class="situacao" data-status="pendente">Situação a definir</span>
+            <h5>Modelo de termo de consentimento</h5>
+            <p class="resumo">Somente o modelo em branco é público. Termos assinados não são divulgados.</p>
+            <dl>
+              <dt>Data</dt><dd class="pendente">[preencher]</dd>
+              <dt>Local</dt><dd class="pendente">[preencher]</dd>
+              <dt>Responsáveis</dt><dd class="pendente">[preencher]</dd>
+              <dt>Comprovação</dt><dd class="pendente">[link do modelo em branco]</dd>
+            </dl>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- 2. APLICAÇÕES EM CAMPO -->
+      <div class="sub-secao" id="aplicacoes-em-campo">
+        <h4>Aplicações em campo</h4>
+        <p class="legenda">Experiências de aplicação das metodologias no Quilombo do Moinho (GO) e em São Gabriel da Cachoeira (AM), com fotos, vídeos e resultados autorizados.</p>
+        <div class="grade-atividades">
+
+          <article class="atividade" id="campo-moinho">
+            <span class="situacao" data-status="pendente">Situação a definir</span>
+            <h5>Quilombo do Moinho (GO)</h5>
+            <div class="midia-campo" aria-label="Fotos e vídeos autorizados">
+              <!-- Para usar uma foto: style="background-image:url('https://lh3.googleusercontent.com/d/ID=w1000')" e remova o texto -->
+              <div class="espaco">foto autorizada</div>
+              <div class="espaco">foto autorizada</div>
+              <div class="espaco">vídeo autorizado</div>
+            </div>
+            <p class="resumo">[preencher: o que foi aplicado e os resultados autorizados para divulgação]</p>
+            <dl>
+              <dt>Data</dt><dd class="pendente">[preencher]</dd>
+              <dt>Local</dt><dd>Quilombo do Moinho, Goiás</dd>
+              <dt>Responsáveis</dt><dd class="pendente">[preencher]</dd>
+              <dt>Comprovação</dt><dd class="pendente">[relatório, fotos, links]</dd>
+            </dl>
+          </article>
+
+          <article class="atividade" id="campo-sao-gabriel">
+            <span class="situacao" data-status="pendente">Situação a definir</span>
+            <h5>São Gabriel da Cachoeira (AM)</h5>
+            <div class="midia-campo" aria-label="Fotos e vídeos autorizados">
+              <div class="espaco">foto autorizada</div>
+              <div class="espaco">foto autorizada</div>
+              <div class="espaco">vídeo autorizado</div>
+            </div>
+            <p class="resumo">[preencher: o que foi aplicado e os resultados autorizados para divulgação]</p>
+            <dl>
+              <dt>Data</dt><dd class="pendente">[preencher]</dd>
+              <dt>Local</dt><dd>São Gabriel da Cachoeira, Amazonas</dd>
+              <dt>Responsáveis</dt><dd class="pendente">[preencher]</dd>
+              <dt>Comprovação</dt><dd class="pendente">[relatório, fotos, links]</dd>
+            </dl>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- 3. FORMAÇÃO E CAPACITAÇÃO -->
+      <div class="sub-secao" id="formacao-capacitacao">
+        <h4>Formação e capacitação</h4>
+        <p class="legenda">Oficinas, treinamentos, estudantes envolvidos, datas e atividades realizadas. Estudantes aparecem apenas com autorização; sem ela, registre só o número de participantes.</p>
+        <div class="grade-atividades">
+
+          <article class="atividade">
+            <span class="situacao" data-status="pendente">Situação a definir</span>
+            <h5>[Nome da oficina ou treinamento]</h5>
+            <p class="resumo">[preencher: conteúdo, carga horária e número de participantes]</p>
+            <dl>
+              <dt>Data</dt><dd class="pendente">[preencher]</dd>
+              <dt>Local</dt><dd class="pendente">[preencher]</dd>
+              <dt>Responsáveis</dt><dd class="pendente">[preencher]</dd>
+              <dt>Estudantes</dt><dd class="pendente">[nomes autorizados ou apenas o total]</dd>
+              <dt>Comprovação</dt><dd class="pendente">[lista de presença anonimizada, certificados, fotos]</dd>
+            </dl>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- 4. TRANSFERÊNCIA DE CONHECIMENTO -->
+      <div class="sub-secao" id="transferencia-conhecimento">
+        <h4>Transferência de conhecimento</h4>
+        <p class="legenda">Instituições parceiras, metodologias compartilhadas e evidências de sua aplicação.</p>
+        <div class="grade-atividades">
+
+          <article class="atividade">
+            <span class="situacao" data-status="pendente">Situação a definir</span>
+            <h5>[Instituição parceira]</h5>
+            <p class="resumo">[preencher: qual metodologia foi compartilhada e como foi aplicada]</p>
+            <dl>
+              <dt>Data</dt><dd class="pendente">[preencher]</dd>
+              <dt>Local</dt><dd class="pendente">[preencher]</dd>
+              <dt>Responsáveis</dt><dd class="pendente">[preencher]</dd>
+              <dt>Comprovação</dt><dd class="pendente">[acordo, ofício, relato da instituição, produtos gerados]</dd>
+            </dl>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- 5. RESULTADOS E IMPACTO -->
+      <div class="sub-secao" id="resultados-impacto">
+        <h4>Resultados e impacto</h4>
+        <p class="legenda">Indicadores com a fonte que os comprova. Substitua cada “—” pelo número real e indique onde ele pode ser verificado.</p>
+        <div class="grade-indicadores">
+
+          <div class="indicador">
+            <span class="valor">—</span>
+            <span class="rotulo">Entrevistas realizadas</span>
+            <span class="fonte">Fonte: [preencher]</span>
+          </div>
+          <div class="indicador">
+            <span class="valor">—</span>
+            <span class="rotulo">Pessoas capacitadas</span>
+            <span class="fonte">Fonte: [preencher]</span>
+          </div>
+          <div class="indicador">
+            <span class="valor">—</span>
+            <span class="rotulo">Produtos desenvolvidos</span>
+            <span class="fonte">Fonte: [preencher]</span>
+          </div>
+          <div class="indicador">
+            <span class="valor">—</span>
+            <span class="rotulo">Exposições</span>
+            <span class="fonte">Fonte: [preencher]</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 6. DOCUMENTAÇÃO TÉCNICA -->
+      <div class="sub-secao" id="documentacao-tecnica">
+        <h4>Documentação técnica</h4>
+        <p class="legenda">Versões públicas dos protocolos para consulta e download, com data, número da versão e status de validação.</p>
+        <div class="tabela-wrap">
+          <table class="tabela-docs">
+            <thead>
+              <tr>
+                <th scope="col">Documento</th>
+                <th scope="col">Versão</th>
+                <th scope="col">Data</th>
+                <th scope="col">Status de validação</th>
+                <th scope="col">Arquivo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Manual de pesquisa de campo</td>
+                <td class="pendente">[v.]</td>
+                <td class="pendente">[data]</td>
+                <td><span class="situacao" data-status="pendente">A definir</span></td>
+                <td class="pendente">[link para PDF]</td>
+              </tr>
+              <tr>
+                <td>Roteiro de entrevistas</td>
+                <td class="pendente">[v.]</td>
+                <td class="pendente">[data]</td>
+                <td><span class="situacao" data-status="pendente">A definir</span></td>
+                <td class="pendente">[link para PDF]</td>
+              </tr>
+              <tr>
+                <td>Procedimento de documentação audiovisual</td>
+                <td class="pendente">[v.]</td>
+                <td class="pendente">[data]</td>
+                <td><span class="situacao" data-status="pendente">A definir</span></td>
+                <td class="pendente">[link para PDF]</td>
+              </tr>
+              <tr>
+                <td>Modelo de termo de consentimento (em branco)</td>
+                <td class="pendente">[v.]</td>
+                <td class="pendente">[data]</td>
+                <td><span class="situacao" data-status="pendente">A definir</span></td>
+                <td class="pendente">[link para PDF]</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    </div><!-- /.pesquisa-corpo -->
   </main>
 
   <!-- O Footer entra aqui automaticamente -->
@@ -405,6 +975,30 @@
     }
 
     montarCarrosselUnico('carrossel-pesquisa', fotosPesquisa);
+  </script>
+
+  <!-- SCRIPT DA NAVEGAÇÃO INTERNA DE PESQUISA -->
+  <script>
+    (function () {
+      if (!('IntersectionObserver' in window)) return;
+
+      document.querySelectorAll('.sub-nav, .indice-metodologia').forEach(nav => {
+        const links = nav.querySelectorAll('a');
+        const alvos = Array.from(links)
+          .map(a => document.querySelector(a.getAttribute('href')))
+          .filter(Boolean);
+
+        const observador = new IntersectionObserver(entradas => {
+          entradas.forEach(entrada => {
+            if (entrada.isIntersecting) {
+              links.forEach(a => a.classList.toggle('ativo', a.getAttribute('href') === '#' + entrada.target.id));
+            }
+          });
+        }, { rootMargin: '-25% 0px -65% 0px' });
+
+        alvos.forEach(alvo => observador.observe(alvo));
+      });
+    })();
   </script>
 </body>
 </html>

@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pesquisa — CerrAmazon</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    #conteudo .section {
+      padding-bottom: 20px;
+    }
+    #conteudo .section-heading {
+      margin-bottom: 0;
+    }
+    /* Container comum: alinha todas as subseções com o título "Pesquisa" */
+    .pesquisa-corpo {
+      max-width: 1080px;
+      margin: 0;
+      padding: 0 40px;
+    }
+    .carrossel-secao {
+      max-width: 800px;
+      margin: 32px 0 0 0;
+      scroll-margin-top: 140px;
+    }
+    .carrossel-secao h3 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+    .carrossel-secao p.legenda {
+      color: var(--text-muted, #999);
+      margin-bottom: 20px;
+    }
+    .carrossel {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #111;
+    }
+    .carrossel-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .carrossel-slide.ativo {
+      opacity: 1;
+    }
+    .carrossel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.1rem;
+      z-index: 2;
+    }
+    .carrossel-nav:hover {
+      background: rgba(0,0,0,0.8);
+    }
+    .carrossel-nav.anterior { left: 10px; }
+    .carrossel-nav.proximo { right: 10px; }
+    .carrossel-dots {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 2;
+    }
+    .carrossel-dots .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer;
+    }
+    .carrossel-dots .dot.ativo {
+      background: #fff;
+    }
+    .carrossel-loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted, #999);
+      font-size: 0.8rem;
+      z-index: 1;
+    }
+
+    /* Estilos para a Seção de Livros e Publicações com Barra de Rolagem */
+    .secao-livros {
+      max-width: none;
+      margin: 56px 0 0 0;
+      scroll-margin-top: 140px;
+    }
+    .secao-livros h3 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+    .secao-livros p.legenda {
+      color: var(--text-muted, #999);
+      margin-bottom: 20px;
+    }
+    .grade-livros {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 16px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.05);
+    }
+    .grade-livros::-webkit-scrollbar {
+      height: 8px;
+    }
+    .grade-livros::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+    }
+    .grade-livros::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+    }
+    .grade-livros::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .livro-card {
+      background: #111;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.3s ease;
+      min-width: 260px;
+      max-width: 280px;
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+    }
+    .livro-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .livro-capa {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: 4px;
+      background: #222;
+      margin-bottom: 14px;
+    }
+    .livro-info h4 {
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .livro-info p {
+      color: var(--text-muted, #999);
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+    .livro-link {
+      display: inline-block;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      padding-bottom: 2px;
+      align-self: flex-start;
+      transition: border-color 0.2s;
+    }
+    .livro-link:hover {
+      border-color: #fff;
+    }
+
+    /* ==========================================================
+       METODOLOGIA E TRANSFERÊNCIA
+       ========================================================== */
+    .metodologia {
+      max-width: none;
+      margin: 64px 0 0 0;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      scroll-margin-top: 140px;
+    }
+    .metodologia > h3 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+    .metodologia .legenda {
+      color: var(--text-muted, #999);
+      margin-bottom: 20px;
+      max-width: 70ch;
+      line-height: 1.5;
+    }
+
+    /* Navegação interna entre as subseções */
+    .sub-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px 0 14px 0;
+      margin-bottom: 8px;
+      scrollbar-width: thin;
+    }
+    .sub-nav a {
+      flex: 0 0 auto;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.85rem;
+      padding: 8px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
+      white-space: nowrap;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .sub-nav a:hover,
+    .sub-nav a:focus-visible,
+    .sub-nav a.ativo {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.5);
+      outline: none;
+    }
+
+    /* Aviso de privacidade */
+    .aviso-privacidade {
+      background: #111;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-left: 3px solid rgba(255, 255, 255, 0.5);
+      border-radius: 4px;
+      padding: 14px 18px;
+      margin: 8px 0 8px 0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--text-muted, #999);
+    }
+    .aviso-privacidade strong { color: #fff; }
+
+    /* Subseções */
+    .sub-secao {
+      margin-top: 48px;
+      scroll-margin-top: 140px;
+    }
+    .sub-secao > h4 {
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .sub-secao > p.legenda {
+      margin-bottom: 18px;
+    }
+
+    .grade-atividades {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 16px;
+    }
+
+    /* Cartão de atividade (padrão verificável) */
+    .atividade {
+      background: #111;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.3s ease;
+    }
+    .atividade:hover { border-color: rgba(255, 255, 255, 0.2); }
+    .atividade h5 {
+      font-size: 1.05rem;
+      color: #fff;
+      margin: 0;
+      line-height: 1.3;
+    }
+    .atividade .resumo {
+      color: var(--text-muted, #999);
+      font-size: 0.9rem;
+      line-height: 1.45;
+      margin: 0;
+    }
+    .atividade dl {
+      margin: 0;
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 6px 12px;
+      font-size: 0.85rem;
+    }
+    .atividade dt { color: var(--text-muted, #999); }
+    .atividade dd { margin: 0; color: #fff; overflow-wrap: anywhere; }
+    .atividade dd a { color: #fff; border-bottom: 1px solid rgba(255,255,255,0.4); text-decoration: none; }
+    .atividade dd a:hover { border-color: #fff; }
+    .pendente { color: var(--text-muted, #999); font-style: italic; }
+
+    /* Situação: em desenvolvimento / aplicada / validada */
+    .situacao {
+      align-self: flex-start;
+      font-size: 0.78rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+    }
+    .situacao::before {
+      content: "";
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      margin-right: 7px;
+      background: transparent;
+      border: 1px solid #fff;
+    }
+    .situacao[data-status="desenvolvimento"]::before { background: transparent; }
+    .situacao[data-status="aplicada"]::before { background: rgba(255,255,255,0.55); }
+    .situacao[data-status="validada"]::before { background: #fff; }
+    .situacao[data-status="pendente"] { color: var(--text-muted, #999); border-style: dashed; }
+
+    /* Mídia das aplicações em campo */
+    .midia-campo {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+    .midia-campo .espaco {
+      aspect-ratio: 4 / 3;
+      background: #222;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.7rem;
+      color: var(--text-muted, #999);
+      padding: 4px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Indicadores */
+    .grade-indicadores {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .indicador {
+      background: #111;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+    .indicador .valor {
+      display: block;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.1;
+    }
+    .indicador .rotulo {
+      display: block;
+      margin-top: 6px;
+      font-size: 0.9rem;
+      color: #fff;
+    }
+    .indicador .fonte {
+      display: block;
+      margin-top: 8px;
+      font-size: 0.78rem;
+      color: var(--text-muted, #999);
+      line-height: 1.4;
+    }
+
+    /* Tabela de documentação técnica */
+    .tabela-wrap {
+      overflow-x: auto;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      background: #111;
+    }
+    .tabela-docs {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 640px;
+      font-size: 0.88rem;
+    }
+    .tabela-docs th,
+    .tabela-docs td {
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      vertical-align: top;
+    }
+    .tabela-docs th {
+      font-weight: 500;
+      color: var(--text-muted, #999);
+      font-size: 0.8rem;
+    }
+    .tabela-docs tr:last-child td { border-bottom: none; }
+    .tabela-docs td { color: #fff; }
+    .tabela-docs a { color: #fff; border-bottom: 1px solid rgba(255,255,255,0.4); text-decoration: none; }
+    .tabela-docs a:hover { border-color: #fff; }
+
+    /* Menu principal da página: fica visível sob o header ao rolar */
+    .sub-nav-principal {
+      position: sticky;
+      top: 68px;
+      z-index: 300;
+      background: var(--bg-dark, #0a0b0d);
+      padding: 10px 0;
+      margin: 8px 0 0 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    @media (max-width: 900px) {
+      .pesquisa-corpo { padding: 0 20px; }
+    }
+
+    @media (max-width: 600px) {
+      .atividade dl { grid-template-columns: 1fr; gap: 2px 0; }
+      .atividade dd { margin-bottom: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- O Header entra aqui automaticamente -->
+  <div id="header-placeholder"></div>
+
+  <!-- MIOLO / CONTEÚDO ESPECÍFICO DA PÁGINA -->
+  <main id="conteudo" style="padding: 70px 20px 40px 20px; max-width: 1200px; margin: 0 auto;">
+    <section class="section">
+      <header class="section-heading">
+        <p class="eyebrow">PRODUÇÃO</p>
+        <h2>Pesquisa</h2>
+        <p>Investigação em campo, levantamentos de dados e metodologias territoriais.</p>
+      </header>
+    </section>
+
+    <div class="pesquisa-corpo">
+
+    <!-- MENU PRINCIPAL DA PÁGINA: todas as subseções de Pesquisa -->
+    <nav class="sub-nav sub-nav-principal" aria-label="Subseções de Pesquisa">
+      <a href="#trabalho-de-campo">Trabalho de campo</a>
+      <a href="#livros-publicacoes">Livros e publicações</a>
+      <a href="#metodologia-transferencia">Metodologia e transferência</a>
+      <a href="#protocolos-metodologias">Protocolos e metodologias</a>
+      <a href="#aplicacoes-em-campo">Aplicações em campo</a>
+      <a href="#formacao-capacitacao">Formação e capacitação</a>
+      <a href="#transferencia-conhecimento">Transferência de conhecimento</a>
+      <a href="#resultados-impacto">Resultados e impacto</a>
+      <a href="#documentacao-tecnica">Documentação técnica</a>
+    </nav>
+
+    <!-- CARROSSEL -->
+    <section class="carrossel-secao" id="trabalho-de-campo">
+      <h3>Trabalho de Campo</h3>
+      <p class="legenda">Registros fotográficos das frentes de investigação.</p>
+      <div class="carrossel" id="carrossel-pesquisa">
+        <div class="carrossel-loading">carregando...</div>
+        <button class="carrossel-nav anterior" aria-label="Foto anterior">‹</button>
+        <button class="carrossel-nav proximo" aria-label="Próxima foto">›</button>
+        <div class="carrossel-dots"></div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO DE LIVROS E PUBLICAÇÕES -->
+    <section class="secao-livros" id="livros-publicacoes">
+      <h3>Livros e Publicações</h3>
+      <p class="legenda">Obras, catálogos e compilações de pesquisa desenvolvidas pelo projeto.</p>
+      
+      <div class="grade-livros">
+        
+        <!-- Item 1 -->
+        <div class="livro-card">
+          <div>
+            <img src="https://lh3.googleusercontent.com/d/16Mwi-obv3nERk6M3an4J7tRPwDjd8Ej1=w1000" alt="Pandemia 1 – Lives" class="livro-capa" loading="lazy">
+            <div class="livro-info">
+              <h4>Pandemia 1 – Lives</h4>
+              <p>Registros e debates transmitidos em ciclos de conversas e encontros virtuais, reunindo pesquisadores, lideranças e pensadores para discutir os impactos socioambientais imediatos da crise sanitária nos territórios amazônicos e do cerrado.</p>
+            </div>
+          </div>
+          <a href="https://docs.google.com/document/d/17o-UsiSAx9TyiQMrlp7ATM3AfRQJnjIwLNHlaR3nNwA/edit?usp=sharing" target="_blank" class="livro-link">Acessar publicação →</a>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="livro-card">
+          <div>
+            <img src="https://lh3.googleusercontent.com/d/1Tzc2lyaqZwTRNWF8TqtcLgkRInrucsjy=w1000" alt="Pandemia 3 – Artigos" class="livro-capa" loading="lazy">
+            <div class="livro-info">
+              <h4>Pandemia 3 – Artigos</h4>
+              <p>Compilação de textos analíticos e ensaios críticos aprofundados sobre o período, abordando as transformações políticas, econômicas e sanitárias sob a ótica da pesquisa acadêmica e independente.</p>
+            </div>
+          </div>
+          <a href="https://docs.google.com/document/d/1VPgWkgNXlDJXikrhQ6qKkqWy0wpvdzQjHJ7rnD64zYQ/edit?usp=sharing" target="_blank" class="livro-link">Acessar publicação →</a>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="livro-card">
+          <div>
+            <img src="https://lh3.googleusercontent.com/d/1Yhldjbq4-i43aiHsmJBGmwmSWRp-Ijb7=w1000" alt="Pandemia 4 – Poesias" class="livro-capa" loading="lazy">
+            <div class="livro-info">
+              <h4>Pandemia 4 – Poesias</h4>
+              <p>Expressões líricas, sensibilidade e registros poéticos da experiência coletiva de isolamento, resiliência e afeto, traduzindo em versos o cotidiano e os sentimentos vividos nos biomas.</p>
+            </div>
+          </div>
+          <a href="https://docs.google.com/document/d/1T4XrVarHV8V4PYQEIgZBZd73w9uzfuuwFFNO1jdqPPY/edit?usp=sharing" target="_blank" class="livro-link">Acessar publicação →</a>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="livro-card">
+          <div>
+            <img src="https://lh3.googleusercontent.com/d/16pYqwoOAJ5c8CoBpUJFPo2Lkh7wOP24P=w1000" alt="Arte e Inovação em Tempos de Pandemia" class="livro-capa" loading="lazy">
+            <div class="livro-info">
+              <h4>Arte e Inovação em Tempos de Pandemia</h4>
+              <p>Reflexões sobre a criação artística, frentes de resistência cultural e o surgimento de novas ferramentas de expressão digital e comunitária em meio às restrições do período.</p>
+            </div>
+          </div>
+          <a href="https://docs.google.com/document/d/1DKrHLC4FXbh2mVuLvmTbXsgWMGojbnsEQFraha2T__Y/edit?usp=sharing" target="_blank" class="livro-link">Acessar publicação →</a>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="livro-card">
+          <div>
+            <img src="https://lh3.googleusercontent.com/d/1UfKblviH5aAWrIWUsGdjHTn7sgrDmtjT=w1000" alt="Catálogo de Artes Visuais" class="livro-capa" loading="lazy">
+            <div class="livro-info">
+              <h4>Catálogo de Artes Visuais</h4>
+              <p>Mostra visual e curadoria de obras integradas ao acervo da pesquisa, documentando grafismos, fotografias e intervenções artísticas conectadas às pautas socioambientais.</p>
+            </div>
+          </div>
+          <a href="https://docs.google.com/document/d/1DKrHLC4FXbh2mVuLvmTbXsgWMGojbnsEQFraha2T__Y/edit?usp=sharing" target="_blank" class="livro-link">Acessar publicação →</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         METODOLOGIA E TRANSFERÊNCIA
+         ========================================================== -->
+    <section class="metodologia" id="metodologia-transferencia">
+      <h3>Metodologia e Transferência</h3>
+      <p class="legenda">Registro público e verificável da produção metodológica, da formação e da transferência de conhecimento do CerrAmazon. Cada atividade informa data, local, responsáveis, documentos comprobatórios e situação.</p>
+
+      <p class="aviso-privacidade">
+        <strong>O que fica público.</strong> Esta página apresenta apenas versões públicas e materiais autorizados. Dados pessoais, consentimentos assinados e registros restritos não são publicados; ficam sob guarda do projeto e podem ser apresentados a instâncias avaliadoras mediante solicitação.
+      </p>
+
+      <!-- 1. PROTOCOLOS E METODOLOGIAS -->
+      <div class="sub-secao" id="protocolos-metodologias">
+        <h4>Protocolos e metodologias</h4>
+        <p class="legenda">Manuais, roteiros de entrevistas, procedimentos de documentação audiovisual e modelos de consentimento (apenas modelos em branco).</p>
+        <div class="grade-atividades">
+
+          <article class="atividade">
+            <span class="situacao" data-status="pendente">Situação a definir</span>
+            <h5>Manual de pesquisa de campo</h5>
+            <p class="resumo">[preencher: resumo de uma linha do que o manual orienta]</p>
+            <dl>
+              <dt>Data</dt><dd class="pendente">[preencher]</dd>
+              <dt>Local</dt><dd class="pendente">[preencher]</dd>
+              <dt>Responsáveis</dt><dd class="pendente">[preencher]</dd>
+              <dt>Comprovação</dt><dd class="pendente">[link do documento]</dd>
+            </dl>
+          </article>
+
+          <article class="atividade">
+            <span class="situacao" data-status="pendente">Situação a definir</span>
+            <h5>Roteiro de entrevistas</h5>
+            <p class="resumo">[preencher: público e finalidade do roteiro]</p>
+            <dl>
+              <dt>Data</dt><dd class="pendente">[preencher]</dd>
+              <dt>Local</dt><dd class="pendente">[preencher]</dd>
+              <dt>Responsáveis</dt><dd class="pendente">[preencher]</dd>
+              <dt>Comprovação</dt><dd class="pendente">[link do documento]</dd>
+            </dl>
+          </article>
+
+          <article class="atividade">
+            <span class="situacao" data-status="pendente">Situação a definir</span>
+            <h5>Procedimento de documentação audiovisual</h5>
+            <p class="resumo">[preencher: etapas de registro, curadoria e arquivamento]</p>
+            <dl>
+              <dt>Data</dt><dd class="pendente">[preencher]</dd>
+              <dt>Local</dt><dd class="pendente">[preencher]</dd>
+              <dt>Responsáveis</dt><dd class="pendente">[preencher]</dd>
+              <dt>Comprovação</dt><dd class="pendente">[link do documento]</dd>
+            </dl>
+          </article>
+
+          <article class="atividade">
+            <span class="situacao" data-status="pendente">Situação a definir</span>
+            <h5>Modelo de termo de consentimento</h5>
+            <p class="resumo">Somente o modelo em branco é público. Termos assinados não são divulgados.</p>
+            <dl>
+              <dt>Data</dt><dd class="pendente">[preencher]</dd>
+              <dt>Local</dt><dd class="pendente">[preencher]</dd>
+              <dt>Responsáveis</dt><dd class="pendente">[preencher]</dd>
+              <dt>Comprovação</dt><dd class="pendente">[link do modelo em branco]</dd>
+            </dl>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- 2. APLICAÇÕES EM CAMPO -->
+      <div class="sub-secao" id="aplicacoes-em-campo">
+        <h4>Aplicações em campo</h4>
+        <p class="legenda">Experiências de aplicação das metodologias no Quilombo do Moinho (GO) e em São Gabriel da Cachoeira (AM), com fotos, vídeos e resultados autorizados.</p>
+        <div class="grade-atividades">
+
+          <article class="atividade" id="campo-moinho">
+            <span class="situacao" data-status="pendente">Situação a definir</span>
+            <h5>Quilombo do Moinho (GO)</h5>
+            <div class="midia-campo" aria-label="Fotos e vídeos autorizados">
+              <!-- Para usar uma foto: style="background-image:url('https://lh3.googleusercontent.com/d/ID=w1000')" e remova o texto -->
+              <div class="espaco">foto autorizada</div>
+              <div class="espaco">foto autorizada</div>
+              <div class="espaco">vídeo autorizado</div>
+            </div>
+            <p class="resumo">[preencher: o que foi aplicado e os resultados autorizados para divulgação]</p>
+            <dl>
+              <dt>Data</dt><dd class="pendente">[preencher]</dd>
+              <dt>Local</dt><dd>Quilombo do Moinho, Goiás</dd>
+              <dt>Responsáveis</dt><dd class="pendente">[preencher]</dd>
+              <dt>Comprovação</dt><dd class="pendente">[relatório, fotos, links]</dd>
+            </dl>
+          </article>
+
+          <article class="atividade" id="campo-sao-gabriel">
+            <span class="situacao" data-status="pendente">Situação a definir</span>
+            <h5>São Gabriel da Cachoeira (AM)</h5>
+            <div class="midia-campo" aria-label="Fotos e vídeos autorizados">
+              <div class="espaco">foto autorizada</div>
+              <div class="espaco">foto autorizada</div>
+              <div class="espaco">vídeo autorizado</div>
+            </div>
+            <p class="resumo">[preencher: o que foi aplicado e os resultados autorizados para divulgação]</p>
+            <dl>
+              <dt>Data</dt><dd class="pendente">[preencher]</dd>
+              <dt>Local</dt><dd>São Gabriel da Cachoeira, Amazonas</dd>
+              <dt>Responsáveis</dt><dd class="pendente">[preencher]</dd>
+              <dt>Comprovação</dt><dd class="pendente">[relatório, fotos, links]</dd>
+            </dl>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- 3. FORMAÇÃO E CAPACITAÇÃO -->
+      <div class="sub-secao" id="formacao-capacitacao">
+        <h4>Formação e capacitação</h4>
+        <p class="legenda">Oficinas, treinamentos, estudantes envolvidos, datas e atividades realizadas. Estudantes aparecem apenas com autorização; sem ela, registre só o número de participantes.</p>
+        <div class="grade-atividades">
+
+          <article class="atividade">
+            <span class="situacao" data-status="pendente">Situação a definir</span>
+            <h5>[Nome da oficina ou treinamento]</h5>
+            <p class="resumo">[preencher: conteúdo, carga horária e número de participantes]</p>
+            <dl>
+              <dt>Data</dt><dd class="pendente">[preencher]</dd>
+              <dt>Local</dt><dd class="pendente">[preencher]</dd>
+              <dt>Responsáveis</dt><dd class="pendente">[preencher]</dd>
+              <dt>Estudantes</dt><dd class="pendente">[nomes autorizados ou apenas o total]</dd>
+              <dt>Comprovação</dt><dd class="pendente">[lista de presença anonimizada, certificados, fotos]</dd>
+            </dl>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- 4. TRANSFERÊNCIA DE CONHECIMENTO -->
+      <div class="sub-secao" id="transferencia-conhecimento">
+        <h4>Transferência de conhecimento</h4>
+        <p class="legenda">Instituições parceiras, metodologias compartilhadas e evidências de sua aplicação.</p>
+        <div class="grade-atividades">
+
+          <article class="atividade">
+            <span class="situacao" data-status="pendente">Situação a definir</span>
+            <h5>[Instituição parceira]</h5>
+            <p class="resumo">[preencher: qual metodologia foi compartilhada e como foi aplicada]</p>
+            <dl>
+              <dt>Data</dt><dd class="pendente">[preencher]</dd>
+              <dt>Local</dt><dd class="pendente">[preencher]</dd>
+              <dt>Responsáveis</dt><dd class="pendente">[preencher]</dd>
+              <dt>Comprovação</dt><dd class="pendente">[acordo, ofício, relato da instituição, produtos gerados]</dd>
+            </dl>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- 5. RESULTADOS E IMPACTO -->
+      <div class="sub-secao" id="resultados-impacto">
+        <h4>Resultados e impacto</h4>
+        <p class="legenda">Indicadores com a fonte que os comprova. Substitua cada “—” pelo número real e indique onde ele pode ser verificado.</p>
+        <div class="grade-indicadores">
+
+          <div class="indicador">
+            <span class="valor">—</span>
+            <span class="rotulo">Entrevistas realizadas</span>
+            <span class="fonte">Fonte: [preencher]</span>
+          </div>
+          <div class="indicador">
+            <span class="valor">—</span>
+            <span class="rotulo">Pessoas capacitadas</span>
+            <span class="fonte">Fonte: [preencher]</span>
+          </div>
+          <div class="indicador">
+            <span class="valor">—</span>
+            <span class="rotulo">Produtos desenvolvidos</span>
+            <span class="fonte">Fonte: [preencher]</span>
+          </div>
+          <div class="indicador">
+            <span class="valor">—</span>
+            <span class="rotulo">Exposições</span>
+            <span class="fonte">Fonte: [preencher]</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 6. DOCUMENTAÇÃO TÉCNICA -->
+      <div class="sub-secao" id="documentacao-tecnica">
+        <h4>Documentação técnica</h4>
+        <p class="legenda">Versões públicas dos protocolos para consulta e download, com data, número da versão e status de validação.</p>
+        <div class="tabela-wrap">
+          <table class="tabela-docs">
+            <thead>
+              <tr>
+                <th scope="col">Documento</th>
+                <th scope="col">Versão</th>
+                <th scope="col">Data</th>
+                <th scope="col">Status de validação</th>
+                <th scope="col">Arquivo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Manual de pesquisa de campo</td>
+                <td class="pendente">[v.]</td>
+                <td class="pendente">[data]</td>
+                <td><span class="situacao" data-status="pendente">A definir</span></td>
+                <td class="pendente">[link para PDF]</td>
+              </tr>
+              <tr>
+                <td>Roteiro de entrevistas</td>
+                <td class="pendente">[v.]</td>
+                <td class="pendente">[data]</td>
+                <td><span class="situacao" data-status="pendente">A definir</span></td>
+                <td class="pendente">[link para PDF]</td>
+              </tr>
+              <tr>
+                <td>Procedimento de documentação audiovisual</td>
+                <td class="pendente">[v.]</td>
+                <td class="pendente">[data]</td>
+                <td><span class="situacao" data-status="pendente">A definir</span></td>
+                <td class="pendente">[link para PDF]</td>
+              </tr>
+              <tr>
+                <td>Modelo de termo de consentimento (em branco)</td>
+                <td class="pendente">[v.]</td>
+                <td class="pendente">[data]</td>
+                <td><span class="situacao" data-status="pendente">A definir</span></td>
+                <td class="pendente">[link para PDF]</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    </div><!-- /.pesquisa-corpo -->
+  </main>
+
+  <!-- O Footer entra aqui automaticamente -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Header e Footer -->
+  <script>
+    const ROOT = '../';
+
+    Promise.all([
+      fetch(ROOT + 'header.html').then(resposta => resposta.text()),
+      fetch(ROOT + 'footer.html').then(resposta => resposta.text())
+    ]).then(([headerHtml, footerHtml]) => {
+      document.getElementById('header-placeholder').innerHTML = headerHtml;
+      document.getElementById('footer-placeholder').innerHTML = footerHtml;
+
+      document.querySelectorAll('#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]')
+        .forEach(a => a.setAttribute('href', ROOT + a.getAttribute('href')));
+
+      document.querySelectorAll('#header-placeholder [data-root-src]')
+        .forEach(el => {
+          const srcOriginal = el.getAttribute('src');
+          if (srcOriginal && !srcOriginal.startsWith('http')) {
+            el.setAttribute('src', ROOT + srcOriginal);
+          }
+        });
+
+      const scriptOriginal = document.createElement('script');
+      scriptOriginal.src = ROOT + 'js/app.js';
+      scriptOriginal.onload = () => { document.dispatchEvent(new Event('DOMContentLoaded')); };
+      document.body.appendChild(scriptOriginal);
+    });
+  </script>
+
+  <!-- SCRIPT DO CARROSSEL -->
+  <script>
+    const fotosPesquisa = [
+      'https://lh3.googleusercontent.com/d/1FOGIrwRIZb1aRNImCal9_VHBmKhUrFZa=w1000'
+    ];
+
+    const cacheCarregados = {};
+
+    function montarCarrosselUnico(idContainer, listaFotos) {
+      const container = document.getElementById(idContainer);
+      if (!container || listaFotos.length === 0) return;
+
+      const loadingLabel = container.querySelector('.carrossel-loading');
+      const dotsWrapper = container.querySelector('.carrossel-dots');
+      let atual = 0;
+      let timer;
+
+      cacheCarregados[idContainer] = new Set();
+
+      listaFotos.forEach((url, i) => {
+        const slide = document.createElement('div');
+        slide.className = 'carrossel-slide' + (i === 0 ? ' ativo' : '');
+        slide.dataset.src = url;
+
+        container.insertBefore(slide, loadingLabel);
+
+        const dot = document.createElement('span');
+        dot.className = 'dot' + (i === 0 ? ' ativo' : '');
+        dot.addEventListener('click', () => irPara(i));
+        dotsWrapper.appendChild(dot);
+      });
+
+      const slides = container.querySelectorAll('.carrossel-slide');
+      const dots = dotsWrapper.querySelectorAll('.dot');
+
+      function carregarSlide(indice) {
+        if (cacheCarregados[idContainer].has(indice)) return;
+        const slide = slides[indice];
+        const url = slide.dataset.src;
+
+        const img = new Image();
+        img.onload = () => {
+          slide.style.backgroundImage = `url('${url}')`;
+          cacheCarregados[idContainer].add(indice);
+          if (indice === atual && loadingLabel) {
+            loadingLabel.style.display = 'none';
+          }
+        };
+        img.onerror = () => {
+          cacheCarregados[idContainer].add(indice);
+          if (indice === atual && loadingLabel) {
+            loadingLabel.textContent = 'imagem indisponível';
+          }
+        };
+        img.src = url;
+      }
+
+      function irPara(indice) {
+        slides[atual].classList.remove('ativo');
+        dots[atual].classList.remove('ativo');
+        atual = (indice + listaFotos.length) % listaFotos.length;
+        slides[atual].classList.add('ativo');
+        dots[atual].classList.add('ativo');
+
+        if (loadingLabel) {
+          loadingLabel.style.display = cacheCarregados[idContainer].has(atual) ? 'none' : 'flex';
+          loadingLabel.textContent = 'carregando...';
+        }
+
+        carregarSlide(atual);
+        carregarSlide((atual + 1) % listaFotos.length);
+      }
+
+      function reiniciarTimer() {
+        clearInterval(timer);
+        timer = setInterval(() => irPara(atual + 1), 5000);
+      }
+
+      container.querySelector('.anterior').addEventListener('click', () => {
+        irPara(atual - 1);
+        reiniciarTimer();
+      });
+      container.querySelector('.proximo').addEventListener('click', () => {
+        irPara(atual + 1);
+        reiniciarTimer();
+      });
+
+      carregarSlide(0);
+      carregarSlide(1 % listaFotos.length);
+
+      reiniciarTimer();
+    }
+
+    montarCarrosselUnico('carrossel-pesquisa', fotosPesquisa);
+  </script>
+
+  <!-- SCRIPT DA NAVEGAÇÃO INTERNA DE PESQUISA -->
+  <script>
+    (function () {
+      if (!('IntersectionObserver' in window)) return;
+
+      document.querySelectorAll('.sub-nav').forEach(nav => {
+        const links = nav.querySelectorAll('a');
+        const alvos = Array.from(links)
+          .map(a => document.querySelector(a.getAttribute('href')))
+          .filter(Boolean);
+
+        const observador = new IntersectionObserver(entradas => {
+          entradas.forEach(entrada => {
+            if (entrada.isIntersecting) {
+              links.forEach(a => a.classList.toggle('ativo', a.getAttribute('href') === '#' + entrada.target.id));
+            }
+          });
+        }, { rootMargin: '-25% 0px -65% 0px' });
+
+        alvos.forEach(alvo => observador.observe(alvo));
+      });
+    })();
+  </script>
+</body>
+</html>
