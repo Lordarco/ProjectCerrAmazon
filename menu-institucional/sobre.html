@@ -21,12 +21,12 @@
 
   <div id="footer-placeholder"></div>
 
-  <script>
+   <script>
     const ROOT = '../';
 
     Promise.all([
-      fetch(ROOT + 'header.html').then(res => res.text()),
-      fetch(ROOT + 'footer.html').then(res => res.text())
+      fetch(ROOT + 'header.html').then(resposta => resposta.text()),
+      fetch(ROOT + 'footer.html').then(resposta => resposta.text())
     ]).then(([headerHtml, footerHtml]) => {
       document.getElementById('header-placeholder').innerHTML = headerHtml;
       document.getElementById('footer-placeholder').innerHTML = footerHtml;
@@ -34,8 +34,13 @@
       document.querySelectorAll('#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]')
         .forEach(a => a.setAttribute('href', ROOT + a.getAttribute('href')));
 
-      document.querySelectorAll('#header-placeholder [data-root-src]')
-        .forEach(el => el.setAttribute('src', ROOT + el.getAttribute('src')));
+      document.querySelectorAll('#header-placeholder img, #footer-placeholder img')
+        .forEach(img => {
+          const src = img.getAttribute('src');
+          if (src && !/^(https?:|data:|\/|\.\.\/)/.test(src)) {
+            img.setAttribute('src', ROOT + src);
+          }
+        });
 
       const scriptOriginal = document.createElement('script');
       scriptOriginal.src = ROOT + 'js/app.js';

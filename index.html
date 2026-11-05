@@ -9,6 +9,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .news-section {
+      --news-bg: #1b1d21;
+      background: var(--news-bg);
+    }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -20,24 +26,21 @@
     <!-- BANNER PRINCIPAL -->
     <section class="hero-v2" id="inicio">
       <div class="hero-media" aria-label="Carrossel de mídias autorais">
-        
+
         <!-- Slide 1: Vídeo do YouTube -->
         <div class="photo-slot slide active">
           <iframe src="https://www.youtube.com/embed/ZlvfoyMciVw?autoplay=1&mute=1&controls=0&loop=1&playlist=ZlvfoyMciVw" title="Vídeo de fundo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
 
         <!-- Slide 2: Imagem do Google Drive -->
-
         <div class="photo-slot slide">
           <img src="https://lh3.googleusercontent.com/d/1WCsDiHUBstOogzQ8wGMk2_M97_qgKQN5=w1000" alt="CerrAmazon - Imagem" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: center; position: absolute; top: 0; left: 0;">
         </div>
+
         <!-- Slide 3: Imagem do Google Drive -->
-         <div class="photo-slot slide">
+        <div class="photo-slot slide">
           <img src="https://lh3.googleusercontent.com/d/1DNpXcsvNtYetn-yed0aGUjxtP1iLdllx=w1000" alt="CerrAmazon - Imagem" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: center; position: absolute; top: 0; left: 0;">
         </div>
-
-        <!-- Slide 4: Outra Imagem do Google Drive(Se quiser colocar, porém deve aumentar o carrosel em app.js)  -->
-        
 
         <div class="photo-slot-label">
           <strong>FOTOGRAFIA / VÍDEO AUTORAL</strong>
@@ -64,12 +67,57 @@
       <h2>A palavra identifica. A evidência contextualiza. A gramática organiza. <em>O protocolo governa a circulação.</em></h2>
       <a href="menu-institucional/sobre.html">Conhecer o projeto →</a>
     </section>
+
+    <!-- SEÇÃO DE NOTÍCIAS -->
+    <section class="news-section" id="noticias">
+      <div class="news-container">
+        <div class="news-header">
+          <h3>NOTÍCIAS <span class="news-icon">∞</span></h3>
+          <div class="news-nav-buttons">
+            <button aria-label="Anterior">‹</button>
+            <button aria-label="Próximo">›</button>
+          </div>
+        </div>
+        <hr class="news-divider">
+
+        <div class="news-grid">
+          <!-- Card 1 (Ligado para a página interna de notícias) -->
+          <article class="news-card">
+            <div class="news-img-wrapper">
+              <img src="https://lh3.googleusercontent.com/d/1WCsDiHUBstOogzQ8wGMk2_M97_qgKQN5=w1000" alt="Entrevista Rosiane — Alto Rio Negro" loading="lazy">
+            </div>
+            <span class="news-category">ENTREVISTA</span>
+            <h4><a href="Noticias/noticia_detalhe.html">CerrAmazon estuda artes rupestres e saberes tradicionais no Alto Rio Negro</a></h4>
+          </article>
+
+          <!-- Card 2 (em branco: descomente e preencha para adicionar uma notícia)
+          <article class="news-card">
+            <div class="news-img-wrapper">
+              <img src="COLE_AQUI_O_LINK_DA_IMAGEM" alt="DESCRIÇÃO DA IMAGEM" loading="lazy">
+            </div>
+            <span class="news-category">CATEGORIA</span>
+            <h4><a href="#">TÍTULO DA NOTÍCIA</a></h4>
+          </article>
+          -->
+
+          <!-- Card 3 (em branco: descomente e preencha para adicionar uma notícia)
+          <article class="news-card">
+            <div class="news-img-wrapper">
+              <img src="COLE_AQUI_O_LINK_DA_IMAGEM" alt="DESCRIÇÃO DA IMAGEM" loading="lazy">
+            </div>
+            <span class="news-category">CATEGORIA</span>
+            <h4><a href="#">TÍTULO DA NOTÍCIA</a></h4>
+          </article>
+          -->
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- O Footer -->
   <div id="footer-placeholder"></div>
 
-  <!-- Header e Footer -->
+  <!-- Script para carregar Header e Footer -->
   <script>
     const ROOT = '';
 
@@ -80,11 +128,18 @@
       document.getElementById('header-placeholder').innerHTML = headerHtml;
       document.getElementById('footer-placeholder').innerHTML = footerHtml;
 
+      // Ajusta links .html do header/footer para a profundidade certa
       document.querySelectorAll('#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]')
         .forEach(a => a.setAttribute('href', ROOT + a.getAttribute('href')));
 
-      document.querySelectorAll('#header-placeholder [data-root-src]')
-        .forEach(el => el.setAttribute('src', ROOT + el.getAttribute('src')));
+      // Ajusta imagens do header/footer: só mexe em caminhos relativos
+      document.querySelectorAll('#header-placeholder img, #footer-placeholder img')
+        .forEach(img => {
+          const src = img.getAttribute('src');
+          if (src && !/^(https?:|data:|\/|\.\.\/)/.test(src)) {
+            img.setAttribute('src', ROOT + src);
+          }
+        });
 
       const scriptOriginal = document.createElement('script');
       scriptOriginal.src = ROOT + 'js/app.js';

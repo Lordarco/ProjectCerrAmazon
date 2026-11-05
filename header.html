@@ -1,9 +1,40 @@
+<style>
+  .social-links {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-right: 6px;
+  }
+  .social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.85;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .social-links a:hover {
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+  .social-links img {
+    height: 22px;
+    width: 22px;
+    object-fit: contain;
+    display: block;
+    /* Se os ícones forem pretos e sumirem no fundo escuro, descomente a linha abaixo: */
+    /* filter: invert(1); */
+  }
+  @media (max-width: 480px) {
+    .social-links { gap: 10px; }
+    .social-links img { height: 20px; width: 20px; }
+  }
+</style>
+
 <header class="site-header">
-  <a 
+  <a
     class="brand brand-on-fiber"
     href="index.html"
     aria-label="CerrAmazon — início"
-    data-root-link
   >
     <img
       src="assets/images/logo.png"
@@ -13,6 +44,32 @@
   </a>
 
   <div class="header-actions">
+    <!-- Redes sociais -->
+    <div class="social-links">
+      <a
+        href="https://www.youtube.com/channel/UCd5HT6r6TlcqTOLCTvQytBQ/videos"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="CerrAmazon no YouTube"
+      >
+        <img
+          src="https://lh3.googleusercontent.com/d/10MBVGvlN6LjkqtBwXPdpLs9ViMPMxtXK=w1000"
+          alt="YouTube"
+        >
+      </a>
+      <a
+        href="https://www.instagram.com/cerramazon/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="CerrAmazon no Instagram"
+      >
+        <img
+          src="https://lh3.googleusercontent.com/d/1u4BhRjy6vOhgFXahUgpKYAq9H70qmZ8M=w1000"
+          alt="Instagram"
+        >
+      </a>
+    </div>
+
     <button class="language" type="button" aria-label="Alternar idioma">
       PT / EN
     </button>

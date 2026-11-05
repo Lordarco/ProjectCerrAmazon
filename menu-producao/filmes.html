@@ -187,7 +187,7 @@
   <div id="footer-placeholder"></div>
 
   <!-- Header e Footer -->
-  <script>
+   <script>
     const ROOT = '../';
 
     Promise.all([
@@ -200,11 +200,11 @@
       document.querySelectorAll('#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]')
         .forEach(a => a.setAttribute('href', ROOT + a.getAttribute('href')));
 
-      document.querySelectorAll('#header-placeholder [data-root-src]')
-        .forEach(el => {
-          const srcOriginal = el.getAttribute('src');
-          if (srcOriginal && !srcOriginal.startsWith('http')) {
-            el.setAttribute('src', ROOT + srcOriginal);
+      document.querySelectorAll('#header-placeholder img, #footer-placeholder img')
+        .forEach(img => {
+          const src = img.getAttribute('src');
+          if (src && !/^(https?:|data:|\/|\.\.\/)/.test(src)) {
+            img.setAttribute('src', ROOT + src);
           }
         });
 

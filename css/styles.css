@@ -709,3 +709,143 @@ body {
 }
 
 /* imagem*/
+/* Estilos da Seção de Notícias */
+.news-section {
+  padding: 4rem 2rem;
+  background-color: #fafafa;
+  border-top: 1px solid #eaeaea;
+}
+
+.news-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.news-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.news-header h3 {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  color: #111;
+  font-weight: 700;
+}
+
+.news-icon {
+  color: #003366;
+  margin-left: 0.3rem;
+}
+
+.news-nav-buttons button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #003366;
+  padding: 0 0.5rem;
+  transition: opacity 0.2s;
+}
+
+.news-nav-buttons button:hover {
+  opacity: 0.7;
+}
+
+.news-divider {
+  border: none;
+  border-top: 1px solid #003366;
+  margin-bottom: 2rem;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.news-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.news-img-wrapper {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.news-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.news-card:hover .news-img-wrapper img {
+  transform: scale(1.03);
+}
+
+.news-category {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #666;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.5px;
+}
+
+.news-card h4 a {
+  font-family: 'Source Serif 4', serif;
+  font-size: 1.15rem;
+  color: #1a1a1a;
+  text-decoration: none;
+  line-height: 1.4;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.news-card h4 a:hover {
+  color: #003366;
+  text-decoration: underline;
+}
+
+/* Cria um espaço automático no topo para o cabeçalho fixo não cobrir o conteúdo */
+main#conteudo {
+  padding-top: 100px; /* Ajuste o valor (80px a 120px) dependendo da altura do seu header */
+}
+
+/* Cores dos textos da Seção de Notícias para fundo escuro */
+.news-header h3 {
+  color: #ffffff !important;
+}
+
+.news-icon {
+  color: #4da6ff !important; /* Um tom de azul mais claro para destacar no fundo escuro, ou mude para #fff se preferir */
+}
+
+.news-nav-buttons button {
+  color: #ffffff !important;
+}
+
+.news-divider {
+  border-top-color: rgba(255, 255, 255, 0.2);
+}
+
+.news-category {
+  color: #aaaaaa !important; /* Cinza claro para a categoria */
+}
+
+.news-card h4 a {
+  color: #ffffff !important; /* Título da notícia em branco puro */
+}
+
+.news-card h4 a:hover {
+  color: #4da6ff !important; /* Cor ao passar o mouse */
+}
