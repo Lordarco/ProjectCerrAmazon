@@ -1,4 +1,10 @@
 <style>
+  .site-header {
+    background: rgba(20, 22, 26, 0.72) !important; /* Mesmo tom #14161a com 72% de opacidade */
+    backdrop-filter: blur(8px); /* Efeito de desfoque suave no fundo */
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
   .social-links {
     display: flex;
     align-items: center;
@@ -27,6 +33,14 @@
   @media (max-width: 480px) {
     .social-links { gap: 10px; }
     .social-links img { height: 20px; width: 20px; }
+  }
+  .site-header .brand img {
+    filter:
+      brightness(2.15)
+      contrast(1.45)
+      saturate(1.6)
+      drop-shadow(0 0 10px rgba(56, 193, 153, 0.7))
+      drop-shadow(0 0 3px rgba(140, 255, 220, 0.45)) !important;
   }
 </style>
 
