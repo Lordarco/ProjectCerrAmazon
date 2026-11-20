@@ -1,106 +1,167 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CerrAmazon — Atlas Vivo v2</title>
-  <meta name="description" content="Protótipo v2 da plataforma CerrAmazon: território, acervo e circulação autorizada.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
-  
-  <style>
-    .news-section {
-      --news-bg: #14161a; /* Cinza mais próximo do fundo escuro, mas com destaque */
-      background: var(--news-bg);
-      border-top: 1px solid rgba(255, 255, 255, 0.08); /* Suaviza a linha divisória superior */
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04); /* Brilho interno sutil para dar profundidade */
-    }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CerrAmazon — Atlas Vivo v2</title>
+    <meta
+      name="description"
+      content="Protótipo v2 da plataforma CerrAmazon: território, acervo e circulação autorizada."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
 
-    /* Suaviza também a linha divisória interna abaixo de "NOTÍCIAS" */
-    .news-section .news-divider {
-      border: 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-  </style>
+    <style>
+      .news-section {
+        --news-bg: #14161a; /* Cinza mais próximo do fundo escuro, mas com destaque */
+        background: var(--news-bg);
+        border-top: 1px solid rgba(255, 255, 255, 0.08); /* Suaviza a linha divisória superior */
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04); /* Brilho interno sutil para dar profundidade */
+      }
 
-</head>
-<body>
-  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+      /* Suaviza também a linha divisória interna abaixo de "NOTÍCIAS" */
+      .news-section .news-divider {
+        border: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-  <!-- O Header -->
-  <div id="header-placeholder"></div>
+    <!-- O Header -->
+    <div id="header-placeholder"></div>
 
-  <main id="conteudo">
-    <!-- BANNER PRINCIPAL -->
-    <section class="hero-v2" id="inicio">
-      <div class="hero-media" aria-label="Carrossel de mídias autorais">
+    <main id="conteudo">
+      <!-- BANNER PRINCIPAL -->
+      <section class="hero-v2" id="inicio">
+        <div class="hero-media" aria-label="Carrossel de mídias autorais">
+          <!-- Slide 1: Vídeo do YouTube -->
+          <div class="photo-slot slide active">
+            <iframe
+              src="https://www.youtube.com/embed/ZlvfoyMciVw?autoplay=1&mute=1&controls=0&loop=1&playlist=ZlvfoyMciVw"
+              title="Vídeo de fundo"
+              frameborder="0"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+                web-share;
+              "
+              allowfullscreen
+            ></iframe>
+          </div>
 
-        <!-- Slide 1: Vídeo do YouTube -->
-        <div class="photo-slot slide active">
-          <iframe src="https://www.youtube.com/embed/ZlvfoyMciVw?autoplay=1&mute=1&controls=0&loop=1&playlist=ZlvfoyMciVw" title="Vídeo de fundo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
+          <!-- Slide 2: Imagem do Google Drive -->
+          <div class="photo-slot slide">
+            <img
+              src="https://lh3.googleusercontent.com/d/1WCsDiHUBstOogzQ8wGMk2_M97_qgKQN5=w1000"
+              alt="CerrAmazon - Imagem"
+              loading="lazy"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                position: absolute;
+                top: 0;
+                left: 0;
+              "
+            />
+          </div>
 
-        <!-- Slide 2: Imagem do Google Drive -->
-        <div class="photo-slot slide">
-          <img src="https://lh3.googleusercontent.com/d/1WCsDiHUBstOogzQ8wGMk2_M97_qgKQN5=w1000" alt="CerrAmazon - Imagem" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: center; position: absolute; top: 0; left: 0;">
-        </div>
+          <!-- Slide 3: Imagem do Google Drive -->
+          <div class="photo-slot slide">
+            <img
+              src="https://lh3.googleusercontent.com/d/1DNpXcsvNtYetn-yed0aGUjxtP1iLdllx=w1000"
+              alt="CerrAmazon - Imagem"
+              loading="lazy"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                position: absolute;
+                top: 0;
+                left: 0;
+              "
+            />
+          </div>
 
-        <!-- Slide 3: Imagem do Google Drive -->
-        <div class="photo-slot slide">
-          <img src="https://lh3.googleusercontent.com/d/1DNpXcsvNtYetn-yed0aGUjxtP1iLdllx=w1000" alt="CerrAmazon - Imagem" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: center; position: absolute; top: 0; left: 0;">
-        </div>
+          <div class="photo-slot-label">
+            <strong>FOTOGRAFIA / VÍDEO AUTORAL</strong>
+            <span>proporção preservada · sem transformação generativa</span>
+          </div>
 
-        <div class="photo-slot-label">
-          <strong>FOTOGRAFIA / VÍDEO AUTORAL</strong>
-          <span>proporção preservada · sem transformação generativa</span>
-        </div>
+          <aside class="hero-window">
+            <p class="eyebrow seed">CERRADO ↔ AMAZÔNIA</p>
+            <h1>Território, memória e <em>circulação autorizada.</em></h1>
+            <p>
+              CerrAmazon é uma plataforma de pesquisa-criação, documentação
+              responsável e relações entre territórios.
+            </p>
+            <a class="primary-link" href="menu-plataforma/territorios.html"
+              >Entrar pelo território →</a
+            >
+          </aside>
 
-        <aside class="hero-window">
-          <p class="eyebrow seed">CERRADO ↔ AMAZÔNIA</p>
-          <h1>Território, memória e <em>circulação autorizada.</em></h1>
-          <p>CerrAmazon é uma plataforma de pesquisa-criação, documentação responsável e relações entre territórios.</p>
-          <a class="primary-link" href="menu-plataforma/territorios.html">Entrar pelo território →</a>
-        </aside>
-
-        <div class="slider-dots">
-          <span class="dot active" data-index="0"></span>
-          <span class="dot" data-index="1"></span>
-          <span class="dot" data-index="2"></span>
-        </div>
-      </div>
-    </section>
-
-    <section class="about-statement" id="sobre">
-      <p class="eyebrow">CERRAMAZON</p>
-      <h2>A palavra identifica. A evidência contextualiza. A gramática organiza. <em>O protocolo governa a circulação.</em></h2>
-      <a href="menu-institucional/sobre.html">Conhecer o projeto →</a>
-    </section>
-
-    <!-- SEÇÃO DE NOTÍCIAS -->
-    <section class="news-section" id="noticias">
-      <div class="news-container">
-        <div class="news-header">
-          <h3>NOTÍCIAS <span class="news-icon">∞</span></h3>
-          <div class="news-nav-buttons">
-            <button aria-label="Anterior">‹</button>
-            <button aria-label="Próximo">›</button>
+          <div class="slider-dots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
           </div>
         </div>
-        <hr class="news-divider">
+      </section>
 
-        <div class="news-grid">
-          <!-- Card 1 (Ligado para a página interna de notícias) -->
-          <article class="news-card">
-            <div class="news-img-wrapper">
-              <img src="https://lh3.googleusercontent.com/d/1WCsDiHUBstOogzQ8wGMk2_M97_qgKQN5=w1000" alt="Entrevista Rosiane — Alto Rio Negro" loading="lazy">
+      <section class="about-statement" id="sobre">
+        <p class="eyebrow">CERRAMAZON</p>
+        <h2>
+          A palavra identifica. A evidência contextualiza. A gramática organiza.
+          <em>O protocolo governa a circulação.</em>
+        </h2>
+        <a href="menu-institucional/sobre.html">Conhecer o projeto →</a>
+      </section>
+
+      <!-- SEÇÃO DE NOTÍCIAS -->
+      <section class="news-section" id="noticias">
+        <div class="news-container">
+          <div class="news-header">
+            <h3>NOTÍCIAS <span class="news-icon">∞</span></h3>
+            <div class="news-nav-buttons">
+              <button aria-label="Anterior">‹</button>
+              <button aria-label="Próximo">›</button>
             </div>
-            <span class="news-category">ENTREVISTA</span>
-            <h4><a href="Noticias/noticia_detalhe.html">CerrAmazon estuda artes rupestres e saberes tradicionais no Alto Rio Negro</a></h4>
-          </article>
+          </div>
+          <hr class="news-divider" />
 
-          <!-- Card 2 (em branco: descomente e preencha para adicionar uma notícia)
+          <div class="news-grid">
+            <!-- Card 1 (Ligado para a página interna de notícias) -->
+            <article class="news-card">
+              <div class="news-img-wrapper">
+                <img
+                  src="https://lh3.googleusercontent.com/d/1WCsDiHUBstOogzQ8wGMk2_M97_qgKQN5=w1000"
+                  alt="Entrevista Rosiane — Alto Rio Negro"
+                  loading="lazy"
+                />
+              </div>
+              <span class="news-category">ENTREVISTA</span>
+              <h4>
+                <a href="Noticias/noticia_detalhe.html"
+                  >CerrAmazon estuda artes rupestres e saberes tradicionais no
+                  Alto Rio Negro</a
+                >
+              </h4>
+            </article>
+
+            <!-- Card 2 (em branco: descomente e preencha para adicionar uma notícia)
           <article class="news-card">
             <div class="news-img-wrapper">
               <img src="COLE_AQUI_O_LINK_DA_IMAGEM" alt="DESCRIÇÃO DA IMAGEM" loading="lazy">
@@ -110,7 +171,7 @@
           </article>
           -->
 
-          <!-- Card 3 (em branco: descomente e preencha para adicionar uma notícia)
+            <!-- Card 3 (em branco: descomente e preencha para adicionar uma notícia)
           <article class="news-card">
             <div class="news-img-wrapper">
               <img src="COLE_AQUI_O_LINK_DA_IMAGEM" alt="DESCRIÇÃO DA IMAGEM" loading="lazy">
@@ -118,44 +179,51 @@
             <span class="news-category">CATEGORIA</span>
             <h4><a href="#">TÍTULO DA NOTÍCIA</a></h4>
           </article>
-          -->
+          --></div>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
+    </main>
 
-  <!-- O Footer -->
-  <div id="footer-placeholder"></div>
+    <!-- O Footer -->
+    <div id="footer-placeholder"></div>
 
-  <!-- Script para carregar Header e Footer -->
-  <script>
-    const ROOT = '';
+    <!-- Script para carregar Header e Footer -->
+    <script>
+      const ROOT = "";
 
-    Promise.all([
-      fetch(ROOT + 'header.html').then(res => res.text()),
-      fetch(ROOT + 'footer.html').then(res => res.text())
-    ]).then(([headerHtml, footerHtml]) => {
-      document.getElementById('header-placeholder').innerHTML = headerHtml;
-      document.getElementById('footer-placeholder').innerHTML = footerHtml;
+      Promise.all([
+        fetch(ROOT + "header.html").then((res) => res.text()),
+        fetch(ROOT + "footer.html").then((res) => res.text()),
+      ]).then(([headerHtml, footerHtml]) => {
+        document.getElementById("header-placeholder").innerHTML = headerHtml;
+        document.getElementById("footer-placeholder").innerHTML = footerHtml;
 
-      // Ajusta links .html do header/footer para a profundidade certa
-      document.querySelectorAll('#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]')
-        .forEach(a => a.setAttribute('href', ROOT + a.getAttribute('href')));
+        // Ajusta links .html do header/footer para a profundidade certa
+        document
+          .querySelectorAll(
+            '#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]',
+          )
+          .forEach((a) =>
+            a.setAttribute("href", ROOT + a.getAttribute("href")),
+          );
 
-      // Ajusta imagens do header/footer: só mexe em caminhos relativos
-      document.querySelectorAll('#header-placeholder img, #footer-placeholder img')
-        .forEach(img => {
-          const src = img.getAttribute('src');
-          if (src && !/^(https?:|data:|\/|\.\.\/)/.test(src)) {
-            img.setAttribute('src', ROOT + src);
-          }
-        });
+        // Ajusta imagens do header/footer: só mexe em caminhos relativos
+        document
+          .querySelectorAll("#header-placeholder img, #footer-placeholder img")
+          .forEach((img) => {
+            const src = img.getAttribute("src");
+            if (src && !/^(https?:|data:|\/|\.\.\/)/.test(src)) {
+              img.setAttribute("src", ROOT + src);
+            }
+          });
 
-      const scriptOriginal = document.createElement('script');
-      scriptOriginal.src = ROOT + 'js/app.js';
-      scriptOriginal.onload = () => { document.dispatchEvent(new Event('DOMContentLoaded')); };
-      document.body.appendChild(scriptOriginal);
-    });
-  </script>
-</body>
+        const scriptOriginal = document.createElement("script");
+        scriptOriginal.src = ROOT + "js/app.js";
+        scriptOriginal.onload = () => {
+          document.dispatchEvent(new Event("DOMContentLoaded"));
+        };
+        document.body.appendChild(scriptOriginal);
+      });
+    </script>
+  </body>
 </html>

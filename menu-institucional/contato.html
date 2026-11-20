@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contato — CerrAmazon</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+      #conteudo .section {
+        padding-bottom: 20px;
+      }
+      #conteudo .section-heading {
+        margin-bottom: 24px;
+      }
+      .contato-intro {
+        background: #111;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 24px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .contato-intro-texto h3 {
+        font-size: 1.2rem;
+        color: #fff;
+        margin-bottom: 4px;
+      }
+      .contato-intro-texto p {
+        color: var(--text-muted, #999);
+        font-size: 0.95rem;
+        margin: 0;
+      }
+      .btn-acao {
+        display: inline-block;
+        background: #fff;
+        color: #000;
+        padding: 10px 18px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: background 0.2s;
+      }
+      .btn-acao:hover {
+        background: #e0e0e0;
+      }
+      .grade-contato {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+      .contato-card {
+        background: #111;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: border-color 0.3s ease;
+      }
+      .contato-card:hover {
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+      .contato-meta {
+        font-size: 0.8rem;
+        color: var(--text-muted, #999);
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .contato-card h4 {
+        font-size: 1.15rem;
+        color: #fff;
+        margin-bottom: 10px;
+        line-height: 1.3;
+      }
+      .contato-card p {
+        color: var(--text-muted, #999);
+        font-size: 0.92rem;
+        margin-bottom: 16px;
+        line-height: 1.5;
+      }
+      .contato-link {
+        display: inline-block;
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        padding-bottom: 2px;
+        align-self: flex-start;
+        transition: border-color 0.2s;
+      }
+      .contato-link:hover {
+        border-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- O Header entra aqui automaticamente -->
+    <div id="header-placeholder"></div>
+
+    <!-- MIOLO / CONTEÚDO ESPECÍFICO DA PÁGINA -->
+    <main
+      id="conteudo"
+      style="padding: 120px 20px 40px 20px; max-width: 1200px; margin: 0 auto"
+    >
+      <section class="section">
+        <header class="section-heading">
+          <p class="eyebrow">INSTITUCIONAL</p>
+          <h2>Contato</h2>
+          <p>
+            Canais de diálogo, colaborações, envio de materiais e informações
+            sobre o projeto CerrAmazon.
+          </p>
+        </header>
+
+        <!-- DESTAQUE / COMUNICAÇÃO DIRETA -->
+        <div class="contato-intro">
+          <div class="contato-intro-texto">
+            <h3>Fale com a Equipe CerrAmazon</h3>
+            <p>
+              Entre em contato para parcerias de pesquisa, convites para
+              exposições, imprensa ou contribuições territoriais.
+            </p>
+          </div>
+          <a href="sobre.html" class="btn-acao">Sobre o Projeto →</a>
+        </div>
+
+        <!-- GRADE DE CANAIS -->
+        <div class="grade-contato">
+          <!-- Canal 1 -->
+          <article class="contato-card">
+            <div>
+              <span class="contato-meta">E-mail institucional</span>
+              <h4>Correspondência e Parcerias</h4>
+              <p>
+                Canal principal para propostas acadêmicas, curadorias,
+                intercâmbio territorial e assuntos gerais do projeto.
+              </p>
+            </div>
+            <a href="mailto:contato@cerramazon.org" class="contato-link"
+              >Enviar e-mail →</a
+            >
+          </article>
+
+          <!-- Canal 2 -->
+          <article class="contato-card">
+            <div>
+              <span class="contato-meta">Audiovisual</span>
+              <h4>Canal Oficial no YouTube</h4>
+              <p>
+                Acompanhe registros audiovisuais, entrevistas e estreias ligadas
+                às pesquisas entre Cerrado e Amazônia.
+              </p>
+            </div>
+            <a
+              href="https://www.youtube.com/channel/UCd5HT6r6TlcqTOLCTvQytBQ"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contato-link"
+              >Acessar YouTube →</a
+            >
+          </article>
+
+          <!-- Canal 3 -->
+          <article class="contato-card">
+            <div>
+              <span class="contato-meta">Produção e Acervo</span>
+              <h4>Frentes do Projeto</h4>
+              <p>
+                Acesse diretamente as páginas de pesquisa, publicações,
+                exposições e filmes para consultar o material disponível.
+              </p>
+            </div>
+            <a href="../menu-producao/pesquisa.html" class="contato-link"
+              >Explorar pesquisa →</a
+            >
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- O Footer entra aqui automaticamente -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Header e Footer -->
+    <script>
+      const ROOT = "../";
+
+      Promise.all([
+        fetch(ROOT + "header.html").then((resposta) => resposta.text()),
+        fetch(ROOT + "footer.html").then((resposta) => resposta.text()),
+      ]).then(([headerHtml, footerHtml]) => {
+        document.getElementById("header-placeholder").innerHTML = headerHtml;
+        document.getElementById("footer-placeholder").innerHTML = footerHtml;
+
+        document
+          .querySelectorAll(
+            '#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]',
+          )
+          .forEach((a) =>
+            a.setAttribute("href", ROOT + a.getAttribute("href")),
+          );
+
+        document
+          .querySelectorAll("#header-placeholder img, #footer-placeholder img")
+          .forEach((img) => {
+            const src = img.getAttribute("src");
+            if (src && !/^(https?:|data:|\/|\.\.\/)/.test(src)) {
+              img.setAttribute("src", ROOT + src);
+            }
+          });
+
+        const scriptOriginal = document.createElement("script");
+        scriptOriginal.src = ROOT + "js/app.js";
+        scriptOriginal.onload = () => {
+          document.dispatchEvent(new Event("DOMContentLoaded"));
+        };
+        document.body.appendChild(scriptOriginal);
+      });
+    </script>
+  </body>
+</html>

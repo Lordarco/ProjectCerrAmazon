@@ -1,55 +1,53 @@
 // ==========================================
 // 1. LÓGICA DO MENU
 // ==========================================
-document.addEventListener('click', (event) => {
-  
-  const menuToggle = event.target.closest('.menu-toggle');
+document.addEventListener("click", (event) => {
+  const menuToggle = event.target.closest(".menu-toggle");
   if (menuToggle) {
-    const menuPanel = document.getElementById('menu-panel');
-    const menuIcon = document.querySelector('.menu-icon');
-    
+    const menuPanel = document.getElementById("menu-panel");
+    const menuIcon = document.querySelector(".menu-icon");
+
     if (menuPanel) {
-      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      
-      menuToggle.setAttribute('aria-expanded', !isExpanded);
-      menuPanel.setAttribute('aria-hidden', isExpanded);
-      menuPanel.classList.toggle('active');
+      const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+
+      menuToggle.setAttribute("aria-expanded", !isExpanded);
+      menuPanel.setAttribute("aria-hidden", isExpanded);
+      menuPanel.classList.toggle("active");
 
       if (menuIcon) {
-        menuIcon.textContent = isExpanded ? '+' : '×';
+        menuIcon.textContent = isExpanded ? "+" : "×";
       }
     }
     return;
   }
 
-  const menuLink = event.target.closest('.menu-panel a');
+  const menuLink = event.target.closest(".menu-panel a");
   if (menuLink) {
-    const toggleBtn = document.querySelector('.menu-toggle');
-    const panel = document.getElementById('menu-panel');
-    const icon = document.querySelector('.menu-icon');
+    const toggleBtn = document.querySelector(".menu-toggle");
+    const panel = document.getElementById("menu-panel");
+    const icon = document.querySelector(".menu-icon");
 
-    if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+    if (toggleBtn) toggleBtn.setAttribute("aria-expanded", "false");
     if (panel) {
-      panel.setAttribute('aria-hidden', 'true');
-      panel.classList.remove('active');
+      panel.setAttribute("aria-hidden", "true");
+      panel.classList.remove("active");
     }
-    if (icon) icon.textContent = '+';
+    if (icon) icon.textContent = "+";
   }
 });
-
 
 // ==========================================
 // 2. LÓGICA DO CARROSSEL
 // ==========================================
-document.addEventListener('DOMContentLoaded', () => {
-  const slides = document.querySelectorAll('.hero-media .slide');
-  const dots = document.querySelectorAll('.slider-dots .dot');
+document.addEventListener("DOMContentLoaded", () => {
+  const slides = document.querySelectorAll(".hero-media .slide");
+  const dots = document.querySelectorAll(".slider-dots .dot");
   let currentSlide = 0;
   let slideInterval;
 
   function showSlide(index) {
-    slides.forEach(slide => slide.classList.remove('active'));
-    dots.forEach(dot => dot.classList.remove('active'));
+    slides.forEach((slide) => slide.classList.remove("active"));
+    dots.forEach((dot) => dot.classList.remove("active"));
 
     currentSlide = index;
     if (currentSlide >= slides.length) currentSlide = 0;
@@ -57,14 +55,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Prevenção extra caso o carrossel demore a carregar
     if (slides[currentSlide] && dots[currentSlide]) {
-      slides[currentSlide].classList.add('active');
-      dots[currentSlide].classList.add('active');
+      slides[currentSlide].classList.add("active");
+      dots[currentSlide].classList.add("active");
     }
   }
 
-  dots.forEach(dot => {
-    dot.addEventListener('click', (e) => {
-      const index = parseInt(e.target.getAttribute('data-index'));
+  dots.forEach((dot) => {
+    dot.addEventListener("click", (e) => {
+      const index = parseInt(e.target.getAttribute("data-index"));
       showSlide(index);
       resetTimer();
     });

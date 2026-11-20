@@ -1,177 +1,232 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Parceiros — CerrAmazon</title>
-  <link rel="stylesheet" href="../css/styles.css">
-  <style>
-    #conteudo .section {
-      padding-bottom: 20px;
-    }
-    #conteudo .section-heading {
-      margin-bottom: 24px;
-    }
-    .lista-parceiros {
-      max-width: 800px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .categoria-titulo {
-      font-size: 1.4rem;
-      color: #fff;
-      margin-top: 30px;
-      margin-bottom: 10px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding-bottom: 8px;
-    }
-    .parceiro-card {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      background: #111;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 16px 20px;
-      border-radius: 8px;
-    }
-    .parceiro-logo {
-      width: 80px;
-      height: 70px;
-      object-fit: contain;
-      flex-shrink: 0;
-      background-color: #1a1a1a;
-      padding: 6px;
-      border-radius: 6px;
-    }
-    .parceiro-info h3 {
-      font-size: 1.2rem;
-      margin-bottom: 4px;
-      color: #fff;
-    }
-    .parceiro-info p {
-      color: var(--text-muted, #999);
-      font-size: 0.95rem;
-      margin: 0;
-    }
-  </style>
-</head>
-<body>
-  <!-- O Header entra aqui automaticamente -->
-  <div id="header-placeholder"></div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Parceiros — CerrAmazon</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+      #conteudo .section {
+        padding-bottom: 20px;
+      }
+      #conteudo .section-heading {
+        margin-bottom: 24px;
+      }
+      .lista-parceiros {
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .categoria-titulo {
+        font-size: 1.4rem;
+        color: #fff;
+        margin-top: 30px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 8px;
+      }
+      .parceiro-card {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        background: #111;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 16px 20px;
+        border-radius: 8px;
+      }
+      .parceiro-logo {
+        width: 80px;
+        height: 70px;
+        object-fit: contain;
+        flex-shrink: 0;
+        background-color: #1a1a1a;
+        padding: 6px;
+        border-radius: 6px;
+      }
+      .parceiro-info h3 {
+        font-size: 1.2rem;
+        margin-bottom: 4px;
+        color: #fff;
+      }
+      .parceiro-info p {
+        color: var(--text-muted, #999);
+        font-size: 0.95rem;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- O Header entra aqui automaticamente -->
+    <div id="header-placeholder"></div>
 
-  <!-- MIOLO / CONTEÚDO ESPECÍFICO DA PÁGINA -->
-  <main id="conteudo" style="padding: 20px 20px 40px 20px; max-width: 1200px; margin: 0 auto;">
-    <section class="section">
-      <header class="section-heading">
-        <p class="eyebrow">INSTITUCIONAL</p>
-        <h2>Parceiros</h2>
-        <p>Instituições, redes de apoio e coletas que colaboram com a expansão da plataforma.</p>
-      </header>
+    <!-- MIOLO / CONTEÚDO ESPECÍFICO DA PÁGINA -->
+    <main
+      id="conteudo"
+      style="padding: 88px 20px 40px 20px; max-width: 1200px; margin: 0 auto"
+    >
+      <section class="section">
+        <header class="section-heading">
+          <p class="eyebrow">INSTITUCIONAL</p>
+          <h2>Parceiros</h2>
+          <p>
+            Instituições, redes de apoio e coletas que colaboram com a expansão
+            da plataforma.
+          </p>
+        </header>
 
-      <!-- LISTA EMPILHADA DE PARCEIROS -->
-      <div class="lista-parceiros">
+        <!-- LISTA EMPILHADA DE PARCEIROS -->
+        <div class="lista-parceiros">
+          <!-- 1. INSTITUIÇÕES ACADÊMICAS -->
+          <h3 class="categoria-titulo">1. Instituições Acadêmicas</h3>
 
-        <!-- 1. INSTITUIÇÕES ACADÊMICAS -->
-        <h3 class="categoria-titulo">1. Instituições Acadêmicas</h3>
+          <div class="parceiro-card">
+            <img
+              src="https://lh3.googleusercontent.com/d/1-4JKOnNYJ-MJ99h-nKTEQo64FxDH5PTV=w1000"
+              alt="Universidade de Brasília — UnB"
+              class="parceiro-logo"
+              loading="lazy"
+            />
+            <div class="parceiro-info">
+              <h3>Universidade de Brasília — UnB</h3>
+              <p>Apoio institucional e fomento à pesquisa territorial.</p>
+            </div>
+          </div>
 
-        <div class="parceiro-card">
-          <img src="https://lh3.googleusercontent.com/d/1-4JKOnNYJ-MJ99h-nKTEQo64FxDH5PTV=w1000" alt="Universidade de Brasília — UnB" class="parceiro-logo" loading="lazy">
-          <div class="parceiro-info">
-            <h3>Universidade de Brasília — UnB</h3>
-            <p>Apoio institucional e fomento à pesquisa territorial.</p>
+          <div class="parceiro-card">
+            <img
+              src="https://lh3.googleusercontent.com/d/1p3Y-6A-GY4g9-OMJZLCfjzoLSmclXDoM=w1000"
+              alt="Universidade Federal do Amazonas — UFAM"
+              class="parceiro-logo"
+              loading="lazy"
+            />
+            <div class="parceiro-info">
+              <h3>Universidade Federal do Amazonas — UFAM</h3>
+              <p>Parceria acadêmica e articulação regional na Amazônia.</p>
+            </div>
+          </div>
+
+          <div class="parceiro-card">
+            <img
+              src="https://lh3.googleusercontent.com/d/1okIsa5j50-R2EGZh47ZMvDjn5UQx70hV=w1000"
+              alt="Programa de Pós-Graduação em Sociologia — PPGS/UFAM"
+              class="parceiro-logo"
+              loading="lazy"
+            />
+            <div class="parceiro-info">
+              <h3>Programa de Pós-Graduação em Sociologia — PPGS/UFAM</h3>
+              <p>Pesquisa acadêmica e cooperação científica.</p>
+            </div>
+          </div>
+
+          <!-- 2. EXTENSÃO E REDE -->
+          <h3 class="categoria-titulo">2. Extensão e Rede</h3>
+
+          <div class="parceiro-card">
+            <img
+              src="https://lh3.googleusercontent.com/d/1du1uoKcs9dLCeeH3S_hw-1QL6Li0BfP-=w1000"
+              alt="Decanato de Extensão — DEX/UnB"
+              class="parceiro-logo"
+              loading="lazy"
+            />
+            <div class="parceiro-info">
+              <h3>Decanato de Extensão — DEX/UnB</h3>
+              <p>
+                Parceria em infraestrutura de dados e documentação e fomentação
+                de recursos para extensão na UnB.
+              </p>
+            </div>
+          </div>
+
+          <div class="parceiro-card">
+            <img
+              src="https://lh3.googleusercontent.com/d/1TNRB25stNDNMOaqgA2-xRAB5YFQTQcYv=w1000"
+              alt="Rede de Polos de Extensão — REPE/UnB"
+              class="parceiro-logo"
+              loading="lazy"
+            />
+            <div class="parceiro-info">
+              <h3>Rede de Polos de Extensão — REPE/UnB</h3>
+              <p>
+                Parceria em infraestrutura de dados e documentação e fomentação
+                de recursos para extensão na UnB.
+              </p>
+            </div>
+          </div>
+
+          <!-- 3. APOIOS / FOMENTO -->
+          <h3 class="categoria-titulo">3. Apoios / Fomento</h3>
+
+          <div class="parceiro-card">
+            <img
+              src="https://lh3.googleusercontent.com/d/1iM_kUbk1O9IJCPk6waBRcmaLMD_biB4Y=w1000"
+              alt="Fundação de Apoio à Pesquisa do Distrito Federal — FAPDF"
+              class="parceiro-logo"
+              loading="lazy"
+            />
+            <div class="parceiro-info">
+              <h3>Fundação de Apoio à Pesquisa do Distrito Federal — FAPDF</h3>
+              <p>
+                Fomento e apoio ao desenvolvimento científico e tecnológico.
+              </p>
+            </div>
+          </div>
+
+          <div class="parceiro-card">
+            <img
+              src="https://lh3.googleusercontent.com/d/1M7vJAJJprp-R99Xu8PbdXf6fsw7eSP3b=w1000"
+              alt="Conexão Cultura DF"
+              class="parceiro-logo"
+              loading="lazy"
+            />
+            <div class="parceiro-info">
+              <h3>Conexão Cultura DF</h3>
+              <p>Apoio cultural e fomento artístico.</p>
+            </div>
           </div>
         </div>
+      </section>
+    </main>
 
-        <div class="parceiro-card">
-          <img src="https://lh3.googleusercontent.com/d/1p3Y-6A-GY4g9-OMJZLCfjzoLSmclXDoM=w1000" alt="Universidade Federal do Amazonas — UFAM" class="parceiro-logo" loading="lazy">
-          <div class="parceiro-info">
-            <h3>Universidade Federal do Amazonas — UFAM</h3>
-            <p>Parceria acadêmica e articulação regional na Amazônia.</p>
-          </div>
-        </div>
+    <!-- O Footer entra aqui automaticamente -->
+    <div id="footer-placeholder"></div>
 
-        <div class="parceiro-card">
-          <img src="https://lh3.googleusercontent.com/d/1okIsa5j50-R2EGZh47ZMvDjn5UQx70hV=w1000" alt="Programa de Pós-Graduação em Sociologia — PPGS/UFAM" class="parceiro-logo" loading="lazy">
-          <div class="parceiro-info">
-            <h3>Programa de Pós-Graduação em Sociologia — PPGS/UFAM</h3>
-            <p>Pesquisa acadêmica e cooperação científica.</p>
-          </div>
-        </div>
+    <!-- Header e Footer -->
+    <script>
+      const ROOT = "../";
 
-        <!-- 2. EXTENSÃO E REDE -->
-        <h3 class="categoria-titulo">2. Extensão e Rede</h3>
+      Promise.all([
+        fetch(ROOT + "header.html").then((resposta) => resposta.text()),
+        fetch(ROOT + "footer.html").then((resposta) => resposta.text()),
+      ]).then(([headerHtml, footerHtml]) => {
+        document.getElementById("header-placeholder").innerHTML = headerHtml;
+        document.getElementById("footer-placeholder").innerHTML = footerHtml;
 
-        <div class="parceiro-card">
-          <img src="https://lh3.googleusercontent.com/d/1du1uoKcs9dLCeeH3S_hw-1QL6Li0BfP-=w1000" alt="Decanato de Extensão — DEX/UnB" class="parceiro-logo" loading="lazy">
-          <div class="parceiro-info">
-            <h3>Decanato de Extensão — DEX/UnB</h3>
-            <p>Parceria em infraestrutura de dados e documentação e fomentação de recursos para extensão na UnB.</p>
-          </div>
-        </div>
+        document
+          .querySelectorAll(
+            '#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]',
+          )
+          .forEach((a) =>
+            a.setAttribute("href", ROOT + a.getAttribute("href")),
+          );
 
-        <div class="parceiro-card">
-          <img src="https://lh3.googleusercontent.com/d/1TNRB25stNDNMOaqgA2-xRAB5YFQTQcYv=w1000" alt="Rede de Polos de Extensão — REPE/UnB" class="parceiro-logo" loading="lazy">
-          <div class="parceiro-info">
-            <h3>Rede de Polos de Extensão — REPE/UnB</h3>
-            <p>Parceria em infraestrutura de dados e documentação e fomentação de recursos para extensão na UnB.</p>
-          </div>
-        </div>
+        document
+          .querySelectorAll("#header-placeholder img, #footer-placeholder img")
+          .forEach((img) => {
+            const src = img.getAttribute("src");
+            if (src && !/^(https?:|data:|\/|\.\.\/)/.test(src)) {
+              img.setAttribute("src", ROOT + src);
+            }
+          });
 
-        <!-- 3. APOIOS / FOMENTO -->
-        <h3 class="categoria-titulo">3. Apoios / Fomento</h3>
-
-        <div class="parceiro-card">
-          <img src="https://lh3.googleusercontent.com/d/1iM_kUbk1O9IJCPk6waBRcmaLMD_biB4Y=w1000" alt="Fundação de Apoio à Pesquisa do Distrito Federal — FAPDF" class="parceiro-logo" loading="lazy">
-          <div class="parceiro-info">
-            <h3>Fundação de Apoio à Pesquisa do Distrito Federal — FAPDF</h3>
-            <p>Fomento e apoio ao desenvolvimento científico e tecnológico.</p>
-          </div>
-        </div>
-
-        <div class="parceiro-card">
-          <img src="https://lh3.googleusercontent.com/d/1M7vJAJJprp-R99Xu8PbdXf6fsw7eSP3b=w1000" alt="Conexão Cultura DF" class="parceiro-logo" loading="lazy">
-          <div class="parceiro-info">
-            <h3>Conexão Cultura DF</h3>
-            <p>Apoio cultural e fomento artístico.</p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-  </main>
-
-  <!-- O Footer entra aqui automaticamente -->
-  <div id="footer-placeholder"></div>
-
-  <!-- Header e Footer -->
-   <script>
-    const ROOT = '../';
-
-    Promise.all([
-      fetch(ROOT + 'header.html').then(resposta => resposta.text()),
-      fetch(ROOT + 'footer.html').then(resposta => resposta.text())
-    ]).then(([headerHtml, footerHtml]) => {
-      document.getElementById('header-placeholder').innerHTML = headerHtml;
-      document.getElementById('footer-placeholder').innerHTML = footerHtml;
-
-      document.querySelectorAll('#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]')
-        .forEach(a => a.setAttribute('href', ROOT + a.getAttribute('href')));
-
-      document.querySelectorAll('#header-placeholder img, #footer-placeholder img')
-        .forEach(img => {
-          const src = img.getAttribute('src');
-          if (src && !/^(https?:|data:|\/|\.\.\/)/.test(src)) {
-            img.setAttribute('src', ROOT + src);
-          }
-        });
-
-      const scriptOriginal = document.createElement('script');
-      scriptOriginal.src = ROOT + 'js/app.js';
-      scriptOriginal.onload = () => { document.dispatchEvent(new Event('DOMContentLoaded')); };
-      document.body.appendChild(scriptOriginal);
-    });
-  </script>
-</body>
+        const scriptOriginal = document.createElement("script");
+        scriptOriginal.src = ROOT + "js/app.js";
+        scriptOriginal.onload = () => {
+          document.dispatchEvent(new Event("DOMContentLoaded"));
+        };
+        document.body.appendChild(scriptOriginal);
+      });
+    </script>
+  </body>
 </html>

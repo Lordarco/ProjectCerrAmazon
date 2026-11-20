@@ -1,52 +1,211 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Webdossiê — CerrAmazon</title>
-  <link rel="stylesheet" href="../css/styles.css">
-</head>
-<body>
-  <div id="header-placeholder"></div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Webdossiê — CerrAmazon</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+      #conteudo .section {
+        padding-bottom: 20px;
+      }
+      #conteudo .section-heading {
+        margin-bottom: 24px;
+      }
+      .dossie-intro {
+        background: #111;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 24px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .dossie-intro-texto h3 {
+        font-size: 1.2rem;
+        color: #fff;
+        margin-bottom: 4px;
+      }
+      .dossie-intro-texto p {
+        color: var(--text-muted, #999);
+        font-size: 0.95rem;
+        margin: 0;
+      }
+      .btn-acao {
+        display: inline-block;
+        background: #fff;
+        color: #000;
+        padding: 10px 18px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: background 0.2s;
+      }
+      .btn-acao:hover {
+        background: #e0e0e0;
+      }
+      .grade-dossie {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+      .dossie-card {
+        background: #111;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: border-color 0.3s ease;
+      }
+      .dossie-card:hover {
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+      .dossie-meta {
+        font-size: 0.8rem;
+        color: var(--text-muted, #999);
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .dossie-card h4 {
+        font-size: 1.15rem;
+        color: #fff;
+        margin-bottom: 10px;
+        line-height: 1.3;
+      }
+      .dossie-card p {
+        color: var(--text-muted, #999);
+        font-size: 0.92rem;
+        margin-bottom: 16px;
+        line-height: 1.5;
+      }
+      .dossie-link {
+        display: inline-block;
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        padding-bottom: 2px;
+        align-self: flex-start;
+        transition: border-color 0.2s;
+      }
+      .dossie-link:hover {
+        border-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header-placeholder"></div>
 
-  <main id="conteudo" style="padding: 20px 20px 20px 20px; max-width: 1200px; margin: 0 auto;">
-    <section class="section">
-      <header class="section-heading">
-        <p class="eyebrow">PLATAFORMA</p>
-        <h2>Webdossiê</h2>
-        <p>Uma publicação que cresce e se desenvolve com o campo.</p>
-      </header>
-    </section>
-  </main>
+    <main
+      id="conteudo"
+      style="padding: 120px 20px 40px 20px; max-width: 1200px; margin: 0 auto"
+    >
+      <section class="section">
+        <header class="section-heading">
+          <p class="eyebrow">PLATAFORMA</p>
+          <h2>Webdossiê</h2>
+          <p>Uma publicação que cresce e se desenvolve com o campo.</p>
+        </header>
 
-  <div id="footer-placeholder"></div>
+        <div class="dossie-intro">
+          <div class="dossie-intro-texto">
+            <h3>Dossiê Vivo em Atualização Contínua</h3>
+            <p>
+              Reúne camadas investigativas, relatos de campo, mapas e
+              desdobramentos entre Cerrado e Amazônia.
+            </p>
+          </div>
+          <a href="rede.html" class="btn-acao">Explorar a Rede →</a>
+        </div>
+
+        <div class="grade-dossie">
+          <article class="dossie-card">
+            <div>
+              <span class="dossie-meta">Camada 01 • Campo</span>
+              <h4>Investigações e Cadernos de Campo</h4>
+              <p>
+                Registros progressivos construídos a partir das vivências,
+                observações e encontros nos territórios pesquisados.
+              </p>
+            </div>
+            <a href="../menu-producao/pesquisa.html" class="dossie-link"
+              >Ver pesquisa →</a
+            >
+          </article>
+
+          <article class="dossie-card">
+            <div>
+              <span class="dossie-meta">Camada 02 • Acervo</span>
+              <h4>Textos, Imagens e Registros</h4>
+              <p>
+                Articulação editorial entre ensaios, peças audiovisuais,
+                materiais expositivos e documentos de arquivo.
+              </p>
+            </div>
+            <a href="../menu-producao/publicacoes.html" class="dossie-link"
+              >Ver publicações →</a
+            >
+          </article>
+
+          <article class="dossie-card">
+            <div>
+              <span class="dossie-meta">Camada 03 • Governança</span>
+              <h4>Critérios de Circulação</h4>
+              <p>
+                Acompanha os termos de acesso, escuta e responsabilidade
+                partilhada que orientam cada nova entrada do dossiê.
+              </p>
+            </div>
+            <a href="protocolos.html" class="dossie-link">Ver protocolos →</a>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
 
     <script>
-    const ROOT = '../';
+      const ROOT = "../";
 
-    Promise.all([
-      fetch(ROOT + 'header.html').then(resposta => resposta.text()),
-      fetch(ROOT + 'footer.html').then(resposta => resposta.text())
-    ]).then(([headerHtml, footerHtml]) => {
-      document.getElementById('header-placeholder').innerHTML = headerHtml;
-      document.getElementById('footer-placeholder').innerHTML = footerHtml;
+      Promise.all([
+        fetch(ROOT + "header.html").then((resposta) => resposta.text()),
+        fetch(ROOT + "footer.html").then((resposta) => resposta.text()),
+      ]).then(([headerHtml, footerHtml]) => {
+        document.getElementById("header-placeholder").innerHTML = headerHtml;
+        document.getElementById("footer-placeholder").innerHTML = footerHtml;
 
-      document.querySelectorAll('#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]')
-        .forEach(a => a.setAttribute('href', ROOT + a.getAttribute('href')));
+        document
+          .querySelectorAll(
+            '#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]',
+          )
+          .forEach((a) =>
+            a.setAttribute("href", ROOT + a.getAttribute("href")),
+          );
 
-      document.querySelectorAll('#header-placeholder img, #footer-placeholder img')
-        .forEach(img => {
-          const src = img.getAttribute('src');
-          if (src && !/^(https?:|data:|\/|\.\.\/)/.test(src)) {
-            img.setAttribute('src', ROOT + src);
-          }
-        });
+        document
+          .querySelectorAll("#header-placeholder img, #footer-placeholder img")
+          .forEach((img) => {
+            const src = img.getAttribute("src");
+            if (src && !/^(https?:|data:|\/|\.\.\/)/.test(src)) {
+              img.setAttribute("src", ROOT + src);
+            }
+          });
 
-      const scriptOriginal = document.createElement('script');
-      scriptOriginal.src = ROOT + 'js/app.js';
-      scriptOriginal.onload = () => { document.dispatchEvent(new Event('DOMContentLoaded')); };
-      document.body.appendChild(scriptOriginal);
-    });
-  </script>
-</body>
+        const scriptOriginal = document.createElement("script");
+        scriptOriginal.src = ROOT + "js/app.js";
+        scriptOriginal.onload = () => {
+          document.dispatchEvent(new Event("DOMContentLoaded"));
+        };
+        document.body.appendChild(scriptOriginal);
+      });
+    </script>
+  </body>
 </html>

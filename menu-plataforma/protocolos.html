@@ -1,52 +1,219 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Protocolos — CerrAmazon</title>
-  <link rel="stylesheet" href="../css/styles.css">
-</head>
-<body>
-  <div id="header-placeholder"></div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Protocolos — CerrAmazon</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+      #conteudo .section {
+        padding-bottom: 20px;
+      }
+      #conteudo .section-heading {
+        margin-bottom: 24px;
+      }
+      .protocolos-intro {
+        background: #111;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 24px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .protocolos-intro-texto h3 {
+        font-size: 1.2rem;
+        color: #fff;
+        margin-bottom: 4px;
+      }
+      .protocolos-intro-texto p {
+        color: var(--text-muted, #999);
+        font-size: 0.95rem;
+        margin: 0;
+      }
+      .btn-acao {
+        display: inline-block;
+        background: #fff;
+        color: #000;
+        padding: 10px 18px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: background 0.2s;
+      }
+      .btn-acao:hover {
+        background: #e0e0e0;
+      }
+      .grade-protocolos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+      .protocolo-card {
+        background: #111;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: border-color 0.3s ease;
+      }
+      .protocolo-card:hover {
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+      .protocolo-meta {
+        font-size: 0.8rem;
+        color: var(--text-muted, #999);
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .protocolo-card h4 {
+        font-size: 1.15rem;
+        color: #fff;
+        margin-bottom: 10px;
+        line-height: 1.3;
+      }
+      .protocolo-card p {
+        color: var(--text-muted, #999);
+        font-size: 0.92rem;
+        margin-bottom: 16px;
+        line-height: 1.5;
+      }
+      .protocolo-link {
+        display: inline-block;
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        padding-bottom: 2px;
+        align-self: flex-start;
+        transition: border-color 0.2s;
+      }
+      .protocolo-link:hover {
+        border-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header-placeholder"></div>
 
-  <main id="conteudo" style="padding: 20px 20px 20px 20px; max-width: 1200px; margin: 0 auto;">
-    <section class="section">
-      <header class="section-heading">
-        <p class="eyebrow">PLATAFORMA</p>
-        <h2>Protocolos</h2>
-        <p>Condições de circulação, estados de acesso e governança dos registros.</p>
-      </header>
-    </section>
-  </main>
+    <main
+      id="conteudo"
+      style="padding: 120px 20px 40px 20px; max-width: 1200px; margin: 0 auto"
+    >
+      <section class="section">
+        <header class="section-heading">
+          <p class="eyebrow">PLATAFORMA</p>
+          <h2>Protocolos</h2>
+          <p>
+            Condições de circulação, estados de acesso e governança dos
+            registros.
+          </p>
+        </header>
 
-  <div id="footer-placeholder"></div>
+        <div class="protocolos-intro">
+          <div class="protocolos-intro-texto">
+            <h3>Diretrizes de Acesso e Circulação</h3>
+            <p>
+              Define os critérios éticos, de autoria, atribuição e
+              disponibilidade dos conteúdos reunidos no projeto.
+            </p>
+          </div>
+          <a href="../menu-institucional/sobre.html" class="btn-acao"
+            >Sobre o Projeto →</a
+          >
+        </div>
+
+        <div class="grade-protocolos">
+          <article class="protocolo-card">
+            <div>
+              <span class="protocolo-meta">Eixo 01 • Circulação</span>
+              <h4>Condições de Circulação</h4>
+              <p>
+                Orienta como os registros, mapas, textos e peças audiovisuais
+                podem circular em contextos educativos, culturais e de pesquisa.
+              </p>
+            </div>
+            <a href="../menu-producao/publicacoes.html" class="protocolo-link"
+              >Ver publicações →</a
+            >
+          </article>
+
+          <article class="protocolo-card">
+            <div>
+              <span class="protocolo-meta">Eixo 02 • Disponibilidade</span>
+              <h4>Estados de Acesso</h4>
+              <p>
+                Organiza os diferentes níveis de abertura ou restrição de cada
+                registro conforme acordos com participantes, acervos e
+                territórios.
+              </p>
+            </div>
+            <a href="../menu-producao/pesquisa.html" class="protocolo-link"
+              >Explorar pesquisa →</a
+            >
+          </article>
+
+          <article class="protocolo-card">
+            <div>
+              <span class="protocolo-meta">Eixo 03 • Governança</span>
+              <h4>Governança dos Registros</h4>
+              <p>
+                Estabelece responsabilidades de curadoria, preservação, citação
+                adequada e atualização contínua do acervo digital.
+              </p>
+            </div>
+            <a href="../menu-institucional/contato.html" class="protocolo-link"
+              >Falar com a equipe →</a
+            >
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
 
     <script>
-    const ROOT = '../';
+      const ROOT = "../";
 
-    Promise.all([
-      fetch(ROOT + 'header.html').then(resposta => resposta.text()),
-      fetch(ROOT + 'footer.html').then(resposta => resposta.text())
-    ]).then(([headerHtml, footerHtml]) => {
-      document.getElementById('header-placeholder').innerHTML = headerHtml;
-      document.getElementById('footer-placeholder').innerHTML = footerHtml;
+      Promise.all([
+        fetch(ROOT + "header.html").then((resposta) => resposta.text()),
+        fetch(ROOT + "footer.html").then((resposta) => resposta.text()),
+      ]).then(([headerHtml, footerHtml]) => {
+        document.getElementById("header-placeholder").innerHTML = headerHtml;
+        document.getElementById("footer-placeholder").innerHTML = footerHtml;
 
-      document.querySelectorAll('#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]')
-        .forEach(a => a.setAttribute('href', ROOT + a.getAttribute('href')));
+        document
+          .querySelectorAll(
+            '#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]',
+          )
+          .forEach((a) =>
+            a.setAttribute("href", ROOT + a.getAttribute("href")),
+          );
 
-      document.querySelectorAll('#header-placeholder img, #footer-placeholder img')
-        .forEach(img => {
-          const src = img.getAttribute('src');
-          if (src && !/^(https?:|data:|\/|\.\.\/)/.test(src)) {
-            img.setAttribute('src', ROOT + src);
-          }
-        });
+        document
+          .querySelectorAll("#header-placeholder img, #footer-placeholder img")
+          .forEach((img) => {
+            const src = img.getAttribute("src");
+            if (src && !/^(https?:|data:|\/|\.\.\/)/.test(src)) {
+              img.setAttribute("src", ROOT + src);
+            }
+          });
 
-      const scriptOriginal = document.createElement('script');
-      scriptOriginal.src = ROOT + 'js/app.js';
-      scriptOriginal.onload = () => { document.dispatchEvent(new Event('DOMContentLoaded')); };
-      document.body.appendChild(scriptOriginal);
-    });
-  </script>
-</body>
+        const scriptOriginal = document.createElement("script");
+        scriptOriginal.src = ROOT + "js/app.js";
+        scriptOriginal.onload = () => {
+          document.dispatchEvent(new Event("DOMContentLoaded"));
+        };
+        document.body.appendChild(scriptOriginal);
+      });
+    </script>
+  </body>
 </html>

@@ -1,295 +1,322 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Territórios — CerrAmazon</title>
-  <link rel="stylesheet" href="../css/styles.css">
-  <style>
-    #conteudo .section {
-      padding-bottom: 20px;
-    }
-    #conteudo .section-heading {
-      margin-bottom: 0;
-    }
-    .carrosseis-lado-a-lado {
-      display: flex;
-      gap: 24px;
-      margin-top: 24px;
-      flex-wrap: wrap;
-    }
-    .carrossel-secao {
-      flex: 1 1 0;
-      min-width: 280px;
-    }
-    .carrossel-secao h3 {
-      font-size: 1.4rem;
-      margin-bottom: 8px;
-    }
-    .carrossel-secao p.legenda {
-      color: var(--text-muted, #999);
-      margin-bottom: 20px;
-    }
-    .carrossel {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-      border-radius: 8px;
-      background: #111;
-    }
-    .carrossel-slide {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 0.6s ease;
-    }
-    .carrossel-slide.ativo {
-      opacity: 1;
-    }
-    .carrossel-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.5);
-      color: #fff;
-      border: none;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 1.1rem;
-      z-index: 2;
-    }
-    .carrossel-nav:hover {
-      background: rgba(0,0,0,0.8);
-    }
-    .carrossel-nav.anterior { left: 10px; }
-    .carrossel-nav.proximo { right: 10px; }
-    .carrossel-dots {
-      position: absolute;
-      bottom: 12px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 6px;
-      z-index: 2;
-    }
-    .carrossel-dots .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.4);
-      cursor: pointer;
-    }
-    .carrossel-dots .dot.ativo {
-      background: #fff;
-    }
-    .carrossel-loading {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-muted, #999);
-      font-size: 0.8rem;
-      z-index: 1;
-    }
-  </style>
-</head>
-<body>
-  <!-- O Header entra aqui automaticamente -->
-  <div id="header-placeholder"></div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Territórios — CerrAmazon</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+      #conteudo .section {
+        padding-bottom: 20px;
+      }
+      #conteudo .section-heading {
+        margin-bottom: 0;
+      }
+      .carrosseis-lado-a-lado {
+        display: flex;
+        gap: 24px;
+        margin-top: 24px;
+        flex-wrap: wrap;
+      }
+      .carrossel-secao {
+        flex: 1 1 0;
+        min-width: 280px;
+      }
+      .carrossel-secao h3 {
+        font-size: 1.4rem;
+        margin-bottom: 8px;
+      }
+      .carrossel-secao p.legenda {
+        color: var(--text-muted, #999);
+        margin-bottom: 20px;
+      }
+      .carrossel {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        border-radius: 8px;
+        background: #111;
+      }
+      .carrossel-slide {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+      }
+      .carrossel-slide.ativo {
+        opacity: 1;
+      }
+      .carrossel-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        border: none;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.1rem;
+        z-index: 2;
+      }
+      .carrossel-nav:hover {
+        background: rgba(0, 0, 0, 0.8);
+      }
+      .carrossel-nav.anterior {
+        left: 10px;
+      }
+      .carrossel-nav.proximo {
+        right: 10px;
+      }
+      .carrossel-dots {
+        position: absolute;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 6px;
+        z-index: 2;
+      }
+      .carrossel-dots .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.4);
+        cursor: pointer;
+      }
+      .carrossel-dots .dot.ativo {
+        background: #fff;
+      }
+      .carrossel-loading {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-muted, #999);
+        font-size: 0.8rem;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- O Header entra aqui automaticamente -->
+    <div id="header-placeholder"></div>
 
-  <!-- MIOLO / CONTEÚDO ESPECÍFICO DA PÁGINA -->
-  <main id="conteudo" style="padding: 20px 20px 20px 20px; max-width: 1200px; margin: 0 auto;">
-    <section class="section">
-      <header class="section-heading">
-        <p class="eyebrow">PLATAFORMA</p>
-        <h2>Territórios</h2>
-        <p>Lugares, percursos e relações territoriais entre Cerrado e Amazônia.</p>
-      </header>
-    </section>
-
-    <div class="carrosseis-lado-a-lado">
-      <!-- CARROSSEL CERRADO -->
-      <section class="carrossel-secao">
-        <h3>Cerrado</h3>
-        <p class="legenda">Registros do território do Cerrado.</p>
-        <div class="carrossel" id="carrossel-cerrado">
-          <div class="carrossel-loading">carregando...</div>
-          <button class="carrossel-nav anterior" aria-label="Foto anterior">‹</button>
-          <button class="carrossel-nav proximo" aria-label="Próxima foto">›</button>
-          <div class="carrossel-dots"></div>
-        </div>
+    <!-- MIOLO / CONTEÚDO ESPECÍFICO DA PÁGINA -->
+    <main
+      id="conteudo"
+      style="padding: 20px 20px 20px 20px; max-width: 1200px; margin: 0 auto"
+    >
+      <section class="section">
+        <header class="section-heading">
+          <p class="eyebrow">PLATAFORMA</p>
+          <h2>Territórios</h2>
+          <p>
+            Lugares, percursos e relações territoriais entre Cerrado e Amazônia.
+          </p>
+        </header>
       </section>
 
-      <!-- CARROSSEL AMAZÔNIA -->
-      <section class="carrossel-secao">
-        <h3>Amazônia</h3>
-        <p class="legenda">Registros do território da Amazônia.</p>
-        <div class="carrossel" id="carrossel-amazonia">
-          <div class="carrossel-loading">carregando...</div>
-          <button class="carrossel-nav anterior" aria-label="Foto anterior">‹</button>
-          <button class="carrossel-nav proximo" aria-label="Próxima foto">›</button>
-          <div class="carrossel-dots"></div>
-        </div>
-      </section>
-    </div>
-  </main>
+      <div class="carrosseis-lado-a-lado">
+        <!-- CARROSSEL CERRADO -->
+        <section class="carrossel-secao">
+          <h3>Cerrado</h3>
+          <p class="legenda">Registros do território do Cerrado.</p>
+          <div class="carrossel" id="carrossel-cerrado">
+            <div class="carrossel-loading">carregando...</div>
+            <button class="carrossel-nav anterior" aria-label="Foto anterior">
+              ‹
+            </button>
+            <button class="carrossel-nav proximo" aria-label="Próxima foto">
+              ›
+            </button>
+            <div class="carrossel-dots"></div>
+          </div>
+        </section>
 
-  <!-- O Footer entra aqui automaticamente -->
-  <div id="footer-placeholder"></div>
+        <!-- CARROSSEL AMAZÔNIA -->
+        <section class="carrossel-secao">
+          <h3>Amazônia</h3>
+          <p class="legenda">Registros do território da Amazônia.</p>
+          <div class="carrossel" id="carrossel-amazonia">
+            <div class="carrossel-loading">carregando...</div>
+            <button class="carrossel-nav anterior" aria-label="Foto anterior">
+              ‹
+            </button>
+            <button class="carrossel-nav proximo" aria-label="Próxima foto">
+              ›
+            </button>
+            <div class="carrossel-dots"></div>
+          </div>
+        </section>
+      </div>
+    </main>
 
-  <!-- Header e Footer -->
+    <!-- O Footer entra aqui automaticamente -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Header e Footer -->
     <script>
-    const ROOT = '../';
+      const ROOT = "../";
 
-    Promise.all([
-      fetch(ROOT + 'header.html').then(resposta => resposta.text()),
-      fetch(ROOT + 'footer.html').then(resposta => resposta.text())
-    ]).then(([headerHtml, footerHtml]) => {
-      document.getElementById('header-placeholder').innerHTML = headerHtml;
-      document.getElementById('footer-placeholder').innerHTML = footerHtml;
+      Promise.all([
+        fetch(ROOT + "header.html").then((resposta) => resposta.text()),
+        fetch(ROOT + "footer.html").then((resposta) => resposta.text()),
+      ]).then(([headerHtml, footerHtml]) => {
+        document.getElementById("header-placeholder").innerHTML = headerHtml;
+        document.getElementById("footer-placeholder").innerHTML = footerHtml;
 
-      document.querySelectorAll('#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]')
-        .forEach(a => a.setAttribute('href', ROOT + a.getAttribute('href')));
+        document
+          .querySelectorAll(
+            '#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]',
+          )
+          .forEach((a) =>
+            a.setAttribute("href", ROOT + a.getAttribute("href")),
+          );
 
-      document.querySelectorAll('#header-placeholder img, #footer-placeholder img')
-        .forEach(img => {
-          const src = img.getAttribute('src');
-          if (src && !/^(https?:|data:|\/|\.\.\/)/.test(src)) {
-            img.setAttribute('src', ROOT + src);
+        document
+          .querySelectorAll("#header-placeholder img, #footer-placeholder img")
+          .forEach((img) => {
+            const src = img.getAttribute("src");
+            if (src && !/^(https?:|data:|\/|\.\.\/)/.test(src)) {
+              img.setAttribute("src", ROOT + src);
+            }
+          });
+
+        const scriptOriginal = document.createElement("script");
+        scriptOriginal.src = ROOT + "js/app.js";
+        scriptOriginal.onload = () => {
+          document.dispatchEvent(new Event("DOMContentLoaded"));
+        };
+        document.body.appendChild(scriptOriginal);
+      });
+    </script>
+
+    <!-- CARROSSÉIS -->
+    <script>
+      const ROOT_IMG = "../assets/images/";
+
+      const fotosCerrado = [
+        "https://lh3.googleusercontent.com/d/1br_Afk7uwuJk3GKN-K1HypNplZgADSPR=w1000",
+        "https://lh3.googleusercontent.com/d/1afS13DgWJ6fzwZPwskt9nXg9NB0k3hYR=w1000",
+        "https://lh3.googleusercontent.com/d/1TxYpuV4UzNzkjxYXNVr8gHhF7oBYnuDJ=w1000",
+        "https://lh3.googleusercontent.com/d/1d1pKBw6ZLrSSP7-riCBG8OMJsb6uh7UX=w1000",
+        "https://lh3.googleusercontent.com/d/1a7wLc0YdUHeP2OMxIeYb7nKTkz24Pyeh=w1000",
+        "https://lh3.googleusercontent.com/d/1GpCEAqcwvmABAqz1UKtp5jVa7XsNCnoD=w1000",
+        "https://lh3.googleusercontent.com/d/15EN34cFUei6OadIRlWSvFgFwRJlYIqRZ=w1000",
+        "https://lh3.googleusercontent.com/d/1JOeWHWiJSJQuYnUeweVVYxYMeuMWUWe-=w1000",
+      ];
+
+      const fotosAmazonia = [
+        "https://lh3.googleusercontent.com/d/1AL20gq9zoLF4ib301MrjKkKRqETew8ST=w1000",
+        "https://lh3.googleusercontent.com/d/1g1KfD5rxy9RjjLPndXyGpXy0ISyGBGyt=w1000",
+        "https://lh3.googleusercontent.com/d/1FTeTa9nj6N0bievHcVXDTtD-t99HGRRV=w1000",
+        "https://lh3.googleusercontent.com/d/1u34f7leFXImImS5gwk5jSgyLpFlDB2_K=w1000",
+        "https://lh3.googleusercontent.com/d/1B0Z1CFl_kBTIy568tpk3F178J9qWllvr=w1000",
+        "https://lh3.googleusercontent.com/d/1PH6vqfHFsc9ZmgzfmdV5Ap1iQqW-99fd=w1000",
+        "https://lh3.googleusercontent.com/d/1kknKu8tPSG60HnEG5wXNGu34KApg9ozL=w1000",
+      ];
+
+      const cacheCarregados = {};
+
+      function montarCarrossel(idContainer, pastaImagens, listaFotos) {
+        const container = document.getElementById(idContainer);
+        if (!container || listaFotos.length === 0) return;
+
+        const loadingLabel = container.querySelector(".carrossel-loading");
+        const dotsWrapper = container.querySelector(".carrossel-dots");
+        let atual = 0;
+        let timer;
+
+        cacheCarregados[idContainer] = new Set();
+
+        listaFotos.forEach((item, i) => {
+          const slide = document.createElement("div");
+          slide.className = "carrossel-slide" + (i === 0 ? " ativo" : "");
+
+          if (item.startsWith("http")) {
+            slide.dataset.src = item;
+          } else {
+            slide.dataset.src = `${ROOT_IMG}${pastaImagens}/${encodeURIComponent(item)}`;
           }
+          container.insertBefore(slide, loadingLabel);
+
+          const dot = document.createElement("span");
+          dot.className = "dot" + (i === 0 ? " ativo" : "");
+          dot.addEventListener("click", () => irPara(i));
+          dotsWrapper.appendChild(dot);
         });
 
-      const scriptOriginal = document.createElement('script');
-      scriptOriginal.src = ROOT + 'js/app.js';
-      scriptOriginal.onload = () => { document.dispatchEvent(new Event('DOMContentLoaded')); };
-      document.body.appendChild(scriptOriginal);
-    });
-  </script>
+        const slides = container.querySelectorAll(".carrossel-slide");
+        const dots = dotsWrapper.querySelectorAll(".dot");
 
-  <!-- CARROSSÉIS -->
-  <script>
-    const ROOT_IMG = '../assets/images/';
+        function carregarSlide(indice) {
+          if (cacheCarregados[idContainer].has(indice)) return;
+          const slide = slides[indice];
+          const url = slide.dataset.src;
 
-    const fotosCerrado = [
-      'https://lh3.googleusercontent.com/d/1br_Afk7uwuJk3GKN-K1HypNplZgADSPR=w1000',
-      'https://lh3.googleusercontent.com/d/1afS13DgWJ6fzwZPwskt9nXg9NB0k3hYR=w1000',
-      'https://lh3.googleusercontent.com/d/1TxYpuV4UzNzkjxYXNVr8gHhF7oBYnuDJ=w1000',
-      'https://lh3.googleusercontent.com/d/1d1pKBw6ZLrSSP7-riCBG8OMJsb6uh7UX=w1000',
-      'https://lh3.googleusercontent.com/d/1a7wLc0YdUHeP2OMxIeYb7nKTkz24Pyeh=w1000',
-      'https://lh3.googleusercontent.com/d/1GpCEAqcwvmABAqz1UKtp5jVa7XsNCnoD=w1000',
-      'https://lh3.googleusercontent.com/d/15EN34cFUei6OadIRlWSvFgFwRJlYIqRZ=w1000',
-      'https://lh3.googleusercontent.com/d/1JOeWHWiJSJQuYnUeweVVYxYMeuMWUWe-=w1000'
-    ];
-
-    const fotosAmazonia = [
-      'https://lh3.googleusercontent.com/d/1AL20gq9zoLF4ib301MrjKkKRqETew8ST=w1000',
-      'https://lh3.googleusercontent.com/d/1g1KfD5rxy9RjjLPndXyGpXy0ISyGBGyt=w1000',
-      'https://lh3.googleusercontent.com/d/1FTeTa9nj6N0bievHcVXDTtD-t99HGRRV=w1000',
-      'https://lh3.googleusercontent.com/d/1u34f7leFXImImS5gwk5jSgyLpFlDB2_K=w1000',
-      'https://lh3.googleusercontent.com/d/1B0Z1CFl_kBTIy568tpk3F178J9qWllvr=w1000',
-      'https://lh3.googleusercontent.com/d/1PH6vqfHFsc9ZmgzfmdV5Ap1iQqW-99fd=w1000',
-      'https://lh3.googleusercontent.com/d/1kknKu8tPSG60HnEG5wXNGu34KApg9ozL=w1000'
-    ];
-
-    const cacheCarregados = {};
-
-    function montarCarrossel(idContainer, pastaImagens, listaFotos) {
-      const container = document.getElementById(idContainer);
-      if (!container || listaFotos.length === 0) return;
-
-      const loadingLabel = container.querySelector('.carrossel-loading');
-      const dotsWrapper = container.querySelector('.carrossel-dots');
-      let atual = 0;
-      let timer;
-
-      cacheCarregados[idContainer] = new Set();
-
-      listaFotos.forEach((item, i) => {
-        const slide = document.createElement('div');
-        slide.className = 'carrossel-slide' + (i === 0 ? ' ativo' : '');
-        
-        if (item.startsWith('http')) {
-          slide.dataset.src = item;
-        } else {
-          slide.dataset.src = `${ROOT_IMG}${pastaImagens}/${encodeURIComponent(item)}`;
-        }
-        container.insertBefore(slide, loadingLabel);
-
-        const dot = document.createElement('span');
-        dot.className = 'dot' + (i === 0 ? ' ativo' : '');
-        dot.addEventListener('click', () => irPara(i));
-        dotsWrapper.appendChild(dot);
-      });
-
-      const slides = container.querySelectorAll('.carrossel-slide');
-      const dots = dotsWrapper.querySelectorAll('.dot');
-
-      function carregarSlide(indice) {
-        if (cacheCarregados[idContainer].has(indice)) return;
-        const slide = slides[indice];
-        const url = slide.dataset.src;
-
-        const img = new Image();
-        img.onload = () => {
-          slide.style.backgroundImage = `url('${url}')`;
-          cacheCarregados[idContainer].add(indice);
-          if (indice === atual && loadingLabel) {
-            loadingLabel.style.display = 'none';
-          }
-        };
-        img.onerror = () => {
-          cacheCarregados[idContainer].add(indice);
-          if (indice === atual && loadingLabel) {
-            loadingLabel.textContent = 'imagem indisponível';
-          }
-        };
-        img.src = url;
-      }
-
-      function irPara(indice) {
-        slides[atual].classList.remove('ativo');
-        dots[atual].classList.remove('ativo');
-        atual = (indice + listaFotos.length) % listaFotos.length;
-        slides[atual].classList.add('ativo');
-        dots[atual].classList.add('ativo');
-
-        if (loadingLabel) {
-          loadingLabel.style.display = cacheCarregados[idContainer].has(atual) ? 'none' : 'flex';
-          loadingLabel.textContent = 'carregando...';
+          const img = new Image();
+          img.onload = () => {
+            slide.style.backgroundImage = `url('${url}')`;
+            cacheCarregados[idContainer].add(indice);
+            if (indice === atual && loadingLabel) {
+              loadingLabel.style.display = "none";
+            }
+          };
+          img.onerror = () => {
+            cacheCarregados[idContainer].add(indice);
+            if (indice === atual && loadingLabel) {
+              loadingLabel.textContent = "imagem indisponível";
+            }
+          };
+          img.src = url;
         }
 
-        carregarSlide(atual);
-        carregarSlide((atual + 1) % listaFotos.length);
+        function irPara(indice) {
+          slides[atual].classList.remove("ativo");
+          dots[atual].classList.remove("ativo");
+          atual = (indice + listaFotos.length) % listaFotos.length;
+          slides[atual].classList.add("ativo");
+          dots[atual].classList.add("ativo");
+
+          if (loadingLabel) {
+            loadingLabel.style.display = cacheCarregados[idContainer].has(atual)
+              ? "none"
+              : "flex";
+            loadingLabel.textContent = "carregando...";
+          }
+
+          carregarSlide(atual);
+          carregarSlide((atual + 1) % listaFotos.length);
+        }
+
+        function reiniciarTimer() {
+          clearInterval(timer);
+          timer = setInterval(() => irPara(atual + 1), 5000);
+        }
+
+        container.querySelector(".anterior").addEventListener("click", () => {
+          irPara(atual - 1);
+          reiniciarTimer();
+        });
+        container.querySelector(".proximo").addEventListener("click", () => {
+          irPara(atual + 1);
+          reiniciarTimer();
+        });
+
+        carregarSlide(0);
+        carregarSlide(1 % listaFotos.length);
+
+        reiniciarTimer();
       }
 
-      function reiniciarTimer() {
-        clearInterval(timer);
-        timer = setInterval(() => irPara(atual + 1), 5000);
-      }
-
-      container.querySelector('.anterior').addEventListener('click', () => {
-        irPara(atual - 1);
-        reiniciarTimer();
-      });
-      container.querySelector('.proximo').addEventListener('click', () => {
-        irPara(atual + 1);
-        reiniciarTimer();
-      });
-
-      carregarSlide(0);
-      carregarSlide(1 % listaFotos.length);
-
-      reiniciarTimer();
-    }
-
-    montarCarrossel('carrossel-cerrado', 'cerrado', fotosCerrado);
-    montarCarrossel('carrossel-amazonia', 'amazonia', fotosAmazonia);
-  </script>
-</body>
+      montarCarrossel("carrossel-cerrado", "cerrado", fotosCerrado);
+      montarCarrossel("carrossel-amazonia", "amazonia", fotosAmazonia);
+    </script>
+  </body>
 </html>

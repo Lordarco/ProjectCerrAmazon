@@ -1,6 +1,11 @@
 <style>
   .site-header {
-    background: rgba(20, 22, 26, 0.72) !important; /* Mesmo tom #14161a com 72% de opacidade */
+    background: rgba(
+      20,
+      22,
+      26,
+      0.72
+    ) !important; /* Mesmo tom #14161a com 72% de opacidade */
     backdrop-filter: blur(8px); /* Efeito de desfoque suave no fundo */
     -webkit-backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
@@ -16,7 +21,9 @@
     align-items: center;
     justify-content: center;
     opacity: 0.85;
-    transition: opacity 0.2s, transform 0.2s;
+    transition:
+      opacity 0.2s,
+      transform 0.2s;
   }
   .social-links a:hover {
     opacity: 1;
@@ -31,14 +38,16 @@
     /* filter: invert(1); */
   }
   @media (max-width: 480px) {
-    .social-links { gap: 10px; }
-    .social-links img { height: 20px; width: 20px; }
+    .social-links {
+      gap: 10px;
+    }
+    .social-links img {
+      height: 20px;
+      width: 20px;
+    }
   }
   .site-header .brand img {
-    filter:
-      brightness(2.15)
-      contrast(1.45)
-      saturate(1.6)
+    filter: brightness(2.15) contrast(1.45) saturate(1.6)
       drop-shadow(0 0 10px rgba(56, 193, 153, 0.7))
       drop-shadow(0 0 3px rgba(140, 255, 220, 0.45)) !important;
   }
@@ -50,11 +59,7 @@
     href="index.html"
     aria-label="CerrAmazon — início"
   >
-    <img
-      src="assets/images/logo.png"
-      alt="CerrAmazon"
-      data-root-src
-    >
+    <img src="assets/images/logo.png" alt="CerrAmazon" data-root-src />
   </a>
 
   <div class="header-actions">
@@ -69,7 +74,7 @@
         <img
           src="https://lh3.googleusercontent.com/d/10MBVGvlN6LjkqtBwXPdpLs9ViMPMxtXK=w1000"
           alt="YouTube"
-        >
+        />
       </a>
       <a
         href="https://www.instagram.com/cerramazon/"
@@ -80,7 +85,7 @@
         <img
           src="https://lh3.googleusercontent.com/d/1u4BhRjy6vOhgFXahUgpKYAq9H70qmZ8M=w1000"
           alt="Instagram"
-        >
+        />
       </a>
     </div>
 
@@ -88,7 +93,12 @@
       PT / EN
     </button>
 
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-panel">
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="menu-panel"
+    >
       <span>MENU</span>
       <span class="menu-icon" aria-hidden="true">+</span>
     </button>
@@ -97,27 +107,26 @@
 
 <div class="menu-panel" id="menu-panel" aria-hidden="true">
   <div class="menu-columns">
-
     <div>
       <p class="eyebrow seed">PLATAFORMA</p>
 
       <a href="menu-plataforma/territorios.html">
-        <strong>Territórios</strong><br><small>lugares e relações</small>
+        <strong>Territórios</strong><br /><small>lugares e relações</small>
       </a>
       <a href="menu-plataforma/narrativas.html">
-        <strong>Narrativas</strong><br><small>ensaios e processos</small>
+        <strong>Narrativas</strong><br /><small>ensaios e processos</small>
       </a>
       <a href="menu-plataforma/acervo.html">
-        <strong>Acervo autorizado</strong><br><small>itens autorizados</small>
+        <strong>Acervo autorizado</strong><br /><small>itens autorizados</small>
       </a>
       <a href="menu-plataforma/protocolos.html">
-        <strong>Protocolos</strong><br><small>condições de circulação</small>
+        <strong>Protocolos</strong><br /><small>condições de circulação</small>
       </a>
       <a href="menu-plataforma/rede.html">
-        <strong>Rede</strong><br><small>pessoas e instituições</small>
+        <strong>Rede</strong><br /><small>pessoas e instituições</small>
       </a>
       <a href="menu-plataforma/webdossie.html">
-        <strong>Webdossiê</strong><br><small>processo editorial</small>
+        <strong>Webdossiê</strong><br /><small>processo editorial</small>
       </a>
     </div>
 
@@ -125,16 +134,16 @@
       <p class="eyebrow seed">PRODUÇÃO</p>
 
       <a href="menu-producao/pesquisa.html">
-        <strong>Pesquisa</strong><br><small>investigação em campo</small>
+        <strong>Pesquisa</strong><br /><small>investigação em campo</small>
       </a>
       <a href="menu-producao/exposicoes.html">
-        <strong>Exposições</strong><br><small>mostras e eventos</small>
+        <strong>Exposições</strong><br /><small>mostras e eventos</small>
       </a>
       <a href="menu-producao/filmes.html">
-        <strong>Filmes</strong><br><small>produção audiovisual</small>
+        <strong>Filmes</strong><br /><small>produção audiovisual</small>
       </a>
       <a href="menu-producao/publicacoes.html">
-        <strong>Publicações</strong><br><small>textos e cadernos</small>
+        <strong>Publicações</strong><br /><small>textos e cadernos</small>
       </a>
     </div>
 
@@ -142,18 +151,17 @@
       <p class="eyebrow seed">INSTITUCIONAL</p>
 
       <a href="menu-institucional/sobre.html">
-        <strong>Sobre</strong><br><small>o projeto CerrAmazon</small>
+        <strong>Sobre</strong><br /><small>o projeto CerrAmazon</small>
       </a>
       <a href="menu-institucional/equipe.html">
-        <strong>Equipe</strong><br><small>quem faz acontecer</small>
+        <strong>Equipe</strong><br /><small>quem faz acontecer</small>
       </a>
       <a href="menu-institucional/parceiros.html">
-        <strong>Parceiros</strong><br><small>redes de apoio</small>
+        <strong>Parceiros</strong><br /><small>redes de apoio</small>
       </a>
       <a href="menu-institucional/contato.html">
-        <strong>Contato</strong><br><small>fale conosco</small>
+        <strong>Contato</strong><br /><small>fale conosco</small>
       </a>
     </div>
-
   </div>
 </div>

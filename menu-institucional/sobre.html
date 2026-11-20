@@ -1,52 +1,223 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sobre — CerrAmazon</title>
-  <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>
-  <div id="header-placeholder"></div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sobre — CerrAmazon</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+      #conteudo .section {
+        padding-bottom: 20px;
+      }
+      #conteudo .section-heading {
+        margin-bottom: 24px;
+      }
+      .sobre-intro {
+        background: #111;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 24px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .sobre-intro-texto h3 {
+        font-size: 1.2rem;
+        color: #fff;
+        margin-bottom: 4px;
+      }
+      .sobre-intro-texto p {
+        color: var(--text-muted, #999);
+        font-size: 0.95rem;
+        margin: 0;
+      }
+      .btn-acao {
+        display: inline-block;
+        background: #fff;
+        color: #000;
+        padding: 10px 18px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: background 0.2s;
+      }
+      .btn-acao:hover {
+        background: #e0e0e0;
+      }
+      .grade-sobre {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+      .sobre-card {
+        background: #111;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: border-color 0.3s ease;
+      }
+      .sobre-card:hover {
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+      .sobre-meta {
+        font-size: 0.8rem;
+        color: var(--text-muted, #999);
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .sobre-card h4 {
+        font-size: 1.15rem;
+        color: #fff;
+        margin-bottom: 10px;
+        line-height: 1.3;
+      }
+      .sobre-card p {
+        color: var(--text-muted, #999);
+        font-size: 0.92rem;
+        margin-bottom: 16px;
+        line-height: 1.5;
+      }
+      .sobre-link {
+        display: inline-block;
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        padding-bottom: 2px;
+        align-self: flex-start;
+        transition: border-color 0.2s;
+      }
+      .sobre-link:hover {
+        border-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- O Header entra aqui automaticamente -->
+    <div id="header-placeholder"></div>
 
-  <main id="conteudo" style="padding: 20px 20px 20px 20px; max-width: 1200px; margin: 0 auto;">
-    <section class="section">
-      <header class="section-heading">
-        <p class="eyebrow">INSTITUCIONAL</p>
-        <h2>Sobre o projeto</h2>
-        <p>A palavra identifica. A evidência contextualiza. A gramática organiza. O protocolo governa a circulação.</p>
-      </header>
-    </section>
-  </main>
+    <!-- MIOLO / CONTEÚDO ESPECÍFICO DA PÁGINA -->
+    <main
+      id="conteudo"
+      style="padding: 110px 20px 40px 20px; max-width: 1200px; margin: 0 auto"
+    >
+      <section class="section">
+        <header class="section-heading">
+          <p class="eyebrow">INSTITUCIONAL</p>
+          <h2>Sobre o CerrAmazon</h2>
+          <p>
+            Plataforma de pesquisa-criação dedicada a cartografias, memórias e
+            narrativas entre Cerrado e Amazônia.
+          </p>
+        </header>
 
-  <div id="footer-placeholder"></div>
+        <!-- DESTAQUE / VISÃO GERAL -->
+        <div class="sobre-intro">
+          <div class="sobre-intro-texto">
+            <h3>Atlas Vivo e Territórios em Transição</h3>
+            <p>
+              Articula investigação territorial, registros audiovisuais,
+              publicações e experiências expositivas.
+            </p>
+          </div>
+          <a href="../index.html" class="btn-acao">Voltar ao Início →</a>
+        </div>
 
-   <script>
-    const ROOT = '../';
+        <!-- GRADE INSTITUCIONAL -->
+        <div class="grade-sobre">
+          <!-- Eixo 1 -->
+          <article class="sobre-card">
+            <div>
+              <span class="sobre-meta">Proposta</span>
+              <h4>Pesquisa-Criação e Território</h4>
+              <p>
+                Apresenta os fundamentos do projeto, o diálogo entre biomas,
+                memórias locais e metodologias colaborativas de documentação.
+              </p>
+            </div>
+            <a href="../menu-producao/pesquisa.html" class="sobre-link"
+              >Explorar pesquisa →</a
+            >
+          </article>
 
-    Promise.all([
-      fetch(ROOT + 'header.html').then(resposta => resposta.text()),
-      fetch(ROOT + 'footer.html').then(resposta => resposta.text())
-    ]).then(([headerHtml, footerHtml]) => {
-      document.getElementById('header-placeholder').innerHTML = headerHtml;
-      document.getElementById('footer-placeholder').innerHTML = footerHtml;
+          <!-- Eixo 2 -->
+          <article class="sobre-card">
+            <div>
+              <span class="sobre-meta">Produção</span>
+              <h4>Filmes, Exposições e Textos</h4>
+              <p>
+                Conecta a visão institucional aos desdobramentos práticos do
+                projeto em audiovisual, mostras e publicações.
+              </p>
+            </div>
+            <a href="../menu-producao/publicacoes.html" class="sobre-link"
+              >Ver publicações →</a
+            >
+          </article>
 
-      document.querySelectorAll('#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]')
-        .forEach(a => a.setAttribute('href', ROOT + a.getAttribute('href')));
+          <!-- Eixo 3 -->
+          <article class="sobre-card">
+            <div>
+              <span class="sobre-meta">Equipe &amp; Contato</span>
+              <h4>Realização e Parcerias</h4>
+              <p>
+                Espaço reservado para apresentar a equipe, núcleos envolvidos,
+                apoios institucionais e canais de contato do projeto.
+              </p>
+            </div>
+            <a href="../index.html" class="sobre-link">Conhecer o atlas →</a>
+          </article>
+        </div>
+      </section>
+    </main>
 
-      document.querySelectorAll('#header-placeholder img, #footer-placeholder img')
-        .forEach(img => {
-          const src = img.getAttribute('src');
-          if (src && !/^(https?:|data:|\/|\.\.\/)/.test(src)) {
-            img.setAttribute('src', ROOT + src);
-          }
-        });
+    <!-- O Footer entra aqui automaticamente -->
+    <div id="footer-placeholder"></div>
 
-      const scriptOriginal = document.createElement('script');
-      scriptOriginal.src = ROOT + 'js/app.js';
-      scriptOriginal.onload = () => { document.dispatchEvent(new Event('DOMContentLoaded')); };
-      document.body.appendChild(scriptOriginal);
-    });
-  </script>
-</body>
+    <!-- Header e Footer -->
+    <script>
+      const ROOT = "../";
+
+      Promise.all([
+        fetch(ROOT + "header.html").then((resposta) => resposta.text()),
+        fetch(ROOT + "footer.html").then((resposta) => resposta.text()),
+      ]).then(([headerHtml, footerHtml]) => {
+        document.getElementById("header-placeholder").innerHTML = headerHtml;
+        document.getElementById("footer-placeholder").innerHTML = footerHtml;
+
+        document
+          .querySelectorAll(
+            '#header-placeholder a[href$=".html"], #footer-placeholder a[href$=".html"]',
+          )
+          .forEach((a) =>
+            a.setAttribute("href", ROOT + a.getAttribute("href")),
+          );
+
+        document
+          .querySelectorAll("#header-placeholder img, #footer-placeholder img")
+          .forEach((img) => {
+            const src = img.getAttribute("src");
+            if (src && !/^(https?:|data:|\/|\.\.\/)/.test(src)) {
+              img.setAttribute("src", ROOT + src);
+            }
+          });
+
+        const scriptOriginal = document.createElement("script");
+        scriptOriginal.src = ROOT + "js/app.js";
+        scriptOriginal.onload = () => {
+          document.dispatchEvent(new Event("DOMContentLoaded"));
+        };
+        document.body.appendChild(scriptOriginal);
+      });
+    </script>
+  </body>
 </html>
